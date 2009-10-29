@@ -1,0 +1,7 @@
+local COLOR_NORMAL="%{$reset_color%}"
+local COLOR_HOST="%{$terminfo[bold]$fg[blue]%}"
+
+export PS1="${COLOR_HOST}%m${COLOR_NORMAL} %~ %# "
+export RPS1="%(?..%{$fg[red]%})%T%{$reset_color%}"
+
+

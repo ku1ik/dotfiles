@@ -1,0 +1,18 @@
+setopt nohup
+setopt nobeep
+setopt extendedglob
+setopt NOBGNICE
+setopt autocd
+
+. ~/.zsh/completion
+# . ~/.zsh/zkbd
+. ~/.zsh/key-bindings
+. ~/.zsh/aliases
+. ~/.zsh/exports
+. ~/.zsh/colors
+. ~/.zsh/git.zsh
+. ~/.zsh/termsupport.zsh
+. ~/.zsh/rake_completion.zsh
+. ~/.zsh/misc.zsh
+. ~/.zsh/history
+
