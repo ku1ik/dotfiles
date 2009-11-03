@@ -6,7 +6,7 @@ compinit
 zmodload zsh/complist
 
 setopt complete_in_word
-setopt MENU_COMPLETE # immediatelly insert first match
+# setopt MENU_COMPLETE # immediatelly insert first match
 
 # Processes
 zstyle ':completion:*:*:*:*:processes' menu yes select

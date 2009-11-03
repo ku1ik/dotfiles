@@ -13,7 +13,7 @@ bindkey '^[Oc' forward-word
 bindkey ';5C' forward-word
 bindkey ';3C' forward-word
 
-bindkey "e[5D" backward-word
-bindkey "ee[D" backward-word
+# bindkey "e[5D" backward-word
+# bindkey "ee[D" backward-word
 
 bindkey '^[[3~' delete-char
