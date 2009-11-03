@@ -22,3 +22,5 @@ alias gs='git status'
 
 alias md='mkdir -p'
 
+alias sp='spec -c'
+
