@@ -1,6 +1,6 @@
 local COLOR_NORMAL="%{$reset_color%}"
 local COLOR_HOST="%{$terminfo[bold]$fg[green]%}"
-export PS1="${COLOR_HOST}%m${COLOR_NORMAL} %~ %# "
+# local COLOR_BRANCH="%{$fg[cyan]%}"
+export PS1="${COLOR_HOST}%m${COLOR_NORMAL} %~%v${COLOR_NORMAL} %# "
 export RPS1="%(?..%{$fg[red]%})%T%{$reset_color%}"
-
 

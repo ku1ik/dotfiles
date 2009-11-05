@@ -1,25 +1,18 @@
-# Varables for themeing the git info prompt:
-# ZSH_THEME_GIT_PROMPT_PREFIX - Prefix at the very beginning of the prompt, before the branch name
-# ZSH_THEME_GIT_PROMPT_SUFFIX - At the very end of the prompt
-# ZSH_THEME_GIT_PROMPT_DIRTY  - Text to display if the branch is dirty
-# ZSH_THEME_GIT_PROMPT_CLEAN  - Text to display if the branch is clean
+autoload -U zgitinit
+zgitinit
 
-ZSH_THEME_GIT_PROMPT_PREFIX="git:("
-ZSH_THEME_GIT_PROMPT_SUFFIX=")"
-ZSH_THEME_GIT_PROMPT_DIRTY="*"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
+precmd_functions+='my_precmd'
 
-# get the name of the branch we are on
-function git_prompt_info() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+my_precmd() {
+  psvar=()
+  psvar[1]="$(git_prompt)"
 }
 
-parse_git_dirty () {
-  if [[ $(git status  | tail -n1) != "nothing to commit (working directory clean)" ]]; then
-    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+git_prompt() {
+  if [ zgit_branch = "" ]; then
+    echo ""
   else
-    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+    echo ":$(zgit_branch)"
   fi
 }
 
