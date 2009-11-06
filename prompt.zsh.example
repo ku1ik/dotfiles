@@ -1,7 +1,3 @@
-local COLOR_NORMAL="%{$reset_color%}"
-local COLOR_HOST="%{$terminfo[bold]$fg[blue]%}"
-local COLOR_PWD="%{$fg_bold[green]%}"
-
-export PS1="$COLOR_PWD%3~$COLOR_NORMAL%v %# "
-export RPS1="%(?..%{$fg[red]%})%T%{$reset_color%}"
+export PROMPT_TEMPLATE="%{$fg_bold[green]%}%3~%{$reset_color%}\$GIT_INFO %{$fg_bold[yellow]%}%#%{$reset_color%} "
+export RPROMPT="%(?..%{$fg[red]%})%T%{$reset_color%}"
 

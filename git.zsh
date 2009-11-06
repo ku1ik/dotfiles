@@ -4,16 +4,17 @@ zgitinit
 precmd_functions+='my_precmd'
 
 my_precmd() {
-  psvar=()
-  psvar[1]="$(git_prompt)"
+  GIT_INFO=$(git_prompt)
+  eval "export PS1=\"$PROMPT_TEMPLATE\""
 }
 
-git_info() {
-  echo "$(git_branch)$(git_status)"
+git_prompt() {
+  zgit_isgit || return
+  echo -ne ":$(git_branch)$(git_status)%{$reset_color%}"
 }
 
 git_branch() {
-  echo "$(zgit_branch)"
+  echo -ne "%{$fg_bold[cyan]%}$(zgit_branch)"
 }
 
 git_status() {
@@ -36,12 +37,7 @@ git_status() {
       st+='?'
     fi
     
-    echo "${(j::)st}"
+    echo -ne "%{$fg_bold[red]%}${(j::)st}"
   fi
-}
-
-git_prompt() {
-  zgit_isgit || return
-  echo ":$(git_info)"
 }
 
