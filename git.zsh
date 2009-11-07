@@ -10,11 +10,11 @@ my_precmd() {
 
 git_prompt() {
   zgit_isgit || return
-  echo -ne ":$(git_branch)$(git_status)%{$reset_color%}"
+  echo -ne "($(git_branch)$(git_status)%{$reset_color%})"
 }
 
 git_branch() {
-  echo -ne "%{$fg_bold[cyan]%}$(zgit_branch)"
+  echo -ne "$BRANCH_COLOR$(zgit_branch)"
 }
 
 git_status() {
@@ -22,11 +22,11 @@ git_status() {
 
   if zgit_inworktree; then
     if ! zgit_isindexclean; then
-      st+='+'
+      st+="%{$fg_bold[green]%}+"
     fi
     
     if ! zgit_isworktreeclean; then
-      st+='!'
+      st+="%{$fg_bold[red]%}!"
     fi
     
     if zgit_hasunmerged; then
@@ -34,10 +34,10 @@ git_status() {
     fi
     
     if zgit_hasuntracked; then
-      st+='?'
+      st+="%{$fg_bold[red]%}?"
     fi
     
-    echo -ne "%{$fg_bold[red]%}${(j::)st}"
+    echo -ne "${(j::)st}"
   fi
 }
 
