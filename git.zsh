@@ -5,16 +5,17 @@ precmd_functions+='my_precmd'
 
 my_precmd() {
   GIT_INFO=$(git_prompt)
-  eval "export PS1=\"$PROMPT_TEMPLATE\""
+  eval "export PROMPT=\"$PROMPT_TEMPLATE\""
+  eval "export RPROMPT=\"$RPROMPT_TEMPLATE\""
 }
 
 git_prompt() {
   zgit_isgit || return
-  echo -ne ":$(git_branch)$(git_status)%{$reset_color%}"
+  echo -ne "($(git_branch)$(git_status)%{$reset_color%})"
 }
 
 git_branch() {
-  echo -ne "$BRANCH_COLOR$(zgit_branch)"
+  echo -ne "$BRANCH_COLOR%U$(zgit_branch)%u"
 }
 
 git_status() {
