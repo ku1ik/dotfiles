@@ -10,7 +10,7 @@ my_precmd() {
 
 git_prompt() {
   zgit_isgit || return
-  echo -ne "($(git_branch)$(git_status)%{$reset_color%})"
+  echo -ne ":$(git_branch)$(git_status)%{$reset_color%}"
 }
 
 git_branch() {

@@ -1,3 +1,0 @@
-export PROMPT_TEMPLATE="%{$fg_bold[green]%}%3~%{$reset_color%}\$GIT_INFO %{$fg_bold[yellow]%}%#%{$reset_color%} "
-export RPROMPT="%(?..%{$fg[red]%})%T%{$reset_color%}"
-
