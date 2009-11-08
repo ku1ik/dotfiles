@@ -11,7 +11,6 @@ typeset -U fpath
 . ~/.zsh/key-bindings.zsh
 . ~/.zsh/aliases.zsh
 . ~/.zsh/exports.zsh
-. ~/.zsh/git.zsh
 . ~/.zsh/colors.zsh
 . ~/.zsh/termsupport.zsh
 . ~/.zsh/rake_completion.zsh
