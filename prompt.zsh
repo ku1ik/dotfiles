@@ -1,13 +1,13 @@
-local USER_COLOR=$'%{\e[38;5;112m%}'
-local PWD_COLOR=$'%{\e[38;5;110m%}'
-local HOST_COLOR=$'%{\e[38;5;175m%}'
-local AT_COLOR=$'%{\e[37m%}'
-local GIT_BRANCH_COLOR=$'%{\e[38;5;208m%}'
+local USER_COLOR=$'%B%{\e[38;5;23m%}'
+local AT_COLOR=$'%b%{\e[38;5;231m%}'
+local HOST_COLOR=$'%B%{\e[38;5;30m%}'
+local PWD_COLOR=$'%b%{\e[38;5;144m%}'
+local GIT_BRANCH_COLOR=$'%{\e[38;5;107m%}'
 local GIT_STATUS_ONE="%B%{$fg[yellow]%}"
 local GIT_STATUS_TWO="%B%{$fg[green]%}"
 local GIT_STATUS_THREE="%B%{$fg[cyan]%}"
 
-export PROMPT="$USER_COLOR%n$AT_COLOR@$HOST_COLOR%m $PWD_COLOR%3~ %{$fg_bold[yellow]%}%#%{$reset_color%} "
+export PROMPT="$USER_COLOR%n$AT_COLOR@$HOST_COLOR%m $PWD_COLOR%3~ %{$fg_bold[white]%}%#%{$reset_color%} "
 export RPROMPT_TEMPLATE='$(git_prompt)'
 
 autoload -U zgitinit
@@ -16,7 +16,6 @@ zgitinit
 precmd_functions+='my_precmd'
 
 my_precmd() {
-  #eval "export PROMPT=\"$PROMPT_TEMPLATE\""
   eval "export RPROMPT=\"$RPROMPT_TEMPLATE\""
 }
 
