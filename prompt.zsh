@@ -1,8 +1,9 @@
-local USER_COLOR=$'%B%{\e[38;5;23m%}'
-local AT_COLOR=$'%b%{\e[38;5;231m%}'
-local HOST_COLOR=$'%B%{\e[38;5;30m%}'
-local PWD_COLOR=$'%b%{\e[38;5;144m%}'
-local GIT_BRANCH_COLOR=$'%{\e[38;5;107m%}'
+local USER_COLOR=$'%B%{\e[38;5;30m%}'
+local AT_COLOR=$'%B%{\e[38;5;71m%}'
+local HOST_COLOR=$'%B%{\e[38;5;71m%}'
+local PWD_COLOR="%b%{$reset_color%}"
+#$'%b%{\e[38;5;144m%}'
+local GIT_BRANCH_COLOR=$'%B%{\e[38;5;29m%}'
 local GIT_STATUS_ONE="%B%{$fg[yellow]%}"
 local GIT_STATUS_TWO="%B%{$fg[green]%}"
 local GIT_STATUS_THREE="%B%{$fg[cyan]%}"
