@@ -6,8 +6,9 @@ export PATH="$PATH:$JAVA_HOME/bin"
 export PATH="$PATH:$JRUBY_HOME/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/usr/local/bin/"
+export PATH="$PATH:$HOME/.gem/ruby/1.9.1/bin"
 export PATH="./bin/:$PATH"
 export GIT_PAGER=""
 export EDITOR=vim
-export RUBYOPT="rubygems"
+export RUBYOPT=rubygems
 
