@@ -25,6 +25,7 @@ alias md='mkdir -p'
 
 alias sp='spec -c'
 
-alias killmerb='ps ax | grep merb | cut -f1 -d"p" | xargs kill'
+alias killmerb='ps ax | grep merb | cut -f1 -d"p" | xargs kill -9'
 alias m='bin/merb'
+alias mi='bin/merb -i'
 
