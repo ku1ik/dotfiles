@@ -16,4 +16,5 @@ typeset -U fpath
 . ~/.zsh/rake_completion.zsh
 . ~/.zsh/misc.zsh
 . ~/.zsh/history.zsh
+. ~/.zsh/git.zsh
 

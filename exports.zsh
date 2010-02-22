@@ -11,4 +11,5 @@ export PATH="./bin/:$PATH"
 export GIT_PAGER=""
 export EDITOR=vim
 export RUBYOPT=rubygems
+export BROWSER=firefox
 
