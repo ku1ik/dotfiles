@@ -4,4 +4,3 @@ colors
 autoload -Uz promptinit
 promptinit
 
-. ~/.zsh/prompt.zsh

@@ -17,4 +17,5 @@ typeset -U fpath
 . ~/.zsh/misc.zsh
 . ~/.zsh/history.zsh
 . ~/.zsh/git.zsh
+. ~/.zsh/prompt.zsh
 
