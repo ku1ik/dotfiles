@@ -46,6 +46,7 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set autoindent
+filetype plugin indent on
 
 "folding settings
 set foldmethod=indent   "fold based on indent
