@@ -41,6 +41,10 @@ set statusline+=%m      "modified flag
 set statusline+=\ 
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
+set statusline+=%#warningmsg#
+set statusline+=\ 
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 set laststatus=2
 
 "indent settings
@@ -94,4 +98,7 @@ map <C-t> :FuzzyFinderTextMate<CR>
 "NERD commenter
 nnoremap <C-_> :call NERDComment(0, "toggle")<CR>
 vnoremap <C-_> <ESC>:call NERDComment(1, "toggle")<CR>
+
+"syntastic
+let g:syntastic_enable_signs=1
 
