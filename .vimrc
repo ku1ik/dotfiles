@@ -7,6 +7,7 @@ set showcmd
 set showmode
 set incsearch
 set number
+set noswapfile
 "set cursorline
 set nowrap
 
