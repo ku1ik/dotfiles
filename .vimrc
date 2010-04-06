@@ -32,19 +32,20 @@ helptags ~/.vim/doc
 "au BufReadPost * hi CursorLine cterm=NONE ctermbg=black guibg=black
 
 set statusline=%f "tail of the filename
+set statusline+=\ 
 set statusline+=%h      "help file flag
-set statusline+=\ 
 set statusline+=%y      "filetype
-set statusline+=\ 
 set statusline+=%r      "read only flag
 set statusline+=%m      "modified flag
+
+set statusline+=%=      "left/right aligned items separated
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=\ 
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
-set statusline+=%#warningmsg#
-set statusline+=\ 
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+
 set laststatus=2
 
 "indent settings
@@ -58,6 +59,18 @@ filetype plugin indent on
 set foldmethod=indent   "fold based on indent
 set foldnestmax=3       "deepest fold is 3 levels
 set nofoldenable        "dont fold by default
+
+"wildcard completion
+set wildmode=list:longest   "make cmdline tab completion similar to bash
+set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing"
+
+set formatoptions-=o "dont continue comments when pushing o/O
+
+"vertical/horizontal scroll off settings
+set scrolloff=3
+set sidescrolloff=7
+set sidescroll=1
 
 "display tabs and trailing spaces
 set list
