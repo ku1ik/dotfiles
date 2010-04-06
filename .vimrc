@@ -89,3 +89,7 @@ endfunction
 map <F2> <ESC>:NERDTreeToggle<CR>
 map <C-t> :FuzzyFinderTextMate<CR>
 
+"NERD commenter
+nnoremap <C-_> :call NERDComment(0, "toggle")<CR>
+vnoremap <C-_> <ESC>:call NERDComment(1, "toggle")<CR>
+
