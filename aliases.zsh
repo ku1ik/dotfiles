@@ -30,6 +30,9 @@ alias killmerb='ps ax | grep merb | cut -f1 -d"p" | xargs kill -9'
 alias m='bin/merb'
 alias mi='bin/merb -i'
 
+alias rc='bundle exec rails console'
+alias rs='bundle exec rails server'
+
 alias be='bundle exec'
 alias ber='bundle exec rake'
 alias bi='bundle install'
