@@ -10,6 +10,7 @@ set number
 set noswapfile
 "set cursorline
 set nowrap
+set completeopt=
 
 if ! has("gui_running") 
   set t_Co=256 
