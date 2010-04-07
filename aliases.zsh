@@ -21,6 +21,7 @@ alias ga='git add'
 alias gc='git commit'
 alias gca='git commit -a'
 alias gs='git status'
+alias gd='git diff'
 
 alias md='mkdir -p'
 
