@@ -11,13 +11,14 @@ set noswapfile
 "set cursorline
 set nowrap
 set completeopt=
+set ignorecase
 
 if ! has("gui_running") 
   set t_Co=256 
 endif 
 
 "set background=dark
-colors molokai
+colors wombat
 
 au BufReadPost Rules set syntax=ruby
 au BufReadPost Rakefile set syntax=ruby
