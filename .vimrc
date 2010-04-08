@@ -1,21 +1,38 @@
 set nocompatible
 set backspace=indent,eol,start
 set history=1000
-set nobackup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set ruler
 set showcmd
 set showmode
 set incsearch
+set hlsearch
 set number
 set noswapfile
-"set cursorline
+set cursorline
 set nowrap
 set completeopt=
 set ignorecase
+set smartcase
+set title
+set confirm
+set gdefault
+let mapleader=","
 
-if ! has("gui_running") 
-  set t_Co=256 
-endif 
+if !has("gui_running")
+  set t_Co=256
+endif
+
+if has('gui_running')
+  set guifont=Envy\ Code\ R\ 10
+  set guioptions-=r
+  set guioptions-=R
+  set guioptions-=l
+  set guioptions-=L
+  set guioptions-=T
+  set guioptions-=m
+endif
 
 "set background=dark
 colors wombat
@@ -30,8 +47,6 @@ au BufNewFile,BufRead *.md set filetype=mkd
 
 helptags ~/.vim/doc
 
-"au BufReadPost * hi CursorLine cterm=NONE ctermbg=black guibg=black
-
 set statusline=%f "tail of the filename
 set statusline+=\ 
 set statusline+=%h      "help file flag
@@ -43,9 +58,8 @@ set statusline+=%=      "left/right aligned items separated
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=\ 
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
+set statusline+=%*\ 
+set statusline+=%-10.(%l,%c%V%)\ %P "ruler
 
 set laststatus=2
 
@@ -107,12 +121,24 @@ endfunction
 
 "NERD tree
 map <F2> <ESC>:NERDTreeToggle<CR>
-map <C-t> :FuzzyFinderTextMate<CR>
 
 "NERD commenter
 nnoremap <C-_> :call NERDComment(0, "toggle")<CR>
 vnoremap <C-_> <ESC>:call NERDComment(1, "toggle")<CR>
+vmap <C-_> :gv
+
+"Fuzzy Finder
+map <C-t> <ESC>:FuzzyFinderTextMate<CR>
+let g:fuzzy_ignore = "tmp/*;log/*;.git/*"
+map <F5> <ESC>:FuzzyFinderTextMateRefreshFiles<CR>
+"let g:fuzzy_path_display = "full"
+
+"Sparkup
+"let g:sparkup="~/bin/sparkup"
 
 "syntastic
 let g:syntastic_enable_signs=1
 
+"gist
+let g:gist_open_browser_after_post = 1
+let g:gist_detect_filetype = 1
