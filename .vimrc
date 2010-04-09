@@ -185,6 +185,12 @@ map <leader>e :e! ~/.vimrc<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
 
+" Move line(s) of text using Alt+Shift+Up/Down
+nmap <M-Down> mz:m+<cr>`z
+nmap <M-Up> mz:m-2<cr>`z
+vmap <M-Down> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-Up> :m'<-2<cr>`>my`<mzgv`yo`z
+
 """"""""""""""""""""""""""""""""""""""""
 " Plugin settings
 """"""""""""""""""""""""""""""""""""""""
