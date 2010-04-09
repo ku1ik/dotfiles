@@ -196,8 +196,8 @@ vmap <M-Up> :m'<-2<cr>`>my`<mzgv`yo`z
 """"""""""""""""""""""""""""""""""""""""
 
 " Fuzzy Finder
-let g:fuzzy_ignore = "tmp/*;log/*;.git/*"
-"let g:fuzzy_path_display = "full"
+let g:fuzzy_ignore = "tmp/*;log/*;.git/*;gems/*"
+"let g:fuzzy_path_display = "highlighted_path"
 
 " Syntastic
 let g:syntastic_enable_signs=1

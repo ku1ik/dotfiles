@@ -108,7 +108,12 @@ RUBY
       matches_length = matches.length
       matches.sort_by { |a| [-a[:score], a[:path]] }[0,enumerating_limit].each_with_index do |match, index|
         word = match[:path]
-        abbr = "%2d: %s" % [index+1, match[path_display.to_sym]]
+        #abbr = "%2d: %s" % [index+1, match[path_display.to_sym]]
+        dir = match[:directory].gsub(Regexp.new(Regexp.escape(finder.roots.first.name)+"/?"), '')
+        abbr = match[:name]
+        unless dir.empty?
+          abbr += " (#{dir})"
+        end
         menu = "[%5d]" % [match[:score] * 10000]
         VIM.evaluate("add(result, { 'word' : fnamemodify(#{word.inspect},':~:.'), 'abbr' : #{abbr.inspect}, 'menu' : #{menu.inspect}, 'ranks': [#{index}] })")
       end
