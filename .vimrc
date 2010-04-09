@@ -38,12 +38,6 @@ endif
 colors wombat
 
 au BufReadPost Rules set syntax=ruby
-au BufReadPost Rakefile set syntax=ruby
-au BufReadPost Gemfile set syntax=ruby
-au BufReadPost *.rake set syntax=ruby
-au BufNewFile,BufRead *.less set filetype=less
-au BufNewFile,BufRead *.scala set filetype=scala
-au BufNewFile,BufRead *.md set filetype=mkd
 
 helptags ~/.vim/doc
 
