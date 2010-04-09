@@ -35,7 +35,7 @@ if has('gui_running')
 endif
 
 "set background=dark
-colors wombat
+colors ir_black
 
 au BufReadPost Rules set syntax=ruby
 
