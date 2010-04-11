@@ -54,6 +54,10 @@ set foldmethod=indent   "fold based on indent
 set foldnestmax=3       "deepest fold is 3 levels
 set nofoldenable        "dont fold by default
 
+set whichwrap=<,> "cursor keys move to next/prev line if pressed at the begining/end of line
+set matchpairs+=<:>
+set iskeyword+=?
+
 set formatoptions-=o "dont continue comments when pushing o/O
 
 """"""""""""""""""""""""""""""""""""""""
@@ -79,6 +83,7 @@ set hlsearch
 set ignorecase
 set smartcase
 set gdefault
+set magic
 
 """"""""""""""""""""""""""""""""""""""""
 " Status line(s)
@@ -92,7 +97,6 @@ set statusline+=%r      "read only flag
 set statusline+=%m      "modified flag
 set statusline+=%=      "left/right aligned items separated
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*\ 
 set statusline+=%-10.(%l,%c%V%)\ %P "ruler
 
@@ -126,6 +130,8 @@ set title
 " Some stuff to get the mouse going in term
 set mouse=a
 set ttymouse=xterm2
+
+set lazyredraw " no readraw when running macros
 
 """"""""""""""""""""""""""""""""""""""""
 " Syntax highlighting and colors schemes
@@ -169,6 +175,7 @@ nmap <silent> <A-Right> :wincmd l<CR>
 
 " NERD tree
 map <F2> <ESC>:NERDTreeToggle<CR>
+nmap <leader>fit :NERDTreeFind<cr>
 
 " Fuzzy Finder
 map <C-t> <ESC>:FuzzyFinderTextMate<CR>
@@ -186,10 +193,19 @@ map <leader>e :e! ~/.vimrc<cr>
 map <leader>cd :cd %:p:h<cr>
 
 " Move line(s) of text using Alt+Shift+Up/Down
-nmap <M-Down> mz:m+<cr>`z
-nmap <M-Up> mz:m-2<cr>`z
+"nmap <M-Down> mz:m+<cr>`z
+"nmap <M-Up> mz:m-2<cr>`z
 vmap <M-Down> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-Up> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" strip trailing whitespace
+nmap <leader>sw :%s/\s\+$//g<cr>
+
+" turn off search hl
+nmap <leader>h :nohl<cr>
+
+" run ruby script
+nmap <leader>rr :!ruby %
 
 """"""""""""""""""""""""""""""""""""""""
 " Plugin settings
@@ -199,8 +215,8 @@ vmap <M-Up> :m'<-2<cr>`>my`<mzgv`yo`z
 let g:fuzzy_ignore = "tmp/*;log/*;.git/*;gems/*"
 "let g:fuzzy_path_display = "highlighted_path"
 
-" Syntastic
-let g:syntastic_enable_signs=1
+" snipMate
+source ~/.vim/snippets/support_functions.vim
 
 " Gist
 let g:gist_open_browser_after_post = 1
@@ -221,9 +237,6 @@ function! SetCursorPosition()
         endif
     end
 endfunction
-
-" When vimrc is edited, reload it
-autocmd! bufwritepost .vimrc source ~/.vimrc
 
 " Detect nanoc's Rules file as ruby
 au BufReadPost Rules set syntax=ruby
