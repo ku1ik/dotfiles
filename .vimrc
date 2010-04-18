@@ -157,7 +157,7 @@ if has('gui_running')
 endif
 
 " Scheme
-colors ir_black
+colors Sunburst
 
 """"""""""""""""""""""""""""""""""""""""
 " Mappings
@@ -199,7 +199,10 @@ vmap <M-Down> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-Up> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " strip trailing whitespace
-nmap <leader>sw :%s/\s\+$//g<cr>
+nmap <leader>sw :%s/\s\+$//g<cr>:nohl<cr>
+
+" preview textile
+nmap <leader>pr :TextilePreview<cr>
 
 " turn off search hl
 nmap <leader>h :nohl<cr>
@@ -210,6 +213,9 @@ nmap <leader>rr :!ruby %
 """"""""""""""""""""""""""""""""""""""""
 " Plugin settings
 """"""""""""""""""""""""""""""""""""""""
+
+" NERDTree
+let NERDChristmasTree = 1
 
 " Fuzzy Finder
 let g:fuzzy_ignore = "tmp/*;log/*;.git/*;gems/*"

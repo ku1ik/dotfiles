@@ -14,7 +14,7 @@ ruby << EOF
   File.open(html_file, 'w') do |f|
     f.write(BlueCloth.new(t).to_html)
   end
-  system("open #{html_file}")
+  system("$BROWSER #{html_file}")
   sleep 3
   File.delete(html_file)
 EOF
