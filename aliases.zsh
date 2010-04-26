@@ -10,7 +10,6 @@ alias psg='ps aux | grep'
 alias psug='ps ux | grep'
 alias rtorrent='screen -D -R rtorrent rtorrent'
 alias tailf='tail -f -n200'
-alias sc='ruby script/console'
 alias rdbm='rake db:migrate'
 alias _='sudo'
 
@@ -31,10 +30,12 @@ alias killmerb='ps ax | grep merb | cut -f1 -d"p" | xargs kill -9'
 alias m='bin/merb'
 alias mi='bin/merb -i'
 
-alias rc='bundle exec rails console'
-alias rs='bundle exec rails server'
+alias sc='./script/rails console'
+alias ss='./script/rails server'
+alias u='unicorn -p 3000'
 
 alias be='bundle exec'
 alias ber='bundle exec rake'
+alias bes='bundle exec spec'
 alias bi='bundle install'
 
