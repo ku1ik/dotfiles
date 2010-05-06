@@ -178,8 +178,9 @@ map <F2> <ESC>:NERDTreeToggle<CR>
 nmap <leader>fit :NERDTreeFind<cr>
 
 " Fuzzy Finder
-map <C-t> <ESC>:FuzzyFinderTextMate<CR>
-map <F5> <ESC>:FuzzyFinderTextMateRefreshFiles<CR>
+"map <C-t> <ESC>:FuzzyFinderTextMate<CR>
+"map <F5> <ESC>:FuzzyFinderTextMateRefreshFiles<CR>
+map <C-t> <ESC>:CommandT<CR>
 
 " NERD commenter
 nnoremap <C-_> :call NERDComment(0, "toggle")<CR>
