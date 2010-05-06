@@ -39,3 +39,5 @@ alias ber='bundle exec rake'
 alias bes='bundle exec spec'
 alias bi='bundle install'
 
+alias vim=rungvim.rb
+alias gvim=rungvim.rb
