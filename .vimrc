@@ -177,15 +177,18 @@ nmap <silent> <A-Right> :wincmd l<CR>
 map <F2> <ESC>:NERDTreeToggle<CR>
 nmap <leader>fit :NERDTreeFind<cr>
 
-" Fuzzy Finder
-"map <C-t> <ESC>:FuzzyFinderTextMate<CR>
-"map <F5> <ESC>:FuzzyFinderTextMateRefreshFiles<CR>
+" Command-T
 map <C-t> <ESC>:CommandT<CR>
 
 " NERD commenter
-nnoremap <C-_> :call NERDComment(0, "toggle")<CR>
-vnoremap <C-_> <ESC>:call NERDComment(1, "toggle")<CR>
+"nnoremap <C-_> :call NERDComment(0, "toggle")<CR>
+"vnoremap <C-_> <ESC>:call NERDComment(1, "toggle")<CR>
 "vmap <C-_> :gv
+
+" EnhComentify
+let g:EnhCommentifyUseBlockIndent="Yes"
+let EnhCommentifyRespectIndent = "Yes"
+" let g:EnhCommentifyPretty="Yes"
 
 " Fast editing of the .vimrc
 map <leader>e :e! ~/.vimrc<cr>
