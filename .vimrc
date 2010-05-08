@@ -131,7 +131,7 @@ set title
 set mouse=a
 set ttymouse=xterm2
 
-set lazyredraw " no readraw when running macros
+set lazyredraw " no redraw when running macros
 
 """"""""""""""""""""""""""""""""""""""""
 " Syntax highlighting and colors schemes
@@ -148,7 +148,6 @@ endif
 " Font for gui
 if has('gui_running')
   set guifont=Envy\ Code\ R\ 10
-  set guioptions-=r
   set guioptions-=R
   set guioptions-=l
   set guioptions-=L
