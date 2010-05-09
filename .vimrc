@@ -167,14 +167,14 @@ let mapleader=","
 let g:mapleader=","
 
 " Switching split windows
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+nmap <silent> <S-Up> :wincmd k<CR>
+nmap <silent> <S-Down> :wincmd j<CR>
+nmap <silent> <S-Left> :wincmd h<CR>
+nmap <silent> <S-Right> :wincmd l<CR>
 
 " NERD tree
 map <F2> <ESC>:NERDTreeToggle<CR>
-nmap <leader>fit :NERDTreeFind<cr>
+nmap <leader>ft :NERDTreeFind<cr>
 
 " Command-T
 map <C-t> <ESC>:CommandT<CR>
@@ -213,16 +213,43 @@ nmap <leader>h :nohl<cr>
 " run ruby script
 nmap <leader>rr :!ruby %
 
+" keyword completion
+imap <F12> <c-p>
+
+" commenting
+"imap <S-F12> <ESC><leader>x
+"nmap <S-F12> <leader>x
+"vmap <S-F12> <leader>x
+
+" remap cursor keys to tab switching
+"map <Left> <ESC>:tabprevious<CR>
+"map <Right> <ESC>:tabnext<CR>
+"map <Up> <ESC>:tabfirst<CR>
+"map <Down> <ESC>:tablast<CR>
+"imap <Left> <ESC>:tabprevious<CR>
+"imap <Right> <ESC>:tabnext<CR>
+"imap <Up> <ESC>:tabfirst<CR>
+"imap <Down> <ESC>:tablast<CR>
+
+" allow moving with j/k in insert mode
+imap <c-j> <Down>
+imap <c-k> <Up>
+imap <c-h> <Left>
+imap <c-l> <Right>
+
+" saving
+nmap <C-s> :w<CR>
+imap <C-s> <ESC>:w<CR>
+
+" quiting
+nmap <C-q> :qa<CR>
+
 """"""""""""""""""""""""""""""""""""""""
 " Plugin settings
 """"""""""""""""""""""""""""""""""""""""
 
 " NERDTree
 let NERDChristmasTree = 1
-
-" Fuzzy Finder
-let g:fuzzy_ignore = "tmp/*;log/*;.git/*;gems/*"
-"let g:fuzzy_path_display = "highlighted_path"
 
 " snipMate
 source ~/.vim/snippets/support_functions.vim
