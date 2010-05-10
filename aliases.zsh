@@ -32,6 +32,7 @@ alias mi='bin/merb -i'
 
 alias sc='./script/rails console'
 alias ss='./script/rails server'
+alias sg='./script/rails generate'
 alias u='unicorn -p 3000'
 
 alias be='bundle exec'
