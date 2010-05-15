@@ -80,7 +80,6 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 set incsearch
 set hlsearch
-set ignorecase
 set smartcase
 set gdefault
 set magic
@@ -249,7 +248,9 @@ nmap <C-q> :qa<CR>
 """"""""""""""""""""""""""""""""""""""""
 
 " NERDTree
-let NERDChristmasTree = 1
+let g:NERDChristmasTree = 1
+let g:NERDTreeMapOpenSplit = "s"
+let g:NERDTreeMapOpenVSplit = "v"
 
 " snipMate
 source ~/.vim/snippets/support_functions.vim
