@@ -24,21 +24,21 @@ bindkey "^H" backward-delete-word
 
 # konsole
 
-#bindkey '^[Od' backward-word
-#bindkey '^[[Od' backward-word
-#bindkey ';5D' backward-word
-#bindkey ';3D' backward-word
-#bindkey '^[Oc' forward-word
-#bindkey '^[[Oc' forward-word
-#bindkey ';5C' forward-word
-#bindkey ';3C' forward-word
+bindkey '\e[1;5C' forward-word        # ctrl right
+bindkey '\e[1;5D' backward-word       # ctrl left
 
-#bindkey '\eOc'    forward-word        # ctrl right
-#bindkey '\eOd'    backward-word       # ctrl left
+# bindkey '^[Od' backward-word
+# bindkey '^[[Od' backward-word
+# bindkey '^[Oc' forward-word
+# bindkey '^[[Oc' forward-word
 
-#bindkey "\e[5D" backward-word
-#bindkey "\ee[D" backward-word
+# bindkey ';5C' forward-word
+# bindkey ';3C' forward-word
+# bindkey ';5D' backward-word
+# bindkey ';3D' backward-word
+# bindkey '\eOc'    forward-word        # ctrl right
+# bindkey '\eOd'    backward-word       # ctrl left
 
-#bindkey '\e[1;5C' forward-word        # ctrl right
-#bindkey '\e[1;5D' backward-word       # ctrl left
+# bindkey "\e[5D" backward-word
+# bindkey "\ee[D" backward-word
 
