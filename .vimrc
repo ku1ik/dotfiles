@@ -57,7 +57,7 @@ set nofoldenable        "dont fold by default
 set matchpairs+=<:>
 set iskeyword+=?
 
-set formatoptions-=o "dont continue comments when pushing o/O
+set formatoptions-=r "dont continue comments when pushing o/O
 
 """"""""""""""""""""""""""""""""""""""""
 " Completion
@@ -155,6 +155,10 @@ endif
 " Scheme
 colors Sunburst
 
+" highlight characters in column >130
+highlight rightMargin guibg=#440000
+match rightMargin /.\%>129v/
+
 """"""""""""""""""""""""""""""""""""""""
 " Mappings
 """"""""""""""""""""""""""""""""""""""""
@@ -187,10 +191,10 @@ let EnhCommentifyRespectIndent = "Yes"
 " let g:EnhCommentifyPretty="Yes"
 
 " Fast editing of the .vimrc
-map <leader>e :e! ~/.vimrc<cr>
+nmap <leader>e :e! ~/.vimrc<cr>
 
 " When pressing <leader>cd switch to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>
+nmap <leader>cd :cd %:p:h<cr>
 
 " Move line(s) of text using Alt+Shift+Up/Down
 "nmap <M-Down> mz:m+<cr>`z
