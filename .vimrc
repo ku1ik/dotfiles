@@ -11,9 +11,6 @@ set nocompatible
 filetype plugin on
 filetype indent on
 
-" Load helpfiles
-helptags ~/.vim/doc
-
 " Set shell
 set shell=/bin/zsh
 
