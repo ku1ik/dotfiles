@@ -258,15 +258,6 @@ source ~/.vim/snippets/support_functions.vim
 let g:gist_open_browser_after_post = 1
 let g:gist_detect_filetype = 1
 
-" minibufexpl
-let g:miniBufExplMaxSize = 1
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplModSelTarget = 1
-
-
 """"""""""""""""""""""""""""""""""""""""
 " Misc
 """"""""""""""""""""""""""""""""""""""""
