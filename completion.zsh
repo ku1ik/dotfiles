@@ -1,7 +1,7 @@
 # zstyle :compinstall filename "${HOME}/.zshrc"
 
 autoload -U compinit
-compinit
+compinit -i
 
 zmodload zsh/complist
 
