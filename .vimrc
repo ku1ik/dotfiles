@@ -83,13 +83,12 @@ set magic
 """"""""""""""""""""""""""""""""""""""""
 " Status line(s)
 """"""""""""""""""""""""""""""""""""""""
-
 set statusline=%f "tail of the filename
 set statusline+=\ 
-set statusline+=%h      "help file flag
+"set statusline+=%h      "help file flag
 set statusline+=%y      "filetype
 set statusline+=%r      "read only flag
-set statusline+=%m      "modified flag
+set statusline+=%1*%m%*      "modified flag
 set statusline+=%=      "left/right aligned items separated
 set statusline+=%#warningmsg#
 set statusline+=%*\ 
@@ -151,6 +150,9 @@ endif
 
 " Scheme
 colors Sunburst
+
+"for modified flag
+hi User1 gui=reverse
 
 " highlight characters in column >130
 highlight rightMargin guibg=#440000

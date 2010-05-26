@@ -8,19 +8,19 @@ endif
 let g:colors_name = "Sunburst"
 
 hi VertSplit  guifg=#2c3033 guibg=#2c3033 gui=NONE
-hi Search  guifg=NONE guibg=#0d0d0d gui=underline
+hi Search  guifg=NONE guibg=#142d4b gui=NONE
 hi CursorLine  guifg=NONE guibg=#0d0d0d gui=NONE
 hi Visual  guifg=NONE guibg=#2c3033 gui=NONE
 hi CursorColumn  guifg=NONE guibg=#0d0d0d gui=NONE
 hi Directory  guifg=#3387cc guibg=NONE gui=NONE
 hi Pmenu  guifg=#89bdff guibg=NONE gui=NONE
-hi LineNr  guifg=#aeaeae guibg=#000000 gui=NONE
+hi LineNr  guifg=#aeaeae guibg=#090a0a gui=NONE
 hi Cursor  guifg=NONE guibg=#a7a7a7 gui=NONE
 hi MatchParen  guifg=#e28964 guibg=NONE gui=NONE
 hi PmenuSel  guifg=NONE guibg=#2c3033 gui=NONE
-hi StatusLine  guifg=#f8f8f8 guibg=#2c3033 gui=NONE
-hi StatusLineNC  guifg=#000000 guibg=#2c3033 gui=NONE
-hi IncSearch  guifg=NONE guibg=#0d0d0d gui=underline
+hi StatusLine  guifg=#f8f8f8 guibg=#2c3033 gui=bold
+hi StatusLineNC  guifg=#f8f8f8 guibg=#2c3033 gui=NONE
+hi IncSearch  guifg=NONE guibg=#142d4b gui=NONE
 
 hi Identifier  guifg=#99cf50 guibg=NONE gui=NONE
 hi Float  guifg=#3387cc guibg=NONE gui=NONE
