@@ -131,6 +131,8 @@ set lazyredraw " no redraw when running macros
 set gtl=%t
 set gtt=%F
 
+set splitbelow splitright
+
 """"""""""""""""""""""""""""""""""""""""
 " Syntax highlighting and colors schemes
 """"""""""""""""""""""""""""""""""""""""
