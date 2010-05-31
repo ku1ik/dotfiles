@@ -127,6 +127,10 @@ set ttymouse=xterm2
 
 set lazyredraw " no redraw when running macros
 
+" Tab labels and tooltips format
+set gtl=%t
+set gtt=%F
+
 """"""""""""""""""""""""""""""""""""""""
 " Syntax highlighting and colors schemes
 """"""""""""""""""""""""""""""""""""""""
