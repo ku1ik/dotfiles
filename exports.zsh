@@ -8,4 +8,4 @@ export GIT_PAGER=""
 export EDITOR=/usr/bin/vim
 export RUBYOPT=rubygems
 export BROWSER=google-chrome
-
+export GDK_USE_XFT=1
