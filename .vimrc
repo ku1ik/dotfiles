@@ -201,11 +201,13 @@ nmap <leader>e :e! ~/.vimrc<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
 nmap <leader>cd :cd %:p:h<cr>
 
-" Move line(s) of text using Alt+Shift+Up/Down
-"nmap <M-Down> mz:m+<cr>`z
-"nmap <M-Up> mz:m-2<cr>`z
-vmap <M-Down> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-Up> :m'<-2<cr>`>my`<mzgv`yo`z
+" Move line(s) of text using Alt+j/k
+nnoremap <A-j> :m+<CR>==
+nnoremap <A-k> :m-2<CR>==
+inoremap <A-j> <Esc>:m+<CR>==gi
+inoremap <A-k> <Esc>:m-2<CR>==gi
+vnoremap <A-j> :m'>+<CR>gv=gv
+vnoremap <A-k> :m-2<CR>gv=gv
 
 " strip trailing whitespace
 nnoremap <leader>sw :call Preserve("%s/\\s\\+$//e")<CR>
@@ -227,16 +229,6 @@ imap <F12> <c-p>
 "imap <S-F12> <ESC><leader>x
 "nmap <S-F12> <leader>x
 "vmap <S-F12> <leader>x
-
-" remap cursor keys to tab switching
-"map <Left> <ESC>:tabprevious<CR>
-"map <Right> <ESC>:tabnext<CR>
-"map <Up> <ESC>:tabfirst<CR>
-"map <Down> <ESC>:tablast<CR>
-"imap <Left> <ESC>:tabprevious<CR>
-"imap <Right> <ESC>:tabnext<CR>
-"imap <Up> <ESC>:tabfirst<CR>
-"imap <Down> <ESC>:tablast<CR>
 
 " allow moving with j/k in insert mode
 imap <c-j> <Down>
