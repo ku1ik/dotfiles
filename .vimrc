@@ -208,7 +208,7 @@ vmap <M-Down> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-Up> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " strip trailing whitespace
-nmap <leader>sw :%s/\s\+$//g<cr>:nohl<cr>
+nnoremap <silent> <leader>sw :call <SID>StripTrailingWhitespaces()<CR>
 
 " preview textile
 nmap <leader>pr :TextilePreview<cr>
@@ -285,3 +285,14 @@ endfunction
 " Detect nanoc's Rules file as ruby
 au BufReadPost Rules set syntax=ruby
 
+function! <SID>StripTrailingWhitespaces()
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  %s/\s\+$//e
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
