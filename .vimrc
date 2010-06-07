@@ -47,8 +47,9 @@ set nowrap
 set backspace=indent,eol,start
 
 " Folding settings
-set foldmethod=indent   "fold based on indent
+set foldmethod=syntax   "fold based on syntax
 set foldnestmax=3       "deepest fold is 3 levels
+set foldlevel=3
 set nofoldenable        "dont fold by default
 
 set matchpairs+=<:>
