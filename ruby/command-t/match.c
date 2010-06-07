@@ -48,13 +48,6 @@ VALUE CommandTMatch_initialize(int argc, VALUE *argv, VALUE self)
     int dot_search          = 0; // true if abbrev definitely matches a dot-file
     int pending_dot_search  = 0; // true if abbrev might match a dot-file
 
-    if (strchr(abbrev_p, '/') == NULL) {
-      char *filename = strrchr(str_p, '/');
-      if (filename != NULL) {
-        cursor = filename + 1 - str_p;
-      }
-    }
-
     rb_iv_set(self, "@str", str);
     VALUE offsets = rb_ary_new();
 
