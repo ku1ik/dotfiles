@@ -156,7 +156,7 @@ if has('gui_running')
 endif
 
 " Scheme
-colors Sunburst
+colors sunburst
 
 "for modified flag
 hi User1 gui=reverse
