@@ -37,6 +37,7 @@ set autoread
 " Indentation/tab settings
 set shiftwidth=2
 set softtabstop=2
+set tabstop=2
 set expandtab
 set autoindent
 
@@ -153,6 +154,7 @@ if has('gui_running')
   set guioptions-=l
   set guioptions-=L
   set guioptions-=T
+  set guioptions-=m
 endif
 
 " Scheme
@@ -236,6 +238,10 @@ imap <c-j> <Down>
 imap <c-k> <Up>
 imap <c-h> <Left>
 imap <c-l> <Right>
+
+" prev/next buffer
+nmap <A-n> :bn<cr>
+nmap <A-p> :bp<cr>
 
 " saving
 nmap <C-s> :w<CR>
