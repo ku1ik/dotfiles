@@ -41,8 +41,8 @@ set tabstop=2
 set expandtab
 set autoindent
 
-" Turn off word wrapping
-set nowrap
+" Turn on word wrapping
+set wrap
 
 " Sane backspace behaviour
 set backspace=indent,eol,start
@@ -214,6 +214,8 @@ vnoremap <A-k> :m-2<CR>gv=gv
 
 " strip trailing whitespace
 nnoremap <leader>sw :call Preserve("%s/\\s\\+$//e")<CR>
+
+" auto indent whole file
 nnoremap <leader>= :call Preserve("normal gg=G")<CR>
 
 " preview textile
