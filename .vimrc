@@ -254,6 +254,10 @@ let g:NERDChristmasTree = 1
 let g:NERDTreeMapOpenSplit = "s"
 let g:NERDTreeMapOpenVSplit = "v"
 
+" NERDCommenter
+let NERDSpaceDelims = 1
+let NERDDefaultNesting = 0
+
 " snipMate
 source ~/.vim/snippets/support_functions.vim
 
