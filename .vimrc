@@ -150,16 +150,6 @@ if !has("gui_running")
   set t_Co=256
 endif
 
-" Font for gui
-if has('gui_running')
-  set guifont=Envy\ Code\ R\ 10
-  set guioptions-=R
-  set guioptions-=l
-  set guioptions-=L
-  set guioptions-=T
-  set guioptions-=m
-endif
-
 " Scheme
 colors sunburst
 
