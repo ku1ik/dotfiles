@@ -1,0 +1,63 @@
+[submodule "bundle/ack.vim"]
+	path = bundle/ack.vim
+	url = http://github.com/mileszs/ack.vim.git
+[submodule "bundle/nerdtree"]
+	path = bundle/nerdtree
+	url = http://github.com/scrooloose/nerdtree.git
+[submodule "bundle/csapprox"]
+	path = bundle/csapprox
+	url = http://github.com/godlygeek/csapprox.git
+[submodule "bundle/nerdcommenter"]
+	path = bundle/nerdcommenter
+	url = http://github.com/scrooloose/nerdcommenter.git
+[submodule "bundle/vim-autoclose"]
+	path = bundle/vim-autoclose
+	url = http://github.com/Townk/vim-autoclose.git
+[submodule "bundle/vim-endwise"]
+	path = bundle/vim-endwise
+	url = http://github.com/tpope/vim-endwise.git
+[submodule "bundle/gist-vim"]
+	path = bundle/gist-vim
+	url = http://github.com/mattn/gist-vim.git
+[submodule "bundle/vim-matchit"]
+	path = bundle/vim-matchit
+	url = http://github.com/edsono/vim-matchit.git
+[submodule "bundle/vim-rails"]
+	path = bundle/vim-rails
+	url = http://github.com/tpope/vim-rails.git
+[submodule "bundle/snipmate.vim"]
+	path = bundle/snipmate.vim
+	url = http://github.com/msanders/snipmate.vim.git
+[submodule "bundle/vim-surround"]
+	path = bundle/vim-surround
+	url = http://github.com/tpope/vim-surround.git
+[submodule "bundle/command-t"]
+	path = bundle/command-t
+	url = http://github.com/wincent/Command-T.git
+[submodule "bundle/vim-repeat"]
+	path = bundle/vim-repeat
+	url = http://github.com/tpope/vim-repeat.git
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url = http://github.com/tpope/vim-markdown.git
+[submodule "bundle/vim-cucumber"]
+	path = bundle/vim-cucumber
+	url = http://github.com/tpope/vim-cucumber.git
+[submodule "bundle/vim-git"]
+	path = bundle/vim-git
+	url = http://github.com/tpope/vim-git.git
+[submodule "bundle/textile.vim"]
+	path = bundle/textile.vim
+	url = http://github.com/timcharper/textile.vim.git
+[submodule "bundle/vim-javascript"]
+	path = bundle/vim-javascript
+	url = http://github.com/pangloss/vim-javascript.git
+[submodule "bundle/vim-ruby"]
+	path = bundle/vim-ruby
+	url = http://github.com/vim-ruby/vim-ruby.git
+[submodule "bundle/zencoding-vim"]
+	path = bundle/zencoding-vim
+	url = http://github.com/nowk/zencoding-vim.git
+[submodule "snippets"]
+	path = snippets
+	url = http://github.com/railsjedi/snipmate-snippets.git

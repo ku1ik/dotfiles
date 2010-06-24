@@ -4,6 +4,9 @@
 " General
 """"""""""""""""""""""""""""""""""""""""
 
+" load all the bundles
+call pathogen#runtime_append_all_bundles()
+
 " Turn off compatibility with Vi
 set nocompatible
 
@@ -42,7 +45,7 @@ set expandtab
 set autoindent
 
 " Turn on word wrapping
-set wrap
+set nowrap
 
 " Sane backspace behaviour
 set backspace=indent,eol,start
@@ -165,7 +168,7 @@ hi User1 gui=reverse
 
 " highlight characters in column >130
 highlight rightMargin guibg=#440000
-match rightMargin /.\%>129v/
+match rightMargin /.\%>130v/
 
 """"""""""""""""""""""""""""""""""""""""
 " Mappings
