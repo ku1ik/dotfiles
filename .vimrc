@@ -136,6 +136,7 @@ set lazyredraw " no redraw when running macros
 set gtl=%t
 set gtt=%F
 
+" Splitting behavior
 set splitbelow splitright
 
 """"""""""""""""""""""""""""""""""""""""
@@ -194,6 +195,9 @@ let EnhCommentifyRespectIndent = "Yes"
 " Fast editing of the .vimrc
 nmap <leader>e :e! ~/.vimrc<cr>
 
+" Reload .vimrc
+map <silent> ,v :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>:NERDTreeClose<CR>
+
 " When pressing <leader>cd switch to the directory of the open buffer
 nmap <leader>cd :cd %:p:h<cr>
 
@@ -205,6 +209,12 @@ inoremap <A-k> <Esc>:m-2<CR>==gi
 vnoremap <A-j> :m'>+<CR>gv=gv
 vnoremap <A-k> :m-2<CR>gv=gv
 
+" Indenting with Alt + [ and ]
+nmap <A-[> <<
+nmap <A-]> >>
+vmap <A-[> <gv
+vmap <A-]> >gv
+
 " strip trailing whitespace
 nnoremap <leader>sw :call Preserve("%s/\\s\\+$//e")<CR>
 
@@ -215,18 +225,13 @@ nnoremap <leader>= :call Preserve("normal gg=G")<CR>
 nmap <leader>pr :TextilePreview<cr>
 
 " turn off search hl
-nmap <leader>h :nohl<cr>
+nmap <c-h> :nohl<cr>
 
 " run ruby script
 nmap <leader>rr :!ruby %
 
 " keyword completion
 imap <F12> <c-p>
-
-" commenting
-"imap <S-F12> <ESC><leader>x
-"nmap <S-F12> <leader>x
-"vmap <S-F12> <leader>x
 
 " allow moving with j/k in insert mode
 imap <c-j> <Down>
@@ -235,8 +240,8 @@ imap <c-h> <Left>
 imap <c-l> <Right>
 
 " prev/next buffer
-nmap <A-n> :bn<cr>
-nmap <A-p> :bp<cr>
+nmap <A-Right> :bn<cr>
+nmap <A-Left> :bp<cr>
 
 " saving
 nmap <C-s> :w<CR>
