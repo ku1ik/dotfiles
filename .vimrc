@@ -44,7 +44,7 @@ set tabstop=2
 set expandtab
 set autoindent
 
-" Turn on word wrapping
+" Turn off word wrapping
 set nowrap
 
 " Sane backspace behaviour
