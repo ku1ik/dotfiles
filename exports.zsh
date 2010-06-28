@@ -7,5 +7,5 @@ export PATH="$PATH:/usr/local/bin/"
 export GIT_PAGER=""
 export EDITOR=/usr/bin/vim
 export RUBYOPT=rubygems
-export BROWSER=google-chrome
+export BROWSER=chromium
 export GDK_USE_XFT=1
