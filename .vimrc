@@ -71,7 +71,7 @@ set completeopt=
 " Wildcard completion
 set wildmode=list:longest   "make cmdline tab completion similar to bash
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing"
+set wildignore=*.o,*.obj,*~,*.png,*.gif,*.jpg,*.jpeg,*.zip,*.jar,*.gem,coverage/**,log/** "stuff to ignore when tab completing"
 
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
@@ -176,24 +176,14 @@ nmap <silent> <S-Left> :wincmd h<CR>
 nmap <silent> <S-Right> :wincmd l<CR>
 
 " NERD tree
-map <F2> <ESC>:NERDTreeToggle<CR>
-nmap <leader>ft :NERDTreeFind<cr>
+map <silent> <F2> <ESC>:NERDTreeToggle<CR>
+nmap <silent> <leader>ft :NERDTreeFind<cr>
 
 " Command-T
-map <C-t> <ESC>:CommandT<CR>
-
-" NERD commenter
-"nnoremap <C-_> :call NERDComment(0, "toggle")<CR>
-"vnoremap <C-_> <ESC>:call NERDComment(1, "toggle")<CR>
-"vmap <C-_> :gv
-
-" EnhComentify
-let g:EnhCommentifyUseBlockIndent="Yes"
-let EnhCommentifyRespectIndent = "Yes"
-" let g:EnhCommentifyPretty="Yes"
+map <silent> <C-t> <ESC>:CommandT<CR>
 
 " Fast editing of the .vimrc
-nmap <leader>e :e! ~/.vimrc<cr>
+nmap <silent> <leader>e :e! ~/.vimrc<cr>
 
 " Reload .vimrc
 map <silent> ,v :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>:NERDTreeClose<CR>
@@ -202,36 +192,38 @@ map <silent> ,v :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloa
 nmap <leader>cd :cd %:p:h<cr>
 
 " Move line(s) of text using Alt+j/k
-nnoremap <A-j> :m+<CR>==
-nnoremap <A-k> :m-2<CR>==
-inoremap <A-j> <Esc>:m+<CR>==gi
-inoremap <A-k> <Esc>:m-2<CR>==gi
-vnoremap <A-j> :m'>+<CR>gv=gv
-vnoremap <A-k> :m-2<CR>gv=gv
+nnoremap <silent> <A-j> :m+<CR>==
+nnoremap <silent> <A-k> :m-2<CR>==
+inoremap <silent> <A-j> <Esc>:m+<CR>==gi
+inoremap <silent> <A-k> <Esc>:m-2<CR>==gi
+vnoremap <silent> <A-j> :m'>+<CR>gv=gv
+vnoremap <silent> <A-k> :m-2<CR>gv=gv
 
 " Indenting with Alt + [ and ]
 nmap <A-[> <<
 nmap <A-]> >>
+nmap <A-h> <<
+nmap <A-l> >>
 vmap <A-[> <gv
 vmap <A-]> >gv
 
 " strip trailing whitespace
-nnoremap <leader>sw :call Preserve("%s/\\s\\+$//e")<CR>
+nnoremap <silent> <leader>sw :call Preserve("%s/\\s\\+$//e")<CR>
 
 " auto indent whole file
-nnoremap <leader>= :call Preserve("normal gg=G")<CR>
+nnoremap <silent> <leader>= :call Preserve("normal gg=G")<CR>
 
 " preview textile
 nmap <leader>pr :TextilePreview<cr>
 
 " turn off search hl
-nmap <c-h> :nohl<cr>
+nmap <silent> <c-h> :nohl<cr>
 
 " run ruby script
 nmap <leader>rr :!ruby %
 
 " keyword completion
-imap <F12> <c-p>
+imap <C-Space> <c-p>
 
 " allow moving with j/k in insert mode
 imap <c-j> <Down>
@@ -240,15 +232,20 @@ imap <c-h> <Left>
 imap <c-l> <Right>
 
 " prev/next buffer
-nmap <A-Right> :bn<cr>
-nmap <A-Left> :bp<cr>
+nmap <silent> <A-Right> :bn<cr>
+nmap <silent> <A-Left> :bp<cr>
 
 " saving
 nmap <C-s> :w<CR>
 imap <C-s> <ESC>:w<CR>
+vmap <C-s> <ESC>:w<CR>
 
 " quiting
 nmap <C-q> :qa<CR>
+
+" commenting
+nmap <A-/> gcc
+vmap <A-/> gc
 
 """"""""""""""""""""""""""""""""""""""""
 " Plugin settings
@@ -258,10 +255,6 @@ nmap <C-q> :qa<CR>
 let g:NERDChristmasTree = 1
 let g:NERDTreeMapOpenSplit = "s"
 let g:NERDTreeMapOpenVSplit = "v"
-
-" NERDCommenter
-let NERDSpaceDelims = 1
-let NERDDefaultNesting = 0
 
 " snipMate
 source ~/.vim/snippets/support_functions.vim

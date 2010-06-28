@@ -1,15 +1,9 @@
 [submodule "bundle/ack.vim"]
 	path = bundle/ack.vim
 	url = http://github.com/mileszs/ack.vim.git
-[submodule "bundle/nerdtree"]
-	path = bundle/nerdtree
-	url = http://github.com/scrooloose/nerdtree.git
 [submodule "bundle/csapprox"]
 	path = bundle/csapprox
 	url = http://github.com/godlygeek/csapprox.git
-[submodule "bundle/nerdcommenter"]
-	path = bundle/nerdcommenter
-	url = http://github.com/scrooloose/nerdcommenter.git
 [submodule "bundle/vim-autoclose"]
 	path = bundle/vim-autoclose
 	url = http://github.com/Townk/vim-autoclose.git
@@ -58,3 +52,9 @@
 [submodule "snippets"]
 	path = snippets
 	url = http://github.com/railsjedi/snipmate-snippets.git
+[submodule "bundle/vim-scratch"]
+	path = bundle/vim-scratch
+	url = http://github.com/duff/vim-scratch.git
+[submodule "bundle/vim-tcomment"]
+	path = bundle/vim-tcomment
+	url = git://github.com/tsaleh/vim-tcomment.git
