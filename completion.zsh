@@ -6,6 +6,10 @@ compinit -i
 zmodload zsh/complist
 
 setopt complete_in_word
+zstyle ':completion:*' completer _complete _prefix
+zstyle ':completion:*' add-space true
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
 # setopt MENU_COMPLETE # immediatelly insert first match
 
 # Processes

@@ -1,10 +1,14 @@
 typeset -g -A key
 
-bindkey "^[[H" beginning-of-line
-bindkey "^[[1~" beginning-of-line
-bindkey "^[[F"  end-of-line
-bindkey "^[[4~" end-of-line
+bindkey `tput khome` beginning-of-line # HOME
+bindkey `tput kend` end-of-line # END
+
 bindkey ' ' magic-space    # also do history expansion on space
+
+bindkey `tput kpp` up-history
+bindkey `tput knp` end-of-history
+bindkey `tput kcuu1` history-beginning-search-backward
+bindkey `tput kcud1` history-beginning-search-forward
 
 # urxvt
 bindkey '^?' backward-delete-char

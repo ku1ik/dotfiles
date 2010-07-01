@@ -14,7 +14,7 @@ alias rdbm='rake db:migrate'
 alias _='sudo'
 
 alias g='git'
-alias gl='git pull --rebase'
+alias gl='git pull'
 alias gp='git push'
 alias ga='git add'
 alias gc='git commit'
