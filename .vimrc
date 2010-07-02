@@ -216,6 +216,9 @@ nnoremap <silent> <leader>= :call Preserve("normal gg=G")<CR>
 " preview textile
 nmap <leader>pr :TextilePreview<cr>
 
+" preview markdown
+nmap <leader>pm :!rdiscount % \|browser<CR>
+
 " turn off search hl
 nmap <silent> <c-h> :nohl<cr>
 
