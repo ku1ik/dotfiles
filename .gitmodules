@@ -4,9 +4,6 @@
 [submodule "bundle/csapprox"]
 	path = bundle/csapprox
 	url = http://github.com/godlygeek/csapprox.git
-[submodule "bundle/vim-autoclose"]
-	path = bundle/vim-autoclose
-	url = http://github.com/Townk/vim-autoclose.git
 [submodule "bundle/vim-endwise"]
 	path = bundle/vim-endwise
 	url = http://github.com/tpope/vim-endwise.git
