@@ -51,7 +51,7 @@ set nowrap
 set backspace=indent,eol,start
 
 " Folding settings
-set foldmethod=syntax   "fold based on syntax
+set foldmethod=indent   "indent based on syntax
 set foldnestmax=3       "deepest fold is 3 levels
 set foldlevel=3
 set nofoldenable        "dont fold by default
@@ -67,6 +67,7 @@ set formatoptions-=r "dont continue comments when pushing o/O
 
 " Word completion
 set completeopt=
+set complete=.,w,b,u,t
 
 " Wildcard completion
 set wildmode=list:longest   "make cmdline tab completion similar to bash
@@ -162,6 +163,69 @@ highlight rightMargin guibg=#440000
 match rightMargin /.\%>130v/
 
 """"""""""""""""""""""""""""""""""""""""
+" Plugin settings
+""""""""""""""""""""""""""""""""""""""""
+
+" NERDTree
+let g:NERDChristmasTree = 1
+let g:NERDTreeMapOpenSplit = "s"
+let g:NERDTreeMapOpenVSplit = "v"
+
+" snipMate
+source ~/.vim/snippets/support_functions.vim
+
+" Gist
+let g:gist_open_browser_after_post = 1
+let g:gist_detect_filetype = 1
+
+" zen coding
+let g:user_zen_leader_key = '<c-e>'
+let g:user_zen_settings = { 'indentation' : '  ' }
+
+""""""""""""""""""""""""""""""""""""""""
+" Misc
+""""""""""""""""""""""""""""""""""""""""
+
+" Detect nanoc's Rules file as ruby
+au BufReadPost Rules set syntax=ruby
+
+""""""""""""""""""""""""""""""""""""""""
+" Functions
+""""""""""""""""""""""""""""""""""""""""
+
+"jump to last cursor position when opening a file
+"dont do it when writing a commit log entry
+autocmd BufReadPost * call SetCursorPosition()
+function! SetCursorPosition()
+    if &filetype !~ 'commit\c'
+        if line("'\"") > 0 && line("'\"") <= line("$")
+            exe "normal! g`\""
+            normal! zz
+        endif
+    end
+endfunction
+
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+
+function! SuperCleverTab()
+  if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+    return "\<Tab>"
+  else
+    return "\<C-P>"
+  endif
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """"""""""""""""""""""""""""""""""""""""
 
@@ -225,9 +289,6 @@ nmap <silent> <c-h> :nohl<cr>
 " run ruby script
 nmap <leader>rr :!ruby %
 
-" keyword completion
-imap <C-Space> <c-p>
-
 " allow moving with j/k in insert mode
 imap <c-j> <Down>
 imap <c-k> <Up>
@@ -250,53 +311,5 @@ nmap <C-q> :qa<CR>
 nmap <A-/> gcc
 vmap <A-/> gc
 
-""""""""""""""""""""""""""""""""""""""""
-" Plugin settings
-""""""""""""""""""""""""""""""""""""""""
-
-" NERDTree
-let g:NERDChristmasTree = 1
-let g:NERDTreeMapOpenSplit = "s"
-let g:NERDTreeMapOpenVSplit = "v"
-
-" snipMate
-source ~/.vim/snippets/support_functions.vim
-
-" Gist
-let g:gist_open_browser_after_post = 1
-let g:gist_detect_filetype = 1
-
-" zen coding
-let g:user_zen_leader_key = '<c-e>'
-let g:user_zen_settings = { 'indentation' : '  ' }
-
-""""""""""""""""""""""""""""""""""""""""
-" Misc
-""""""""""""""""""""""""""""""""""""""""
-
-"jump to last cursor position when opening a file
-"dont do it when writing a commit log entry
-autocmd BufReadPost * call SetCursorPosition()
-function! SetCursorPosition()
-    if &filetype !~ 'commit\c'
-        if line("'\"") > 0 && line("'\"") <= line("$")
-            exe "normal! g`\""
-            normal! zz
-        endif
-    end
-endfunction
-
-" Detect nanoc's Rules file as ruby
-au BufReadPost Rules set syntax=ruby
-
-function! Preserve(command)
-  " Preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  " Do the business:
-  execute a:command
-  " Clean up: restore previous search history, and cursor position
-  let @/=_s
-  call cursor(l, c)
-endfunction
+" tab with completion
+inoremap <silent> <Tab> <C-R>=SuperCleverTab()<cr>
