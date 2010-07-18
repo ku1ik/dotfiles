@@ -18,7 +18,7 @@ filetype indent on
 set shell=/bin/zsh
 
 " Default encoding
-set encoding=utf8
+set encoding=utf-8
 
 """"""""""""""""""""""""""""""""""""""""
 " Files & backups
@@ -59,7 +59,7 @@ set nofoldenable        "dont fold by default
 set matchpairs+=<:>
 set iskeyword+=?
 
-set formatoptions-=r "dont continue comments when pushing o/O
+set formatoptions-=ro "dont continue comments when inserting new line
 
 """"""""""""""""""""""""""""""""""""""""
 " Completion
@@ -153,7 +153,9 @@ if !has("gui_running")
 endif
 
 " Scheme
-colors sunburst
+if &term != "linux"
+  colors sunburst
+endif
 
 "for modified flag
 hi User1 gui=reverse
@@ -218,10 +220,23 @@ function! Preserve(command)
 endfunction
 
 function! SuperCleverTab()
-  if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] =~ '^\s$'
     return "\<Tab>"
   else
     return "\<C-P>"
+  endif
+endfunction
+
+function! CompleteTagOrInsertSlash()
+  if &syntax != "eruby"
+    return "\/"
+  endif
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '^<$'
+    return "\/"
+  else
+    return "\/\<C-P>" " need sth better than keyword compl here
   endif
 endfunction
 
@@ -250,7 +265,7 @@ map <silent> <C-t> <ESC>:CommandT<CR>
 nmap <silent> <leader>e :e! ~/.vimrc<cr>
 
 " Reload .vimrc
-map <silent> ,v :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>:NERDTreeClose<CR>
+map <silent> <leader>v :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>:NERDTreeClose<CR>
 
 " When pressing <leader>cd switch to the directory of the open buffer
 nmap <leader>cd :cd %:p:h<cr>
@@ -270,6 +285,9 @@ nmap <A-h> <<
 nmap <A-l> >>
 vmap <A-[> <gv
 vmap <A-]> >gv
+
+" unindent
+imap <S-Tab> <C-o><<
 
 " strip trailing whitespace
 nnoremap <silent> <leader>sw :call Preserve("%s/\\s\\+$//e")<CR>
@@ -313,3 +331,15 @@ vmap <A-/> gc
 
 " tab with completion
 inoremap <silent> <Tab> <C-R>=SuperCleverTab()<cr>
+
+" Enter enters command mode
+nmap <Enter> :
+
+" make Y behave like C,D
+noremap Y y$
+
+" toggle (no)paste
+nnoremap <leader>tp :set invpaste paste?<CR>
+
+" autoclose tags
+" imap <silent> / <C-R>=CompleteTagOrInsertSlash()<cr>
