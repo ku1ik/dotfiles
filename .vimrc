@@ -160,9 +160,9 @@ endif
 "for modified flag
 hi User1 gui=reverse
 
-" highlight characters in column >130
+" highlight characters in column >120
 highlight rightMargin guibg=#440000
-match rightMargin /.\%>130v/
+match rightMargin /.\%>120v/
 
 """"""""""""""""""""""""""""""""""""""""
 " Plugin settings
@@ -190,6 +190,9 @@ let g:user_zen_settings = { 'indentation' : '  ' }
 
 " Detect nanoc's Rules file as ruby
 au BufReadPost Rules set syntax=ruby
+
+" Source the vimrc file after saving it
+autocmd bufwritepost .vimrc source $MYVIMRC
 
 """"""""""""""""""""""""""""""""""""""""
 " Functions
@@ -262,10 +265,7 @@ nmap <silent> <leader>ft :NERDTreeFind<cr>
 map <silent> <C-t> <ESC>:CommandT<CR>
 
 " Fast editing of the .vimrc
-nmap <silent> <leader>e :e! ~/.vimrc<cr>
-
-" Reload .vimrc
-map <silent> <leader>v :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>:NERDTreeClose<CR>
+nmap <silent> <leader>v :tabedit $MYVIMRC<cr>
 
 " When pressing <leader>cd switch to the directory of the open buffer
 nmap <leader>cd :cd %:p:h<cr>
@@ -331,9 +331,6 @@ vmap <A-/> gc
 
 " tab with completion
 inoremap <silent> <Tab> <C-R>=SuperCleverTab()<cr>
-
-" Enter enters command mode
-nmap <Enter> :
 
 " make Y behave like C,D
 noremap Y y$
