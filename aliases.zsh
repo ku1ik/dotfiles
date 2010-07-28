@@ -32,7 +32,7 @@ alias mi='bin/merb -i'
 alias rdbm='rake db:migrate'
 alias r=rails
 alias u='unicorn -p 3000'
-alias rs='tail -f log/development.log&; thin start; killall tail'
+alias rs='tail -f -n0 log/development.log&; thin start; killall tail'
 
 alias bi='bundle install'
 
