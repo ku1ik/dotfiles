@@ -174,7 +174,7 @@ let g:NERDTreeMapOpenSplit = "s"
 let g:NERDTreeMapOpenVSplit = "v"
 
 " snipMate
-source ~/.vim/snippets/support_functions.vim
+" source ~/.vim/snippets/support_functions.vim
 
 " Gist
 let g:gist_open_browser_after_post = 1
