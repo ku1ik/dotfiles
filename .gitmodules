@@ -52,9 +52,6 @@
 [submodule "bundle/vim-tcomment"]
 	path = bundle/vim-tcomment
 	url = git://github.com/tsaleh/vim-tcomment.git
-[submodule "snippets"]
-	path = snippets
-	url = git://github.com/scrooloose/snipmate-snippets.git
 [submodule "bundle/vim-zoomwin"]
 	path = bundle/vim-zoomwin
 	url = git://github.com/rphillips/vim-zoomwin.git
