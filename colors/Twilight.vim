@@ -1,3 +1,6 @@
+" Vim color file
+" Converted from Textmate theme Twilight using Coloration v0.1 (http://github.com/sickill/coloration)
+
 set background=dark
 highlight clear
 
@@ -11,16 +14,17 @@ hi Cursor  guifg=NONE guibg=#a7a7a7 gui=NONE
 hi Visual  guifg=NONE guibg=#3c4043 gui=NONE
 hi CursorLine  guifg=NONE guibg=#1b1b1b gui=NONE
 hi CursorColumn  guifg=NONE guibg=#1b1b1b gui=NONE
-hi LineNr  guifg=#5f5a60 guibg=#141414 gui=NONE
-hi VertSplit  guifg=#1b1b1b guibg=#1b1b1b gui=NONE
-hi MatchParen  guifg=#141414 guibg=#f8f8f8 gui=NONE
-hi StatusLine  guifg=#f8f8f8 guibg=#3c4043 gui=NONE
-hi StatusLineNC  guifg=#141414 guibg=#3c4043 gui=NONE
+hi LineNr  guifg=#868686 guibg=#141414 gui=NONE
+hi VertSplit  guifg=#3c4043 guibg=#3c4043 gui=NONE
+hi MatchParen  guifg=#cda869 guibg=NONE gui=NONE
+hi StatusLine  guifg=#f8f8f8 guibg=#3c4043 gui=bold
+hi StatusLineNC  guifg=#f8f8f8 guibg=#3c4043 gui=NONE
 hi Pmenu  guifg=#9b703f guibg=NONE gui=NONE
 hi PmenuSel  guifg=NONE guibg=#3c4043 gui=NONE
-hi IncSearch  guifg=NONE guibg=NONE gui=inverse
-hi Search  guifg=NONE guibg=NONE gui=inverse
+hi IncSearch  guifg=NONE guibg=#343a44 gui=NONE
+hi Search  guifg=NONE guibg=#343a44 gui=NONE
 hi Directory  guifg=#cf6a4c guibg=NONE gui=NONE
+hi Folded  guifg=#5f5a60 guibg=#141414 gui=NONE
 
 hi Normal  guifg=#f8f8f8 guibg=#141414 gui=NONE
 hi Boolean  guifg=#cf6a4c guibg=NONE gui=NONE
