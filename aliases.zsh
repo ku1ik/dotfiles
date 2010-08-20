@@ -37,3 +37,4 @@ alias rs='tail -f -n0 log/development.log&; thin start; killall tail'
 alias bi='bundle install'
 
 alias gvim=rungvim.rb
+alias man='man -P less'
