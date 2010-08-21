@@ -13,21 +13,16 @@ alias tailf='tail -f -n200'
 alias _='sudo'
 
 alias g='git'
-alias gl='git pull'
+alias gl='git pull --rebase'
 alias gp='git push'
 alias ga='git add'
 alias gc='git commit'
 alias gca='git commit -a'
-alias gs='git status'
+alias gs='git status -sb'
 alias gd='git diff'
+alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 
 alias md='mkdir -p'
-
-alias sp='spec -c'
-
-alias killmerb='ps ax | grep merb | cut -f1 -d"p" | xargs kill -9'
-alias m='bin/merb'
-alias mi='bin/merb -i'
 
 alias rdbm='rake db:migrate'
 alias r=rails
@@ -38,3 +33,10 @@ alias bi='bundle install'
 
 alias gvim=rungvim.rb
 alias man='man -P less'
+alias sv='service'
+
+if $(grc &>/dev/null)
+then
+  alias ping='grc ping'
+  alias diff='grc diff'
+fi
