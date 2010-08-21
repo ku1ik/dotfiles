@@ -25,9 +25,9 @@ set encoding=utf-8
 """"""""""""""""""""""""""""""""""""""""
 
 " Backup and history
+set nobackup
+set nowritebackup
 set history=1000
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " Saving and reloading
 set confirm
@@ -87,29 +87,12 @@ set gdefault
 set magic
 
 """"""""""""""""""""""""""""""""""""""""
-" Status line(s)
-""""""""""""""""""""""""""""""""""""""""
-set statusline=%f "tail of the filename
-set statusline+=\ 
-"set statusline+=%h      "help file flag
-set statusline+=%y      "filetype
-set statusline+=%r      "read only flag
-set statusline+=%1*%m%*      "modified flag
-set statusline+=%=      "left/right aligned items separated
-set statusline+=%#warningmsg#
-set statusline+=%*\ 
-set statusline+=%-10.(%l,%c%V%)\ %P "ruler
-
-set laststatus=2
-set showcmd
-set showmode
-
-""""""""""""""""""""""""""""""""""""""""
 " UI
 """"""""""""""""""""""""""""""""""""""""
 
 " Show line numbering and current line
 set number
+set numberwidth=5
 set cursorline
 
 " Display tabs and trailing spaces
@@ -140,6 +123,22 @@ set gtt=%F
 " Splitting behavior
 set splitbelow splitright
 
+" Status line
+set statusline=%f "tail of the filename
+set statusline+=\ 
+"set statusline+=%h      "help file flag
+set statusline+=%y      "filetype
+set statusline+=%r      "read only flag
+set statusline+=%1*%m%*      "modified flag
+set statusline+=%=      "left/right aligned items separated
+set statusline+=%#warningmsg#
+set statusline+=%*\ 
+set statusline+=%-10.(%l,%c%V%)\ %P "ruler
+
+set laststatus=2
+set showcmd
+set showmode
+
 """"""""""""""""""""""""""""""""""""""""
 " Syntax highlighting and colors schemes
 """"""""""""""""""""""""""""""""""""""""
@@ -147,17 +146,19 @@ set splitbelow splitright
 " Turn on syntax highlighting
 syntax on
 
-" Colors for console
-if !has("gui_running")
-  set t_Co=256
+if (&term == "linux")
+  let g:CSApprox_loaded = 1
+else
+  " Colors for console
+  if !has("gui_running")
+    set t_Co=256
+  endif
+
+  " Scheme
+  colors Sunburst
 endif
 
-" Scheme
-if &term != "linux"
-  colors sunburst
-endif
-
-"for modified flag
+" for modified flag
 hi User1 gui=reverse
 
 " highlight characters in column >120
@@ -192,7 +193,11 @@ let g:user_zen_settings = { 'indentation' : '  ' }
 au BufReadPost Rules set syntax=ruby
 
 " Source the vimrc file after saving it
-autocmd bufwritepost .vimrc source $MYVIMRC
+" autocmd bufwritepost .vimrc source $MYVIMRC
+
+" Additional commands ala rails.vim
+command! Rroutes :e config/routes.rb
+command! Rschema :e db/schema.rb
 
 """"""""""""""""""""""""""""""""""""""""
 " Functions
@@ -301,9 +306,6 @@ nmap <leader>pr :TextilePreview<cr>
 " preview markdown
 nmap <leader>pm :!rdiscount % \|browser<CR>
 
-" turn off search hl
-nmap <silent> <c-h> :nohl<cr>
-
 " run ruby script
 nmap <leader>rr :!ruby %
 
@@ -336,7 +338,41 @@ inoremap <silent> <Tab> <C-R>=SuperCleverTab()<cr>
 noremap Y y$
 
 " toggle (no)paste
-nnoremap <leader>tp :set invpaste paste?<CR>
+nnoremap <silent> <leader>tp :set invpaste paste?<CR>
 
 " autoclose tags
 " imap <silent> / <C-R>=CompleteTagOrInsertSlash()<cr>
+
+" Opens an edit command with the path of the currently edited file filled in
+" Normal mode: <Leader>e
+map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+" Hide search highlighting
+map <silent> <Leader>h :nohl <CR>
+
+" Inserts the path of the currently edited file into a command
+" Command mode: Ctrl+P
+cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+
+" Press Shift+P while in visual mode to replace the selection without
+" overwriting the default register
+vmap <silent> P p :call setreg('"', getreg('0')) <CR>
+
+" insert ' => '
+imap <C-L> <Space>=><Space>
+
+" shortcuts for rails.vim commands
+map <Leader>rm :Rmodel 
+map <Leader>rc :Rcontroller 
+map <Leader>rv :Rview 
+map <Leader>rsm :RSmodel 
+map <Leader>rsc :RScontroller 
+map <Leader>rsv :RSview 
+map <Leader>rtm :RTmodel 
+map <Leader>rtc :RTcontroller 
+map <Leader>rtv :RTview 
+
+" Load local config
+if filereadable(".vimrc.local")
+  source .vimrc.local
+endif
