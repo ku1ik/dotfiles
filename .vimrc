@@ -27,6 +27,7 @@ set encoding=utf-8
 " Backup and history
 set nobackup
 set nowritebackup
+set directory=~/tmp,/tmp
 set history=1000
 
 " Saving and reloading
