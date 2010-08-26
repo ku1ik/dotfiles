@@ -8,7 +8,7 @@ alias deneb-admin='ssh -l llpadmin deneb.llp.pl'
 alias hydra='ssh -l rubydev hydra.llp.pl'
 alias psg='ps aux | grep'
 alias psug='ps ux | grep'
-alias rtorrent='screen -D -R rtorrent rtorrent'
+alias rtorrent='tmux attach -t rtorrent || tmux new -s rtorrent rtorrent'
 alias tailf='tail -f -n200'
 alias _='sudo'
 
