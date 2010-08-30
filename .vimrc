@@ -140,6 +140,8 @@ set laststatus=2
 set showcmd
 set showmode
 
+set shortmess+=I        " disable the welcome screen
+
 """"""""""""""""""""""""""""""""""""""""
 " Syntax highlighting and colors schemes
 """"""""""""""""""""""""""""""""""""""""
