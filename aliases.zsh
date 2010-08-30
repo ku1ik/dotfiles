@@ -33,7 +33,7 @@ alias bi='bundle install'
 
 alias gvim=rungvim.rb
 alias man='man -P less'
-alias sv='service'
+alias sv='sudo service'
 
 if $(grc &>/dev/null)
 then
