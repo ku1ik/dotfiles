@@ -57,7 +57,8 @@ set nofoldenable        "dont fold by default
 set matchpairs+=<:>
 set iskeyword+=?
 
-set formatoptions-=ro "dont continue comments when inserting new line
+set formatoptions-=r "dont continue comments when inserting new line (with Enter)
+set formatoptions-=o "dont continue comments when inserting new line (with o or O)
 
 """"""""""""""""""""""""""""""""""""""""
 " Completion
@@ -300,13 +301,13 @@ nnoremap <silent> <leader>sw :call Preserve("%s/\\s\\+$//e")<CR>
 nnoremap <silent> <leader>= :call Preserve("normal gg=G")<CR>
 
 " preview textile
-nmap <leader>pr :TextilePreview<cr>
+nmap <leader>pr :TextilePreview<CR>
 
 " preview markdown
 nmap <leader>pm :!rdiscount % \|browser<CR>
 
 " run ruby script
-nmap <leader>rr :!ruby %
+nmap <leader>rr :!ruby %<CR>
 
 " allow moving with j/k in insert mode
 imap <c-j> <Down>
@@ -315,8 +316,8 @@ imap <c-h> <Left>
 imap <c-l> <Right>
 
 " prev/next buffer
-nmap <silent> <A-Right> :bn<cr>
-nmap <silent> <A-Left> :bp<cr>
+nmap <silent> <A-Right> :bn<CR>
+nmap <silent> <A-Left> :bp<CR>
 
 " saving
 nmap <C-s> :w<CR>
@@ -331,7 +332,7 @@ nmap <A-/> gcc
 vmap <A-/> gc
 
 " tab with completion
-inoremap <silent> <Tab> <C-R>=SuperCleverTab()<cr>
+inoremap <silent> <Tab> <C-R>=SuperCleverTab()<CR>
 
 " make Y behave like C,D
 noremap Y y$
@@ -340,7 +341,7 @@ noremap Y y$
 nnoremap <silent> <leader>tp :set invpaste paste?<CR>
 
 " autoclose tags
-" imap <silent> / <C-R>=CompleteTagOrInsertSlash()<cr>
+" imap <silent> / <C-R>=CompleteTagOrInsertSlash()<CR>
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
