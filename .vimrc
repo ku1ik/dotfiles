@@ -14,9 +14,6 @@ set nocompatible
 filetype plugin on
 filetype indent on
 
-" Set shell
-set shell=/bin/zsh
-
 " Default encoding
 set encoding=utf-8
 
@@ -85,7 +82,6 @@ set incsearch
 set hlsearch
 set smartcase
 set gdefault
-set magic
 
 """"""""""""""""""""""""""""""""""""""""
 " UI
@@ -267,16 +263,16 @@ nmap <silent> <S-Right> :wincmd l<CR>
 
 " NERD tree
 map <silent> <F2> <ESC>:NERDTreeToggle<CR>
-nmap <silent> <leader>ft :NERDTreeFind<cr>
+nmap <silent> <leader>ft :NERDTreeFind<CR>
 
 " Command-T
 map <silent> <C-t> <ESC>:CommandT<CR>
 
 " Fast editing of the .vimrc
-nmap <silent> <leader>v :tabedit $MYVIMRC<cr>
+nmap <silent> <leader>v :tabedit $MYVIMRC<CR>
 
 " When pressing <leader>cd switch to the directory of the open buffer
-nmap <leader>cd :cd %:p:h<cr>
+nmap <leader>cd :cd %:p:h<CR>
 
 " Move line(s) of text using Alt+j/k
 nnoremap <silent> <A-j> :m+<CR>==
