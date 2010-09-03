@@ -328,8 +328,8 @@ vmap <C-s> <ESC>:w<CR>
 nmap <C-q> :qa<CR>
 
 " commenting
-nmap <A-/> gcc
-vmap <A-/> gc
+nmap <leader>c gcc
+vmap <leader>c gc
 
 " tab with completion
 inoremap <silent> <Tab> <C-R>=SuperCleverTab()<CR>
