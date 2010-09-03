@@ -372,6 +372,9 @@ map <Leader>rtm :RTmodel
 map <Leader>rtc :RTcontroller 
 map <Leader>rtv :RTview 
 
+" ,z to zoomwin
+map <Leader>z :ZoomWin<CR>
+
 " Load local config
 if filereadable(".vimrc.local")
   source .vimrc.local
