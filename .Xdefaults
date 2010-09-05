@@ -1,0 +1,81 @@
+URxvt.font: xft:Envy Code R:size=10
+URxvt.boldFont: xft:Envy Code R:bold:size=10
+URxvt.italicFont: xft:Envy Code R:italic:size=10
+URxvt.boldItalicFont: xft:Envy Code R:bold:italic:size=10
+!URxvt*depth:32
+URxvt*foreground: #BABDB7
+URxvt*background: black
+!URxvt*background: rgba:0000/0000/0000/dddd
+URxvt*urlLauncher: chromium
+*matcher.button: 1
+URxvt*perl-ext-common: default,tabbed,matcher
+urxvt*imLocale: pl_PL.UTF-8
+URxvt.urgentOnBell: true
+urxvt*scrollTtyKeypress: true
+urxvt*scrollTtyOutput: false
+urxvt*scrollWithBuffer: true
+IRC*perl-ext-common: default,matcher
+
+!urxvt*fading: 15
+!urxvt*shading: 30
+!urxvt*inheritPixmap: True
+!urxvt*transparent: True
+!URxvt*tintColor: black
+!urxvt*scrollBar: False
+!urxvt.scrollColor: green
+
+! links
+URxvt.matcher.rend.0: Uline Bold fg8
+
+! tabs
+URxvt.tabbed.tabbar-fg: 7
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg:    7
+URxvt.tabbed.tab-bg:    4
+
+URxvt.saveLines: 10000
+URxvt.scrollstyle: plain
+URxvt.scrollBar_right: true
+URxvt.geometry: 120x40
+URxvt.termName: rxvt
+
+! black
+*color0: #000000
+!*color0: #2E3436
+! red
+*color1: #CC0000
+! green
+*color2: #4E9A06
+! yellow
+*color3: #C4A000
+! blue
+*color4: #3465A4
+! purple
+*color5: #75507B
+! cyan
+*color6: #06989A
+! white
+*color7: #D3D7CF
+! bright-black
+*color8: #555753
+! bright-red
+*color9: #EF2929
+! bright-green
+*color10: #8AE234
+! bright-yellow
+*color11: #FCE94F
+! bright-blue
+*color12: #729FCF
+! bright-purple
+*color13: #AD7FA8
+! bright-cyan
+*color14: #34E2E2
+! bright-white
+*color15: #EEEEEC
+
+Xft.antialias:  1
+Xft.hinting:            1
+Xft.hintstyle: hintfull
+!Xft.autohint:         1
+Xft.rgba:        rgb
+Xft.dpi: 96
