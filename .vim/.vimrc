@@ -272,9 +272,6 @@ map <silent> <C-t> <ESC>:CommandT<CR>
 " Fast editing of the .vimrc
 nmap <silent> <leader>v :tabedit $MYVIMRC<CR>
 
-" When pressing <leader>cd switch to the directory of the open buffer
-nmap <leader>cd :cd %:p:h<CR>
-
 " Move line(s) of text using Alt+j/k
 nnoremap <silent> <A-j> :m+<CR>==
 nnoremap <silent> <A-k> :m-2<CR>==
@@ -318,14 +315,6 @@ imap <c-l> <Right>
 " prev/next buffer
 nmap <silent> <A-Right> :bn<CR>
 nmap <silent> <A-Left> :bp<CR>
-
-" saving
-nmap <C-s> :w<CR>
-imap <C-s> <ESC>:w<CR>
-vmap <C-s> <ESC>:w<CR>
-
-" quiting
-nmap <C-q> :qa<CR>
 
 " commenting
 nmap <leader>c gcc
