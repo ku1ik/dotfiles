@@ -1,0 +1,12 @@
+#!/usr/bin/ruby
+
+if ARGV.size > 0
+  filename, line = ARGV.first.split(":")
+  line ||= 0
+  args = "+#{line} #{filename}"
+else
+  args = ""
+end
+
+system "rungvim.rb #{args}"
+

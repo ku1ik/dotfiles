@@ -1,0 +1,7 @@
+#!/bin/sh
+# Usage: latest-hub
+# Grabs the latest standalone version of Chris Wanstrath's hub
+# and puts its in your HOME/bin.
+set -e
+curl -o ~/bin/hub http://defunkt.github.com/hub/standalone
+chmod 755 ~/bin/hub
