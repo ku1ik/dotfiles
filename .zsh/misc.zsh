@@ -2,7 +2,11 @@
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
 
-## jobs
 setopt long_list_jobs
 
-setopt correct
+setopt correct # correct typos
+
+# edit command line in $EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey "\ee" edit-command-line  # <Esc-e>
