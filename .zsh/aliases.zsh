@@ -1,4 +1,4 @@
-alias l='ls -lah --color=auto'
+alias l='ls -lah --color=auto --file-type'
 # alias lsa='ls -la --color=auto'
 alias ll='ls -ltc --color=auto | head'
 alias grep='grep --color'
@@ -46,3 +46,6 @@ alias -g L='| less'
 alias -g M='| more'
 alias -g T='| tail'
 alias -g TF='tail -n100 -f'
+
+alias ff='find . -type f -iname $1'
+alias fd='find . -type d -iname $1'
