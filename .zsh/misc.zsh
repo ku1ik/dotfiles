@@ -4,3 +4,5 @@ zle -N self-insert url-quote-magic
 
 ## jobs
 setopt long_list_jobs
+
+setopt correct
