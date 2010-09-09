@@ -5,10 +5,11 @@ bindkey -e
 bindkey "^[m" copy-prev-shell-word # file rename magick
 bindkey ' ' magic-space # also do history expansion on space
 
-bindkey `tput kpp` up-history
-bindkey `tput knp` end-of-history
-bindkey `tput kcuu1` history-beginning-search-backward
-bindkey `tput kcud1` history-beginning-search-forward
+bindkey '^[[5~' up-history
+bindkey '^[[6~' down-history
+
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
 
 bindkey '^[[H' beginning-of-line
 bindkey '^[[7~' beginning-of-line
