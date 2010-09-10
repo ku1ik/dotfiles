@@ -8,8 +8,8 @@ bindkey ' ' magic-space # also do history expansion on space
 bindkey '^[[5~' up-history
 bindkey '^[[6~' down-history
 
-bindkey '^[[A' history-beginning-search-backward
-bindkey '^[[B' history-beginning-search-forward
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
 
 bindkey '^[[H' beginning-of-line
 bindkey '^[[7~' beginning-of-line
