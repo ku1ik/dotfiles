@@ -10,3 +10,5 @@ setopt correct # correct typos
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey "\ee" edit-command-line  # <Esc-e>
+
+autoload -U zmv
