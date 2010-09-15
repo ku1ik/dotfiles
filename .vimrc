@@ -291,9 +291,6 @@ nmap <A-l> >>
 vmap <A-[> <gv
 vmap <A-]> >gv
 
-" unindent
-imap <S-Tab> <C-o><<
-
 " strip trailing whitespace
 nnoremap <silent> <leader>sw :call Preserve("%s/\\s\\+$//e")<CR>
 
