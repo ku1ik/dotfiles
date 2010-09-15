@@ -254,7 +254,6 @@ endfunction
 
 " Leader key
 let mapleader=","
-let g:mapleader=","
 
 " Switching split windows
 nmap <silent> <S-Up> :wincmd k<CR>
