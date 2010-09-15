@@ -368,6 +368,6 @@ map <Leader>rtv :RTview
 map <Leader>z :ZoomWin<CR>
 
 " Load local config
-if filereadable(".vimrc.local")
-  source .vimrc.local
+if filereadable($HOME."/.vimrc.local")
+  source $HOME/.vimrc.local
 endif
