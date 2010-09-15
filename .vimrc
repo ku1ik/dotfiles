@@ -337,7 +337,7 @@ nnoremap <silent> <leader>tp :set invpaste paste?<CR>
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " Hide search highlighting
-map <silent> <Leader>h :nohl <CR>
+nnoremap <silent> <esc> :noh<CR><esc>
 
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
