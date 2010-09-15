@@ -307,10 +307,10 @@ nmap <leader>pm :!rdiscount % \|browser<CR>
 nmap <leader>rr :!ruby %<CR>
 
 " allow moving with j/k in insert mode
-imap <c-j> <Down>
-imap <c-k> <Up>
-imap <c-h> <Left>
-imap <c-l> <Right>
+inoremap <c-j> <Down>
+inoremap <c-k> <Up>
+inoremap <c-h> <Left>
+inoremap <c-l> <Right>
 
 " prev/next buffer
 nmap <silent> <A-Right> :bn<CR>
