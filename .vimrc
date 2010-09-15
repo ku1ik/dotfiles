@@ -347,9 +347,6 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 " overwriting the default register
 vmap <silent> P p :call setreg('"', getreg('0')) <CR>
 
-" insert ' => '
-imap <C-L> <Space>=><Space>
-
 " shortcuts for rails.vim commands
 map <Leader>rm :Rmodel 
 map <Leader>rc :Rcontroller 
