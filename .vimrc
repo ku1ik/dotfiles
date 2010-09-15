@@ -280,6 +280,10 @@ inoremap <silent> <A-k> <Esc>:m-2<CR>==gi
 vnoremap <silent> <A-j> :m'>+<CR>gv=gv
 vnoremap <silent> <A-k> :m-2<CR>gv=gv
 
+" Preserve selection when indenting
+vmap > >gv
+vmap < <gv
+
 " Indenting with Alt + [ and ]
 nmap <A-[> <<
 nmap <A-]> >>
