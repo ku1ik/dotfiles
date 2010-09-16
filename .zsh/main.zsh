@@ -19,4 +19,4 @@ typeset -U fpath
 . ~/.zsh/history.zsh
 . ~/.zsh/git.zsh
 . ~/.zsh/prompt.zsh
-
+. ~/.zsh/clyde.zsh
