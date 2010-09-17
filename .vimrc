@@ -320,7 +320,7 @@ nmap <silent> <A-Left> :bp<CR>
 nmap <leader>c gcc
 vmap <leader>c gc
 
-" tab with completion
+" complete with Tab
 inoremap <silent> <Tab> <C-R>=SuperCleverTab()<CR>
 
 " make Y behave like C,D
@@ -337,7 +337,7 @@ nnoremap <silent> <leader>tp :set invpaste paste?<CR>
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " Hide search highlighting
-nnoremap <silent> <esc> :noh<CR><esc>
+nnoremap <silent> <CR> :noh<CR><CR>
 
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
