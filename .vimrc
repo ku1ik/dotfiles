@@ -14,9 +14,6 @@ set nocompatible
 filetype plugin on
 filetype indent on
 
-" Default encoding
-set encoding=utf-8
-
 """"""""""""""""""""""""""""""""""""""""
 " Files & backups
 """"""""""""""""""""""""""""""""""""""""
@@ -114,9 +111,8 @@ set ttymouse=xterm2
 
 set lazyredraw " no redraw when running macros
 
-" Tab labels and tooltips format
+" Tab label format
 set gtl=%t
-set gtt=%F
 
 " Splitting behavior
 set splitbelow splitright
@@ -135,7 +131,6 @@ set statusline+=%-10.(%l,%c%V%)\ %P "ruler
 
 set laststatus=2
 set showcmd
-set showmode
 
 set shortmess+=I        " disable the welcome screen
 
@@ -189,11 +184,8 @@ let g:user_zen_settings = { 'indentation' : '  ' }
 " Misc
 """"""""""""""""""""""""""""""""""""""""
 
-" Detect nanoc's Rules file as ruby
-au BufReadPost Rules set syntax=ruby
-
-" Source the vimrc file after saving it
-" autocmd bufwritepost .vimrc source $MYVIMRC
+" These file are ruby!
+au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru,Rules} set ft=ruby
 
 " Additional commands ala rails.vim
 command! Rroutes :e config/routes.rb
@@ -351,6 +343,8 @@ vmap <silent> P p :call setreg('"', getreg('0')) <CR>
 map <Leader>rm :Rmodel 
 map <Leader>rc :Rcontroller 
 map <Leader>rv :Rview 
+map <Leader>ro :Robserver observers/
+map <Leader>rj :Rjavascript 
 map <Leader>rsm :RSmodel 
 map <Leader>rsc :RScontroller 
 map <Leader>rsv :RSview 
@@ -361,7 +355,13 @@ map <Leader>rtv :RTview
 " ,z to zoomwin
 map <Leader>z :ZoomWin<CR>
 
+" ,a for Ack
+map <Leader>a :Ack<space>
+
+" cd into root dir of file's project
+map <silent> <unique> <Leader>,cd <Plug>RooterChangeToRootDirectory
+
 " Load local config
-if filereadable($HOME."/.vimrc.local")
-  source $HOME/.vimrc.local
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
 endif

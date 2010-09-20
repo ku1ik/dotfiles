@@ -6,3 +6,10 @@ set guioptions-=l
 set guioptions-=L
 set guioptions-=T
 set guioptions-=m
+
+" Tab tooltip format
+set gtt=%F
+
+" Open NERDTree at start
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
