@@ -5,6 +5,7 @@
 """"""""""""""""""""""""""""""""""""""""
 
 " load all the bundles
+filetype off
 call pathogen#runtime_append_all_bundles()
 
 " Turn off compatibility with Vi
@@ -78,6 +79,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 set incsearch
 set hlsearch
+set ignorecase
 set smartcase
 set gdefault
 
@@ -360,6 +362,10 @@ map <Leader>a :Ack<space>
 
 " cd into root dir of file's project
 map <silent> <unique> <Leader>,cd <Plug>RooterChangeToRootDirectory
+
+" move up/down by screen lines, not file lines
+nnoremap j gj
+nnoremap k gk
 
 " Load local config
 if filereadable(expand("~/.vimrc.local"))
