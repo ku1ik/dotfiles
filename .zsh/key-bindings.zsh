@@ -30,6 +30,11 @@ bindkey '^[^[[C' forward-word
 bindkey '^[OC' forward-word
 
 bindkey '^[[3~' delete-char
-
 bindkey "^[[3;3~" delete-word
-bindkey "^H" backward-delete-word
+
+tcsh-backward-delete-word () {
+  local WORDCHARS="${WORDCHARS:s#/#}"
+  zle backward-delete-word
+}
+zle -N tcsh-backward-delete-word
+bindkey "^H" tcsh-backward-delete-word
