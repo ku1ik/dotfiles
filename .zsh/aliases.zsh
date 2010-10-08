@@ -51,3 +51,4 @@ alias ff='find . -type f -iname $1'
 alias fd='find . -type d -iname $1'
 
 alias t='todo.sh'
+alias tmux='tmux -2'
