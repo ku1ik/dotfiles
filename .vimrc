@@ -79,8 +79,6 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 set incsearch
 set hlsearch
-set ignorecase
-set smartcase
 set gdefault
 
 """"""""""""""""""""""""""""""""""""""""
