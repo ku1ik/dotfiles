@@ -1,31 +1,59 @@
-URxvt.font: xft:Envy Code R:size=10
-URxvt.boldFont: xft:Envy Code R:bold:size=10
-URxvt.italicFont: xft:Envy Code R:italic:size=10
-URxvt.boldItalicFont: xft:Envy Code R:bold:italic:size=10
-!URxvt*depth:32
-URxvt*foreground: #BABDB7
-URxvt*background: black
-!URxvt*background: rgba:0000/0000/0000/dddd
-URxvt*urlLauncher: chromium
-*matcher.button: 1
-URxvt*perl-ext-common: default,tabbed,matcher
-urxvt*imLocale: pl_PL.UTF-8
-URxvt.urgentOnBell: true
-urxvt*scrollTtyKeypress: true
-urxvt*scrollTtyOutput: false
-urxvt*scrollWithBuffer: true
-IRC*perl-ext-common: default,matcher
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintfull
 
+! Xcursor*theme: Vanilla-DMZ-AA
+! Xcursor.size:  22
+
+URxvt.geometry: 120x40
+URxvt.termName: rxvt
+
+URxvt.font: xft:Dina:size=12
+
+!URxvt.font: xft:Monospace:size=10
+!URxvt.boldFont: xft:Monospace:bold:size=10
+! URxvt.font: -*-envy code r-medium-r-*-*-12-*-*-*-*-*-iso8859-*
+! URxvt.font:xft:envy code r:medium:pixelsize=12
+! URxvt.boldFont:xft:envy code r:medium:pixelsize=12
+!URxvt.italicFont: xft:Monospace:italic:size=10
+!URxvt.boldItalicFont: xft:Monospace:bold:italic:size=10
+URxvt*xftAntialias: true
+
+URxvt*depth:24
+URxvt*transparent: false
 !urxvt*fading: 15
 !urxvt*shading: 30
 !urxvt*inheritPixmap: True
-!urxvt*transparent: True
 !URxvt*tintColor: black
+URxvt*foreground: #BABDB7
+URxvt*background: black
+!URxvt*background: rgba:0000/0000/0000/dddd
+! URxvt*buffered:false
+
+URxvt.saveLines: 32767
+urxvt*scrollTtyKeypress: true
+urxvt*scrollTtyOutput: false
+urxvt*scrollWithBuffer: true
+URxvt.scrollstyle: plain
+URxvt.scrollBar_right: true
+Uxvt*jumpScroll: True
 !urxvt*scrollBar: False
 !urxvt.scrollColor: green
 
-! links
+URxvt*urlLauncher: chromium
+*matcher.button: 1
+URxvt*perl-ext-common: default,tabbed,matcher
 URxvt.matcher.rend.0: Uline Bold fg8
+! IRC*perl-ext-common: default,matcher
+
+urxvt*imLocale: pl_PL.UTF-8
+URxvt.urgentOnBell: true
+URxvt*skipBuiltinGlyphs: true
+urxvt*cutchars: "()*,<>[]{}|''"
+urxvt*print-pipe: cat > $(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
+urxvt*mapAlert: true
 
 ! tabs
 URxvt.tabbed.tabbar-fg: 7
@@ -33,11 +61,11 @@ URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg:    7
 URxvt.tabbed.tab-bg:    4
 
-URxvt.saveLines: 10000
-URxvt.scrollstyle: plain
-URxvt.scrollBar_right: true
-URxvt.geometry: 120x40
-URxvt.termName: rxvt
+xpdf*enableFreetype: yes
+xpdf*antialias: yes
+xpdf*foreground: black
+xpdf*background: white
+xpdf*urlCommand: chromium %s
 
 ! black
 *color0: #000000
@@ -72,10 +100,3 @@ URxvt.termName: rxvt
 *color14: #34E2E2
 ! bright-white
 *color15: #EEEEEC
-
-Xft.antialias:  1
-Xft.hinting:            1
-Xft.hintstyle: hintfull
-!Xft.autohint:         1
-Xft.rgba:        rgb
-Xft.dpi: 96
