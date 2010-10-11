@@ -28,6 +28,7 @@ set history=1000
 " Saving and reloading
 set confirm
 set autoread
+au FocusLost * :wa " save all buffers when (g)vim looses focus
 
 """"""""""""""""""""""""""""""""""""""""
 " Editing
