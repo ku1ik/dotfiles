@@ -6,6 +6,7 @@ task :install do
     puts cmd
     system cmd
   end
+  system "git submodule update --init"
 end
 
 task :default => :install
