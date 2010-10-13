@@ -1,0 +1,4 @@
+--ignore-dir=tmp
+--ignore-dir=coverage
+--ignore-dir=log
+--ignore-dir=vendor
