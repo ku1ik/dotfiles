@@ -12,6 +12,11 @@ end
 begin
   require 'ap'
   alias pp ap
+  IRB::Irb.class_eval do
+    def output_value
+      ap @context.last_value
+    end
+  end
 rescue LoadError
 end
 
