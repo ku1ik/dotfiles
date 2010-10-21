@@ -1,14 +1,3 @@
-local USER_COLOR=$'%B%{\e[38;5;30m%}'
-local AT_COLOR=$'%B%{\e[38;5;71m%}'
-local HOST_COLOR=$'%B%{\e[38;5;71m%}'
-local PWD_COLOR="%b%{$reset_color%}"
-#$'%b%{\e[38;5;144m%}'
-local GIT_BRANCH_COLOR=$'%B%{\e[38;5;29m%}'
-local GIT_STATUS_ONE="%B%{$fg[yellow]%}"
-local GIT_STATUS_TWO="%B%{$fg[green]%}"
-local GIT_STATUS_THREE="%B%{$fg[cyan]%}"
-
 setopt prompt_subst
 
-export PROMPT='$USER_COLOR%n$AT_COLOR@$HOST_COLOR%m $PWD_COLOR%3~ $(git_prompt_info)%{$fg_bold[white]%}%#%{$reset_color%} '
-
+export PROMPT='%3~$(prompt_git_info) %# '
