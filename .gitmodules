@@ -73,3 +73,6 @@
 [submodule ".vim/bundle/vim-textobj-user"]
 	path = .vim/bundle/vim-textobj-user
 	url = git://github.com/kana/vim-textobj-user.git
+[submodule ".vim/bundle/AutoClose"]
+	path = .vim/bundle/AutoClose
+	url = git://github.com/vim-scripts/AutoClose.git

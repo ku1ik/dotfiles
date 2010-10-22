@@ -369,6 +369,8 @@ nnoremap k gk
 " Sudo write (,W)
 noremap <leader>W :w !sudo tee %<CR>
 
+nmap <unique> <Leader>_a <Plug>ToggleAutoCloseMappings
+
 " Load local config
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
