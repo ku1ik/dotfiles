@@ -1,5 +1,6 @@
 " Font for gui
-set guifont=Envy\ Code\ R\ 10
+set guifont=Droid\ Sans\ Mono\ 9
+set linespace=2
 set guioptions-=R
 set guioptions-=r
 set guioptions-=l
