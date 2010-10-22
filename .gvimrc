@@ -14,3 +14,8 @@ set gtt=%F
 " Open NERDTree at start
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
+
+" Load local config
+if filereadable(expand("~/.gvimrc.local"))
+  source ~/.gvimrc.local
+endif
