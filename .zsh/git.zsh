@@ -61,14 +61,7 @@ prompt_git_info() {
 }
 
 preexec_update_git_vars() {
-  case "$1" in
-    git\ *)
-    __EXECUTED_GIT_COMMAND=1
-    ;;
-    g\ *)
-    __EXECUTED_GIT_COMMAND=1
-    ;;
-  esac
+  [[ $1 =~ ^(git|g|g[dcaslp]|gca|grm)(\\s|$) ]] && __EXECUTED_GIT_COMMAND=1
 }
 
 precmd_update_git_vars() {
