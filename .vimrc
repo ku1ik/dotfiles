@@ -22,7 +22,7 @@ filetype indent on
 " Backup and history
 set nobackup
 set nowritebackup
-set directory=~/tmp,/tmp
+set noswapfile
 set history=1000
 
 " Saving and reloading
