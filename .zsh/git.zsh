@@ -7,7 +7,9 @@ typeset -ga chpwd_functions
 update_current_git_vars() {
   unset __CURRENT_GIT_BRANCH
   unset __CURRENT_GIT_BRANCH_STATUS
-  unset __CURRENT_GIT_BRANCH_IS_DIRTY
+  unset __CURRENT_GIT_BRANCH_HAS_UNTRACKED
+  unset __CURRENT_GIT_BRANCH_HAS_MODIFIED
+  unset __CURRENT_GIT_BRANCH_HAS_STAGED
 
   local st="$(git status 2>/dev/null)"
   if [[ -n "$st" ]]; then
@@ -30,33 +32,47 @@ update_current_git_vars() {
       fi
     fi
 
-    if [[ ! $st =~ 'nothing to commit' ]]; then
-      __CURRENT_GIT_BRANCH_IS_DIRTY='1'
+    if [[ $st =~ 'to be committed' ]]; then
+      __CURRENT_GIT_BRANCH_HAS_STAGED='1'
+    fi
+
+    if [[ $st =~ 'but not updated' ]]; then
+      __CURRENT_GIT_BRANCH_HAS_MODIFIED='1'
+    fi
+
+    if [[ $st =~ 'Untracked files' ]]; then
+      __CURRENT_GIT_BRANCH_HAS_UNTRACKED='1'
     fi
   fi
 }
 
 prompt_git_info() {
   if [ -n "$__CURRENT_GIT_BRANCH" ]; then
-    local s="("
-    s+="$__CURRENT_GIT_BRANCH"
+    local s=""
+    s+="%{${fg_bold[red]}%}$__CURRENT_GIT_BRANCH%{$reset_color%}"
     case "$__CURRENT_GIT_BRANCH_STATUS" in
       ahead)
-      s+="↑"
+      s+="»"
       ;;
       diverged)
-      s+="↕"
+      s+="»«"
       ;;
       behind)
-      s+="↓"
+      s+="«"
       ;;
     esac
-    if [ -n "$__CURRENT_GIT_BRANCH_IS_DIRTY" ]; then
-      s+="⚡"
-    fi
-    s+=")"
 
-    printf " %s%s" "%{${fg[yellow]}%}$s%{$reset_color%}"
+    if [ -n "$__CURRENT_GIT_BRANCH_HAS_STAGED" ]; then
+      s+="%{${fg_bold[yellow]}%}+%{$reset_color%}"
+    fi
+    if [ -n "$__CURRENT_GIT_BRANCH_HAS_MODIFIED" ]; then
+      s+="%{${fg_bold[green]}%}*%{$reset_color%}"
+    fi
+    if [ -n "$__CURRENT_GIT_BRANCH_HAS_UNTRACKED" ]; then
+      s+="%{${fg_bold[cyan]}%}?%{$reset_color%}"
+    fi
+
+    printf " %s%s" "[$s]"
   fi
 }
 
