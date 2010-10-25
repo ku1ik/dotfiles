@@ -94,3 +94,5 @@ chpwd_update_git_vars() {
 preexec_functions+='preexec_update_git_vars'
 precmd_functions+='precmd_update_git_vars'
 chpwd_functions+='chpwd_update_git_vars'
+
+update_current_git_vars
