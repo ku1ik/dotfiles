@@ -52,3 +52,4 @@ alias fd='find . -type d -iname $1'
 
 alias t='todo.sh'
 alias tmux='tmux -2'
+alias ducks='du -cks * | sort -rn | head -11' # Lists the size of all the folders and files
