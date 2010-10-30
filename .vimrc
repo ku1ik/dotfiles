@@ -177,10 +177,6 @@ let g:NERDTreeMapOpenVSplit = "v"
 let g:gist_open_browser_after_post = 1
 let g:gist_detect_filetype = 1
 
-" zen coding
-let g:user_zen_leader_key = '<c-e>'
-let g:user_zen_settings = { 'indentation' : '  ' }
-
 """"""""""""""""""""""""""""""""""""""""
 " Misc
 """"""""""""""""""""""""""""""""""""""""
