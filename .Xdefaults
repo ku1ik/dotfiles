@@ -10,15 +10,7 @@ Xft.hintstyle: hintfull
 URxvt.geometry: 120x40
 URxvt.termName: rxvt
 
-URxvt.font: xft:Dina:size=12
-
-!URxvt.font: xft:Monospace:size=10
-!URxvt.boldFont: xft:Monospace:bold:size=10
-! URxvt.font: -*-envy code r-medium-r-*-*-12-*-*-*-*-*-iso8859-*
-! URxvt.font:xft:envy code r:medium:pixelsize=12
-! URxvt.boldFont:xft:envy code r:medium:pixelsize=12
-!URxvt.italicFont: xft:Monospace:italic:size=10
-!URxvt.boldItalicFont: xft:Monospace:bold:italic:size=10
+URxvt.font: xft:Droid\ Sans\ Mono:size=9
 URxvt*xftAntialias: true
 
 URxvt*depth:24
