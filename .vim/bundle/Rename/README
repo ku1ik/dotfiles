@@ -1,0 +1,4 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1928
+
+A command and function that basically does a ":saveas <newfile>" then removes the old filename on the disk.
+
