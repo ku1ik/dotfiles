@@ -88,7 +88,7 @@ set gdefault
 
 " Show line numbering and current line
 set number
-set numberwidth=5
+set numberwidth=4
 set cursorline
 
 " Display tabs and trailing spaces
