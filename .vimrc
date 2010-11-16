@@ -361,8 +361,8 @@ map <silent> <unique> <Leader>,cd <Plug>RooterChangeToRootDirectory
 nnoremap j gj
 nnoremap k gk
 
-" Sudo write (,W)
-noremap <leader>W :w !sudo tee %<CR>
+" Sudo write
+cmap w!! w !sudo tee % >/dev/null
 
 " Load local config
 if filereadable(expand("~/.vimrc.local"))
