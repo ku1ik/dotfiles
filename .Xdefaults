@@ -36,7 +36,7 @@ Uxvt*jumpScroll: True
 
 URxvt*urlLauncher: chromium
 *matcher.button: 1
-URxvt*perl-ext-common: default,tabbed,matcher
+URxvt*perl-ext-common: default,matcher,searchable-scrollback
 URxvt.matcher.rend.0: Uline Bold fg8
 ! IRC*perl-ext-common: default,matcher
 
