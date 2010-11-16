@@ -5,6 +5,7 @@ case "$TERM" in
     }
     precmd () {
       print -Pn "\e]0;%~\a"  # xterm
+      echo -ne "\a"
     }
     ;;
   screen*)
