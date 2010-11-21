@@ -14,10 +14,10 @@ URxvt.font: xft:Droid\ Sans\ Mono:size=9
 URxvt*xftAntialias: true
 
 URxvt*depth:24
-URxvt*transparent: false
+URxvt*transparent: true
+URxvt*shading: 15
 !urxvt*fading: 15
-!urxvt*shading: 30
-!urxvt*inheritPixmap: True
+! urxvt*inheritPixmap: True
 !URxvt*tintColor: black
 URxvt*foreground: #BABDB7
 URxvt*background: black
