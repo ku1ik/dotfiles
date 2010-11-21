@@ -27,7 +27,7 @@ alias md='mkdir -p'
 alias rdbm='rake db:migrate'
 alias r=rails
 alias u='unicorn -p 3000'
-alias rs='tail -f -n0 log/development.log&; thin start; killall tail'
+alias rs='rails server thin'
 
 alias bi='bundle install'
 
