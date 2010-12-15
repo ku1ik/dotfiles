@@ -361,6 +361,9 @@ map <silent> <unique> <Leader>,cd <Plug>RooterChangeToRootDirectory
 nnoremap j gj
 nnoremap k gk
 
+" zoom
+nmap <Leader>z :ZoomWin<CR>
+
 " Sudo write
 cmap w!! w !sudo tee % >/dev/null
 
