@@ -6,8 +6,8 @@ alias sk='ssh -l kill sickill.net'
 alias deneb='ssh -l rubydev deneb.llp.pl'
 alias deneb-admin='ssh -l llpadmin deneb.llp.pl'
 alias hydra='ssh -l rubydev hydra.llp.pl'
-alias psg='ps aux | grep'
-alias psug='ps ux | grep'
+alias psg='ps ax | grep'
+alias psug='ps x | grep'
 alias rtorrent='tmux attach -t rtorrent || tmux new -s rtorrent rtorrent'
 alias tailf='tail -f -n200'
 alias _='sudo'
@@ -24,10 +24,10 @@ alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 
 alias md='mkdir -p'
 
-alias rdbm='rake db:migrate'
-alias r=rails
-alias u='unicorn -p 3000'
-alias rs='rails server thin'
+alias rdbm='bundle exec rake db:migrate'
+alias r='bundle exec rails'
+alias rc='bundle exec rails c'
+alias rs='bundle exec rails s thin'
 
 alias bi='bundle install'
 
@@ -53,3 +53,5 @@ alias fd='find . -type d -iname $1'
 alias t='todo.sh'
 alias tmux='tmux -2'
 alias ducks='du -cks * | sort -rn | head -11' # Lists the size of all the folders and files
+
+alias jsonpretty='ruby -rap -rjson -e "ap JSON.parse(STDIN.read)"'
