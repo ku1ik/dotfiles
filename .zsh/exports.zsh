@@ -1,5 +1,6 @@
 export JAVA_HOME="/opt/java"
 export JDK_HOME=$JAVA_HOME
+export AWT_TOOLKIT=MToolkit
 export SCALA_HOME=/usr/share/scala
 export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:$JAVA_HOME/bin"
