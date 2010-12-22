@@ -186,6 +186,7 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru,Rules} set ft=ruby
 " Additional commands ala rails.vim
 command! Rroutes :e config/routes.rb
 command! Rschema :e db/schema.rb
+command! Rgemfile :e Gemfile
 
 """"""""""""""""""""""""""""""""""""""""
 " Functions
@@ -309,7 +310,7 @@ nmap <leader>c gcc
 vmap <leader>c gc
 
 " complete with Tab
-inoremap <silent> <Tab> <C-R>=SuperCleverTab()<CR>
+" inoremap <silent> <Tab> <C-R>=SuperCleverTab()<CR>
 
 " make Y behave like C,D
 noremap Y y$
@@ -341,12 +342,8 @@ map <Leader>rc :Rcontroller
 map <Leader>rv :Rview 
 map <Leader>ro :Robserver observers/
 map <Leader>rj :Rjavascript 
-map <Leader>rsm :RSmodel 
-map <Leader>rsc :RScontroller 
-map <Leader>rsv :RSview 
-map <Leader>rtm :RTmodel 
-map <Leader>rtc :RTcontroller 
-map <Leader>rtv :RTview 
+map <Leader>rr :Rroutes<CR>
+map <Leader>rg :Rgemfile<CR>
 
 " ,z to zoomwin
 map <Leader>z :ZoomWin<CR>
