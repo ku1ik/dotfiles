@@ -24,12 +24,14 @@ alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 
 alias md='mkdir -p'
 
+alias b=bundle
 alias rdbm='bundle exec rake db:migrate'
 alias r='bundle exec rails'
 alias rc='bundle exec rails c'
 alias rs='bundle exec rails s thin'
-
+alias rspec='bundle exec rspec'
 alias bi='bundle install'
+alias rake='bundle exec rake'
 
 alias gvim=rungvim.rb
 alias man='man -P less'
@@ -55,3 +57,5 @@ alias tmux='tmux -2'
 alias ducks='du -cks * | sort -rn | head -11' # Lists the size of all the folders and files
 
 alias jsonpretty='ruby -rap -rjson -e "ap JSON.parse(STDIN.read)"'
+
+alias cls="echo -ne '\033c'"
