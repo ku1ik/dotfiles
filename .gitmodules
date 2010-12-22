@@ -52,9 +52,6 @@
 [submodule ".vim/bundle/vim-zoomwin"]
 	path = .vim/bundle/vim-zoomwin
 	url = git://github.com/rphillips/vim-zoomwin.git
-[submodule ".vim/bundle/vim-rooter"]
-	path = .vim/bundle/vim-rooter
-	url = git://github.com/airblade/vim-rooter.git
 [submodule ".vim/bundle/scala-vim-support"]
 	path = .vim/bundle/scala-vim-support
 	url = git://github.com/rosstimson/scala-vim-support.git
