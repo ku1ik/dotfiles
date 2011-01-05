@@ -170,11 +170,13 @@ let g:NERDTreeMapOpenSplit = "s"
 let g:NERDTreeMapOpenVSplit = "v"
 
 " snipMate
-" source ~/.vim/snippets/support_functions.vim
+let g:snippets_dir = "~/.vim/snippets"
+source ~/.vim/snippets/support_functions.vim
 
 " Gist
 let g:gist_open_browser_after_post = 1
 let g:gist_detect_filetype = 1
+
 
 """"""""""""""""""""""""""""""""""""""""
 " Misc
@@ -182,6 +184,8 @@ let g:gist_detect_filetype = 1
 
 " These file are ruby!
 au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru,Rules} set ft=ruby
+" This is JSON
+au BufRead,BufNewFile {*.json} set ft=json
 
 " Additional commands ala rails.vim
 command! Rroutes :e config/routes.rb

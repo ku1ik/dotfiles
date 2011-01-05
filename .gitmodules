@@ -79,3 +79,9 @@
 [submodule ".vim/bundle/snipmate.vim"]
 	path = .vim/bundle/snipmate.vim
 	url = git://github.com/msanders/snipmate.vim.git
+[submodule ".vim/bundle/json.vim"]
+	path = .vim/bundle/json.vim
+	url = git://github.com/vim-scripts/JSON.vim.git
+[submodule ".vim/snippets"]
+	path = .vim/snippets
+	url = git@github.com:sickill/snipmate-snippets.git
