@@ -13,12 +13,14 @@
 [submodule ".vim/bundle/vim-matchit"]
 	path = .vim/bundle/vim-matchit
 	url = http://github.com/edsono/vim-matchit.git
+  ignore = untracked
 [submodule ".vim/bundle/vim-rails"]
 	path = .vim/bundle/vim-rails
 	url = http://github.com/tpope/vim-rails.git
 [submodule ".vim/bundle/vim-surround"]
 	path = .vim/bundle/vim-surround
 	url = http://github.com/tpope/vim-surround.git
+  ignore = untracked
 [submodule ".vim/bundle/vim-repeat"]
 	path = .vim/bundle/vim-repeat
 	url = http://github.com/tpope/vim-repeat.git
@@ -31,15 +33,18 @@
 [submodule ".vim/bundle/vim-git"]
 	path = .vim/bundle/vim-git
 	url = http://github.com/tpope/vim-git.git
+  ignore = untracked
 [submodule ".vim/bundle/textile.vim"]
 	path = .vim/bundle/textile.vim
 	url = http://github.com/timcharper/textile.vim.git
+  ignore = untracked
 [submodule ".vim/bundle/vim-javascript"]
 	path = .vim/bundle/vim-javascript
 	url = http://github.com/pangloss/vim-javascript.git
 [submodule ".vim/bundle/vim-ruby"]
 	path = .vim/bundle/vim-ruby
 	url = http://github.com/vim-ruby/vim-ruby.git
+  ignore = untracked
 [submodule ".vim/bundle/vim-scratch"]
 	path = .vim/bundle/vim-scratch
 	url = http://github.com/duff/vim-scratch.git
@@ -49,12 +54,14 @@
 [submodule ".vim/bundle/vim-zoomwin"]
 	path = .vim/bundle/vim-zoomwin
 	url = git://github.com/rphillips/vim-zoomwin.git
+  ignore = untracked
 [submodule ".vim/bundle/scala-vim-support"]
 	path = .vim/bundle/scala-vim-support
 	url = git://github.com/rosstimson/scala-vim-support.git
 [submodule ".vim/bundle/vim-indent-object"]
 	path = .vim/bundle/vim-indent-object
 	url = git://github.com/michaeljsmith/vim-indent-object.git
+  ignore = untracked
 [submodule ".vim/bundle/nerdtree"]
 	path = .vim/bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
@@ -67,6 +74,7 @@
 [submodule ".vim/bundle/vim-indent-guides"]
 	path = .vim/bundle/vim-indent-guides
 	url = git://github.com/nathanaelkane/vim-indent-guides.git
+  ignore = untracked
 [submodule ".vim/bundle/bufkill.vim"]
 	path = .vim/bundle/bufkill.vim
 	url = git://github.com/vim-scripts/bufkill.vim.git
@@ -76,6 +84,7 @@
 [submodule ".vim/bundle/snipmate.vim"]
 	path = .vim/bundle/snipmate.vim
 	url = git://github.com/msanders/snipmate.vim.git
+  ignore = untracked
 [submodule ".vim/bundle/json.vim"]
 	path = .vim/bundle/json.vim
 	url = git://github.com/vim-scripts/JSON.vim.git
@@ -91,6 +100,8 @@
 [submodule ".vim/bundle/Align"]
 	path = .vim/bundle/Align
 	url = git://github.com/vim-scripts/Align.git
+  ignore = untracked
 [submodule ".vim/bundle/vim-substitute"]
 	path = .vim/bundle/vim-substitute
 	url = git://github.com/aklt/vim-substitute.git
+  ignore = untracked
