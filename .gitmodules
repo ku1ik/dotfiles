@@ -82,3 +82,15 @@
 [submodule ".vim/snippets"]
 	path = .vim/snippets
 	url = git@github.com:sickill/snipmate-snippets.git
+[submodule ".vim/bundle/vim-haml"]
+	path = .vim/bundle/vim-haml
+	url = git://github.com/tpope/vim-haml.git
+[submodule ".vim/bundle/vim-markdown-preview"]
+	path = .vim/bundle/vim-markdown-preview
+	url = git://github.com/robgleeson/vim-markdown-preview.git
+[submodule ".vim/bundle/Align"]
+	path = .vim/bundle/Align
+	url = git://github.com/vim-scripts/Align.git
+[submodule ".vim/bundle/vim-substitute"]
+	path = .vim/bundle/vim-substitute
+	url = git://github.com/aklt/vim-substitute.git
