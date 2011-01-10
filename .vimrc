@@ -4,16 +4,16 @@
 " General
 """"""""""""""""""""""""""""""""""""""""
 
-" load all the bundles
-filetype off
-call pathogen#runtime_append_all_bundles()
-
 " Turn off compatibility with Vi
 set nocompatible
 
+" load all the bundles
+filetype off
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 " Enable plugins
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 """"""""""""""""""""""""""""""""""""""""
 " Files & backups
@@ -38,10 +38,8 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 set expandtab
-set autoindent
-
-" Turn off word wrapping
 set nowrap
+" set autoindent
 
 " Sane backspace behaviour
 set backspace=indent,eol,start
@@ -55,8 +53,7 @@ set nofoldenable        "dont fold by default
 set matchpairs+=<:>
 set iskeyword+=?
 
-set formatoptions-=r "dont continue comments when inserting new line (with Enter)
-set formatoptions-=o "dont continue comments when inserting new line (with o or O)
+set pastetoggle=<F11>
 
 """"""""""""""""""""""""""""""""""""""""
 " Completion
@@ -67,11 +64,9 @@ set completeopt=
 set complete=.,w,b,u,t
 
 " Wildcard completion
-set wildmode=list:longest   "make cmdline tab completion similar to bash
+set wildmode=list:longest,list:full   "make cmdline tab completion similar to bash
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~,*.png,*.gif,*.jpg,*.jpeg,*.zip,*.jar,*.gem,coverage/**,log/** "stuff to ignore when tab completing"
-
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+set wildignore+=*.o,*.obj,*~,*.png,*.gif,*.jpg,*.jpeg,*.zip,*.jar,*.gem,coverage/**,log/**,.git "stuff to ignore when tab completing"
 
 """"""""""""""""""""""""""""""""""""""""
 " Search
@@ -87,7 +82,6 @@ set gdefault
 
 " Show line numbering and current line
 set number
-set numberwidth=4
 set cursorline
 
 " Display tabs and trailing spaces
@@ -109,8 +103,6 @@ set title
 set mouse=a
 set ttymouse=xterm2
 
-set lazyredraw " no redraw when running macros
-
 " Tab label format
 set gtl=%t
 
@@ -118,20 +110,18 @@ set gtl=%t
 set splitbelow splitright
 
 " Status line
-set statusline=%f "tail of the filename
-set statusline+=\ 
-"set statusline+=%h      "help file flag
-set statusline+=%y      "filetype
-set statusline+=%r      "read only flag
-set statusline+=%1*%m%*      "modified flag
-set statusline+=%=      "left/right aligned items separated
-set statusline+=%#warningmsg#
-set statusline+=%*\ 
-set statusline+=%-10.(%l,%c%V%)\ %P "ruler
-
 set laststatus=2
-set showcmd
+set statusline=%t%(\ [%M%R%H]%)%(\ [%Y]%)\ %{HasPaste()}%=%-14.(%l,%c%V%)\ %p%%
 
+function! HasPaste()
+  if &paste
+    return '[PASTE ON]'
+  else
+    return ''
+  endif
+endfunction
+
+set showcmd
 set shortmess+=I        " disable the welcome screen
 
 """"""""""""""""""""""""""""""""""""""""
@@ -154,7 +144,7 @@ else
 endif
 
 " for modified flag
-hi User1 gui=reverse
+" hi User1 gui=reverse
 
 " highlight characters in column >120
 highlight rightMargin guibg=#440000
@@ -165,9 +155,9 @@ match rightMargin /.\%>120v/
 """"""""""""""""""""""""""""""""""""""""
 
 " NERDTree
-let g:NERDChristmasTree = 1
 let g:NERDTreeMapOpenSplit = "s"
 let g:NERDTreeMapOpenVSplit = "v"
+let g:NERDTreeQuitOnOpen=1
 
 " snipMate
 let g:snippets_dir = "~/.vim/snippets"
@@ -177,14 +167,20 @@ source ~/.vim/snippets/support_functions.vim
 let g:gist_open_browser_after_post = 1
 let g:gist_detect_filetype = 1
 
+" substitute
+let g:substitute_PromptMap = "<Leader>;'"
+let g:substitute_NoPromptMap = '<Leader>;;'
+let g:substitute_GlobalMap = "<Leader>';"
+
+" turn off AlignMaps
+let g:loaded_AlignMapsPlugin = "v41"
 
 """"""""""""""""""""""""""""""""""""""""
 " Misc
 """"""""""""""""""""""""""""""""""""""""
 
-" These file are ruby!
+" Additional filetype detection
 au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru,Rules} set ft=ruby
-" This is JSON
 au BufRead,BufNewFile {*.json} set ft=json
 
 " Additional commands ala rails.vim
@@ -196,8 +192,8 @@ command! Rgemfile :e Gemfile
 " Functions
 """"""""""""""""""""""""""""""""""""""""
 
-"jump to last cursor position when opening a file
-"dont do it when writing a commit log entry
+" jump to last cursor position when opening a file
+" dont do it when writing a commit log entry
 autocmd BufReadPost * call SetCursorPosition()
 function! SetCursorPosition()
     if &filetype !~ 'commit\c'
@@ -220,26 +216,29 @@ function! Preserve(command)
   call cursor(l, c)
 endfunction
 
-function! SuperCleverTab()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] =~ '^\s$'
-    return "\<Tab>"
-  else
-    return "\<C-P>"
-  endif
-endfunction
+" function! SuperCleverTab()
+"   let col = col('.') - 1
+"   if !col || getline('.')[col - 1] =~ '^\\s$'
+"     return "\\<Tab>"
+"   else
+"     return "\\<C-P>"
+"   endif
+" endfunction
 
-function! CompleteTagOrInsertSlash()
-  if &syntax != "eruby"
-    return "\/"
-  endif
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '^<$'
-    return "\/"
-  else
-    return "\/\<C-P>" " need sth better than keyword compl here
-  endif
-endfunction
+" function! CompleteTagOrInsertSlash()
+"   if &syntax != "eruby"
+"     return "\\/"
+"   endif
+"   let col = col('.') - 1
+"   if !col || getline('.')[col - 1] !~ '^<$'
+"     return "\\/"
+"   else
+"     return "\\/\\<C-P>" " need sth better than keyword compl here
+"   endif
+" endfunction
+
+" autoclose tags
+" imap <silent> / <C-R>=CompleteTagOrInsertSlash()<CR>
 
 """"""""""""""""""""""""""""""""""""""""
 " Mappings
@@ -248,23 +247,24 @@ endfunction
 " Leader key
 let mapleader=","
 
-" Switching split windows
-nmap <silent> <S-Up> :wincmd k<CR>
-nmap <silent> <S-Down> :wincmd j<CR>
-nmap <silent> <S-Left> :wincmd h<CR>
-nmap <silent> <S-Right> :wincmd l<CR>
+" make Y behave like C,D
+noremap Y y$
 
-" NERD tree
-map <silent> <F2> <ESC>:NERDTreeToggle<CR>
-nmap <silent> <leader>ft :NERDTreeFind<CR>
+" Preserve selection when indenting
+vmap > >gv
+vmap < <gv
 
-" Command-T
-map <silent> <C-t> <ESC>:CommandT<CR>
+" move up/down by screen lines, not file lines
+nnoremap j gj
+nnoremap k gk
 
-" Fast editing of the .vimrc
-nmap <silent> <leader>v :tabedit $MYVIMRC<CR>
+" allow moving with h/j/k/l in insert mode
+inoremap <c-h> <Left>
+inoremap <c-j> <Down>
+inoremap <c-k> <Up>
+inoremap <c-l> <Right>
 
-" Move line(s) of text using Alt+j/k
+" Move line(s) of text down/up using Alt+j/k
 nnoremap <silent> <A-j> :m+<CR>==
 nnoremap <silent> <A-k> :m-2<CR>==
 inoremap <silent> <A-j> <Esc>:m+<CR>==gi
@@ -272,17 +272,52 @@ inoremap <silent> <A-k> <Esc>:m-2<CR>==gi
 vnoremap <silent> <A-j> :m'>+<CR>gv=gv
 vnoremap <silent> <A-k> :m-2<CR>gv=gv
 
-" Preserve selection when indenting
-vmap > >gv
-vmap < <gv
-
-" Indenting with Alt + [ and ]
+" Indenting with Alt + [,],h,l
 nmap <A-[> <<
 nmap <A-]> >>
-nmap <A-h> <<
-nmap <A-l> >>
 vmap <A-[> <gv
 vmap <A-]> >gv
+nmap <A-h> <<
+nmap <A-l> >>
+
+" Switching split windows
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+
+" Resizing split windows
+nmap <silent> <C-Up> <C-w>-
+nmap <silent> <C-Down> <C-w>+
+nmap <silent> <C-Left> 2<C-w><
+nmap <silent> <C-Right> 2<C-w>>
+
+" Press Shift+P while in visual mode to replace the selection without
+" overwriting the default register
+vmap <silent> P p :call setreg('"', getreg('0')) <CR>
+
+" Sudo write
+cmap w!! w !sudo tee % >/dev/null
+
+" commenting
+nmap <Leader>c gcc
+vmap <Leader>c gc
+
+" ,, to zoomwin
+map <Leader><Leader> :ZoomWin<CR>
+
+" ,a for Ack
+map <Leader>a :Ack<Space>
+
+" NERD tree
+nmap <silent> <Leader>n :NERDTreeToggle<CR>
+nmap <silent> <leader>fn :NERDTreeFind<CR>
+
+" Command-T
+" map <silent> <C-t> <ESC>:CommandT<CR>
+
+" Fast editing of the .vimrc
+nmap <silent> <leader>ve :tabedit $MYVIMRC<CR>
 
 " strip trailing whitespace
 nnoremap <silent> <leader>sw :call Preserve("%s/\\s\\+$//e")<CR>
@@ -290,83 +325,32 @@ nnoremap <silent> <leader>sw :call Preserve("%s/\\s\\+$//e")<CR>
 " auto indent whole file
 nnoremap <silent> <leader>= :call Preserve("normal gg=G")<CR>
 
-" preview textile
-nmap <leader>pr :TextilePreview<CR>
-
 " preview markdown
 nmap <leader>pm :!rdiscount % \|browser<CR>
 
 " run ruby script
 nmap <leader>rr :!ruby %<CR>
 
-" allow moving with j/k in insert mode
-inoremap <c-j> <Down>
-inoremap <c-k> <Up>
-inoremap <c-h> <Left>
-inoremap <c-l> <Right>
-
-" prev/next buffer
-nmap <silent> <A-Right> :bn<CR>
-nmap <silent> <A-Left> :bp<CR>
-
-" commenting
-nmap <leader>c gcc
-vmap <leader>c gc
-
-" complete with Tab
-" inoremap <silent> <Tab> <C-R>=SuperCleverTab()<CR>
-
-" make Y behave like C,D
-noremap Y y$
-
-" toggle (no)paste
-nnoremap <silent> <leader>tp :set invpaste paste?<CR>
-
-" autoclose tags
-" imap <silent> / <C-R>=CompleteTagOrInsertSlash()<CR>
-
-" Opens an edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>e
+" Opens an (tab)edit command with the path of the currently edited file filled in
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+" map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+
+" Inserts the path of the currently edited file into a command
+cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
 " Hide search highlighting
 nnoremap <silent> <CR> :noh<CR><CR>
 
-" Inserts the path of the currently edited file into a command
-" Command mode: Ctrl+P
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-
-" Press Shift+P while in visual mode to replace the selection without
-" overwriting the default register
-vmap <silent> P p :call setreg('"', getreg('0')) <CR>
-
 " shortcuts for rails.vim commands
-map <Leader>rm :Rmodel 
-map <Leader>rc :Rcontroller 
-map <Leader>rv :Rview 
+map <Leader>rm :Rmodel<Space>
+map <Leader>rc :Rcontroller<Space>
+map <Leader>rv :Rview<Space>
+map <Leader>rh :Rhelper<Space>
 map <Leader>ro :Robserver observers/
-map <Leader>rj :Rjavascript 
+map <Leader>rj :Rjavascript<Space>
+map <Leader>rs :Rstylesheet<Space>
 map <Leader>rr :Rroutes<CR>
 map <Leader>rg :Rgemfile<CR>
-
-" ,z to zoomwin
-map <Leader>z :ZoomWin<CR>
-
-" ,a for Ack
-map <Leader>a :Ack<space>
-
-" cd into root dir of file's project
-map <silent> <unique> <Leader>,cd <Plug>RooterChangeToRootDirectory
-
-" move up/down by screen lines, not file lines
-nnoremap j gj
-nnoremap k gk
-
-" zoom
-nmap <Leader>z :ZoomWin<CR>
-
-" Sudo write
-cmap w!! w !sudo tee % >/dev/null
 
 " Load local config
 if filereadable(expand("~/.vimrc.local"))
