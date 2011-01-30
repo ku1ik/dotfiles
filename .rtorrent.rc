@@ -1,0 +1,25 @@
+directory = ~/torrents/tmp
+session = ~/torrents/session
+
+port_range = 6881-6883
+upload_rate = 64
+max_memory_usage = 150000000
+
+on_start    = link2,"create_link=base_path,,.started"
+on_stop     = link2,"delete_link=base_path,,.started"
+on_finished = link2,"create_link=base_path,,.finished"
+on_erase    = link2,"delete_link=base_path,,.finished"
+system.method.set_key = event.download.finished,notify_me,"execute=~/torrents/notify.sh,$d.get_name="
+system.method.set_key = event.download.finished,move_complete,"execute=mv,-u,$d.get_base_path=,~/torrents/finished/;d.set_directory=~/torrents/finished/"
+
+# Colors: 0 = black 1 = red 2 = green 3 = yellow 4 = blue 5 = magenta 6 = cyan 7 = white
+
+# done_fg_color   = 2
+# active_fg_color = 4
+
+## done_bg_color   = 1
+## active_bg_color = 1
+
+schedule = tied_directory,10,10,start_tied=
+schedule = untied_directory,10,10,close_untied=
+schedule = watch_directory,10,10,load_start=~/torrents/watch/*.torrent
