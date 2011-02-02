@@ -48,9 +48,6 @@
 [submodule ".vim/bundle/vim-scratch"]
 	path = .vim/bundle/vim-scratch
 	url = http://github.com/duff/vim-scratch.git
-[submodule ".vim/bundle/vim-tcomment"]
-	path = .vim/bundle/vim-tcomment
-	url = git://github.com/tsaleh/vim-tcomment.git
 [submodule ".vim/bundle/vim-zoomwin"]
 	path = .vim/bundle/vim-zoomwin
 	url = git://github.com/rphillips/vim-zoomwin.git
@@ -105,3 +102,6 @@
 	path = .vim/bundle/vim-substitute
 	url = git://github.com/aklt/vim-substitute.git
   ignore = untracked
+[submodule ".vim/bundle/nerdcommenter"]
+	path = .vim/bundle/nerdcommenter
+	url = git://github.com/ddollar/nerdcommenter.git
