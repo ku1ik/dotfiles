@@ -322,6 +322,9 @@ nmap <silent> <leader>fn :NERDTreeFind<CR>
 " Command-T
 " map <silent> <C-t> <ESC>:CommandT<CR>
 
+" ,bo for BufOnly
+nmap <Leader>bo :BufOnly<CR>
+
 " Fast editing of the .vimrc
 nmap <silent> <leader>ve :tabedit $MYVIMRC<CR>
 
