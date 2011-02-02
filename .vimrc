@@ -10,7 +10,6 @@ set nocompatible
 " load all the bundles
 filetype off
 call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
 
 " Enable plugins
 filetype plugin indent on
