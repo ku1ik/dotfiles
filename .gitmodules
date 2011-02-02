@@ -91,14 +91,13 @@
 [submodule ".vim/bundle/vim-markdown-preview"]
 	path = .vim/bundle/vim-markdown-preview
 	url = git://github.com/robgleeson/vim-markdown-preview.git
-[submodule ".vim/bundle/Align"]
-	path = .vim/bundle/Align
-	url = git://github.com/vim-scripts/Align.git
-  ignore = untracked
 [submodule ".vim/bundle/vim-substitute"]
 	path = .vim/bundle/vim-substitute
 	url = git://github.com/aklt/vim-substitute.git
   ignore = untracked
+[submodule ".vim/bundle/tabular"]
+	path = .vim/bundle/tabular
+	url = git://github.com/godlygeek/tabular.git
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/bundle/nerdcommenter
 	url = git://github.com/ddollar/nerdcommenter.git
