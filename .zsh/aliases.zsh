@@ -13,14 +13,16 @@ alias tailf='tail -f -n200'
 alias _='sudo'
 
 alias g='git'
-alias gl='git pull --rebase'
-alias gp='git push'
 alias ga='git add'
+alias gb='git branch'
 alias gc='git commit'
 alias gca='git commit -a'
-alias gs='git status -sb'
 alias gd='git diff'
+alias gl='git pull --rebase'
+alias go='git checkout'
+alias gp='git push'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias gs='git status -sb'
 
 alias md='mkdir -p'
 
