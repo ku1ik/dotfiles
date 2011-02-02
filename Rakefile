@@ -1,6 +1,6 @@
 desc "Symlink configs and init git modules"
 task :symlink_and_init_modules do
-  entries = Dir["*"] + Dir[".*"] - [".", "..", ".git", "Rakefile", "README.md"]
+  entries = Dir["*"] + Dir[".*"] - [".", "..", ".git", "Rakefile", "README.md", ".config"] + Dir[".config/*"]
   entries.each do |e|
     cmd = "ln -sfn #{File.expand_path(e)} ~/#{e}"
     puts cmd
