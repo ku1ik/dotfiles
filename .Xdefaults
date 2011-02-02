@@ -24,6 +24,8 @@ URxvt*background: black
 !URxvt*background: rgba:0000/0000/0000/dddd
 ! URxvt*buffered:false
 
+URxvt.cursorBlink: true
+
 URxvt.saveLines: 32767
 urxvt*scrollTtyKeypress: true
 urxvt*scrollTtyOutput: false
