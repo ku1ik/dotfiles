@@ -312,8 +312,8 @@ vmap <Leader>c <plug>NERDCommenterToggle
 " ,, to zoomwin
 map <Leader><Leader> :ZoomWin<CR>
 
-" ,a for Ack
-map <Leader>a :Ack<Space>
+" ,ac for Ack
+map <Leader>ac :Ack<Space>
 
 " NERD tree
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
@@ -360,6 +360,12 @@ map <Leader>rj :Rjavascript<Space>
 map <Leader>rs :Rstylesheet<Space>
 map <Leader>rr :Rroutes<CR>
 map <Leader>rg :Rgemfile<CR>
+
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+
 
 " Load local config
 if filereadable(expand("~/.vimrc.local"))
