@@ -178,6 +178,9 @@ let g:substitute_GlobalMap = "<Leader>';"
 " turn off AlignMaps
 let g:loaded_AlignMapsPlugin = "v41"
 
+" NERDCommenter
+let NERDCreateDefaultMappings = 0
+
 """"""""""""""""""""""""""""""""""""""""
 " Misc
 """"""""""""""""""""""""""""""""""""""""
@@ -303,8 +306,8 @@ vmap <silent> P p :call setreg('"', getreg('0')) <CR>
 cmap w!! w !sudo tee % >/dev/null
 
 " commenting
-nmap <Leader>c gcc
-vmap <Leader>c gc
+nmap <Leader>c <plug>NERDCommenterToggle
+vmap <Leader>c <plug>NERDCommenterToggle
 
 " ,, to zoomwin
 map <Leader><Leader> :ZoomWin<CR>
