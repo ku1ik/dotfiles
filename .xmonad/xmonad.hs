@@ -34,12 +34,15 @@ myKeys =
     [ ("M-<Left>",    prevWS )
     , ("M-<Right>",   nextWS )
     , ("M-e", runOrRaiseNext "e" (className =? "Gvim"))
-    , ("M-w", runOrRaiseNext "google-chrome" (className =? "Google-chrome"))
+    , ("M-w", runOrRaiseNext "google-chrome" (className =? "Google-chrome" <||> className =? "Chromium"))
     , ("M-c", runOrRaiseNext "gnome-terminal" (className =? "Gnome-terminal"))
     , ("M-S-r", spawn "xmonad --recompile; xmonad --restart")
     , ("M-q", kill)
     , ("M-u", focusUrgent)
     {- , ("M-<Space>", sendMessage NextLayout >> (curLayout >>= \d->spawn $"notify-send "++d))-}
+    , ("M-C-j", prevScreen)
+    , ("M-C-k", nextScreen)
+    , ("M-C-o", shiftNextScreen)
     ]
 
 myManageHook = composeAll . concat $
