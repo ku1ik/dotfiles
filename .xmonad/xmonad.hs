@@ -27,7 +27,7 @@ myLayout = desktopLayoutModifiers
            $ baseLayout
   where
     baseLayout = Full ||| Tall 1 0.1 0.66 ||| Mirror(Tall 1 0.1 0.66)
-    roster = And (Role "contact_list") (ClassName "Empathy")
+    roster = Or (And (Role "contact_list") (ClassName "Empathy")) (And (ClassName "Gajim.py") (Role "roster"))
     imLayout = withIM (1%6) roster Grid
 
 myKeys =
