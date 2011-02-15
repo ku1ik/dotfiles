@@ -25,10 +25,13 @@ bindkey "^[" delete-word
 
 bindkey '\e[1;5D' backward-word # urxvt, konsole
 bindkey '^[OD' backward-word # tmux
+bindkey '^[Od' backward-word # urxvt
 
 bindkey '\e[1;5C' forward-word # urxvt, konsole
 bindkey '^[OC' forward-word # tmux
+bindkey '^[Oc' forward-word # urxvt
 
+# bindkey "^?" backward-delete-word # gnome-term/terminator
 bindkey "^H" backward-delete-word # urxvt
 
 tcsh-backward-word () {
