@@ -14,6 +14,9 @@ call pathogen#runtime_append_all_bundles()
 " Enable plugins
 filetype plugin indent on
 
+" Leader key
+let mapleader=","
+
 """"""""""""""""""""""""""""""""""""""""
 " Files & backups
 """"""""""""""""""""""""""""""""""""""""
@@ -55,7 +58,7 @@ set nofoldenable        "dont fold by default
 set matchpairs+=<:>
 set iskeyword+=?
 
-set pastetoggle=<F11>
+set pastetoggle=<leader>tp
 
 """"""""""""""""""""""""""""""""""""""""
 " Completion
@@ -113,15 +116,7 @@ set splitbelow splitright
 
 " Status line
 set laststatus=2
-set statusline=%t%(\ [%M%R%H]%)%(\ [%Y]%)\ %{HasPaste()}%=%-14.(%l,%c%V%)\ %p%%
-
-function! HasPaste()
-  if &paste
-    return '[PASTE ON]'
-  else
-    return ''
-  endif
-endfunction
+set statusline=%t%(\ [%M%R%H]%)%(\ [%Y]%)%=%-14.(%l,%c%V%)\ %p%%
 
 set showcmd
 set shortmess+=I        " disable the welcome screen
@@ -159,7 +154,7 @@ match rightMargin /.\%>120v/
 " NERDTree
 let g:NERDTreeMapOpenSplit = "s"
 let g:NERDTreeMapOpenVSplit = "v"
-let g:NERDTreeQuitOnOpen=1
+" let g:NERDTreeQuitOnOpen = 1
 
 " snipMate
 let g:snippets_dir = "~/.vim/snippets"
@@ -245,12 +240,17 @@ endfunction
 " autoclose tags
 " imap <silent> / <C-R>=CompleteTagOrInsertSlash()<CR>
 
+function ToggleWrap()
+  if &wrap
+    set nowrap
+  else
+    set wrap
+  endif
+endfunction
+
 """"""""""""""""""""""""""""""""""""""""
 " Mappings
 """"""""""""""""""""""""""""""""""""""""
-
-" Leader key
-let mapleader=","
 
 " make Y behave like C,D
 noremap Y y$
@@ -304,9 +304,20 @@ vmap <silent> P p :call setreg('"', getreg('0')) <CR>
 " Sudo write
 cmap w!! w !sudo tee % >/dev/null
 
+" toggle wrapping
+noremap <silent> <Leader>tw :call ToggleWrap()<CR>
+
+" Quick write session with F2
+map <F2> :mksession! ~/vim_session <cr>
+" And load session with F3
+map <F3> :source ~/vim_session <cr>
+
 " commenting
 nmap <Leader>c <plug>NERDCommenterToggle
 vmap <Leader>c <plug>NERDCommenterToggle
+
+" run blockle with AutoClose turned off
+autocmd FileType ruby map <silent> <buffer> <Leader>bl :AutoCloseOff<CR><Plug>BlockToggle:AutoCloseOn<CR>
 
 " ,, to zoomwin
 map <Leader><Leader> :ZoomWin<CR>
@@ -349,6 +360,8 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 " Hide search highlighting
 nnoremap <silent> <CR> :noh<CR><CR>
 
+" delete current file
+nmap <leader>x :silent !rm %<cr>
 " shortcuts for rails.vim commands
 map <Leader>rm :Rmodel<Space>
 map <Leader>rc :Rcontroller<Space>
