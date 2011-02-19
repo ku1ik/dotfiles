@@ -159,9 +159,9 @@ let g:gist_open_browser_after_post = 1
 let g:gist_detect_filetype = 1
 
 " substitute
-let g:substitute_PromptMap = "<Leader>;'"
-let g:substitute_NoPromptMap = '<Leader>;;'
-let g:substitute_GlobalMap = "<Leader>';"
+let g:substitute_PromptMap = "<leader>;'"
+let g:substitute_NoPromptMap = '<leader>;;'
+let g:substitute_GlobalMap = "<leader>';"
 
 " turn off AlignMaps
 let g:loaded_AlignMapsPlugin = "v41"
@@ -312,7 +312,7 @@ vmap <silent> P p :call setreg('"', getreg('0')) <CR>
 cmap w!! w !sudo tee % >/dev/null
 
 " toggle wrapping
-noremap <silent> <Leader>tw :call ToggleWrap()<CR>
+noremap <silent> <leader>tw :call ToggleWrap()<CR>
 
 " Quick write session with F2
 map <F2> :mksession! ~/vim_session <cr>
@@ -320,27 +320,27 @@ map <F2> :mksession! ~/vim_session <cr>
 map <F3> :source ~/vim_session <cr>
 
 " commenting
-nmap <Leader>c <plug>NERDCommenterToggle
-vmap <Leader>c <plug>NERDCommenterToggle
+nmap <leader>c <plug>NERDCommenterToggle
+vmap <leader>c <plug>NERDCommenterToggle
 
 " run blockle with AutoClose turned off
-autocmd FileType ruby map <silent> <buffer> <Leader>bl :AutoCloseOff<CR><Plug>BlockToggle:AutoCloseOn<CR>
+autocmd FileType ruby map <silent> <buffer> <leader>bl :AutoCloseOff<CR><Plug>BlockToggle:AutoCloseOn<CR>
 
 " ,, to zoomwin
-map <Leader><Leader> :ZoomWin<CR>
+map <leader><leader> :ZoomWin<CR>
 
 " ,ac for Ack
-map <Leader>ac :Ack<Space>
+map <leader>ac :Ack<Space>
 
 " NERD tree
-nmap <silent> <Leader>n :NERDTreeToggle<CR>
+nmap <silent> <leader>n :NERDTreeToggle<CR>
 nmap <silent> <leader>fn :NERDTreeFind<CR>
 
 " Command-T
-" map <silent> <C-t> <ESC>:CommandT<CR>
+" nmap <silent> <C-t> :CommandT<CR>
 
 " ,bo for BufOnly
-nmap <Leader>bo :BufOnly<CR>
+nmap <leader>bo :BufOnly<CR>
 
 " Fast editing of the .vimrc
 nmap <silent> <leader>ve :tabedit $MYVIMRC<CR>
@@ -358,8 +358,8 @@ nmap <leader>pm :!rdiscount % \|browser<CR>
 nmap <leader>rr :!ruby %<CR>
 
 " Opens an (tab)edit command with the path of the currently edited file filled in
-map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-" map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+" map <leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 " Inserts the path of the currently edited file into a command
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
