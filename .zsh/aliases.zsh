@@ -12,6 +12,8 @@ alias rtorrent='tmux attach -t rtorrent || tmux new -s rtorrent rtorrent'
 alias tailf='tail -f -n200'
 alias _='sudo'
 
+alias e=gvim
+
 alias g='git'
 alias ga='git add'
 alias gb='git branch'
