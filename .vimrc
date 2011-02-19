@@ -76,6 +76,7 @@ set wildignore+=*.o,*.obj,*~,*.png,*.gif,*.jpg,*.jpeg,*.zip,*.jar,*.gem,coverage
 set incsearch
 set hlsearch
 set gdefault
+set tags+=gems-tags
 
 """"""""""""""""""""""""""""""""""""""""
 " UI
