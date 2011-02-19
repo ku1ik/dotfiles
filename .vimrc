@@ -169,6 +169,9 @@ let g:loaded_AlignMapsPlugin = "v41"
 " NERDCommenter
 let NERDCreateDefaultMappings = 0
 
+" easytags tags file
+let g:easytags_file = 'tags'
+
 """"""""""""""""""""""""""""""""""""""""
 " Misc
 """"""""""""""""""""""""""""""""""""""""
