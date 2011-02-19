@@ -17,7 +17,7 @@ autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 autocmd FocusGained * call Refresh()
 
 " If the parameter is a directory, cd into it
-function s:CdIfDirectory(directory)
+function! s:CdIfDirectory(directory)
   let explicitDirectory = isdirectory(a:directory)
   let directory = explicitDirectory || empty(a:directory)
 
