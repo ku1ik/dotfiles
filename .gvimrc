@@ -14,6 +14,7 @@ set guioptions+=c
 set gtt=%F
 
 autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
+autocmd FocusGained * call Refresh()
 
 " If the parameter is a directory, cd into it
 function s:CdIfDirectory(directory)
