@@ -174,8 +174,12 @@ let NERDCreateDefaultMappings = 0
 """"""""""""""""""""""""""""""""""""""""
 
 " Additional filetype detection
-au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru,Rules} set ft=ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru,Rules,Vagrantfile} set ft=ruby
 au BufRead,BufNewFile {*.json} set ft=json
+au BufRead,BufNewFile nginx.conf set filetype=nginx
+au BufRead,BufNewFile *.less set filetype=less
+au BufRead,BufNewFile *_spec.rb set filetype=rspec
+au BufNewFile,BufReadPost .tmux.conf*,tmux.conf* set filetype=tmux
 
 " Additional commands ala rails.vim
 command! Rroutes :e config/routes.rb
