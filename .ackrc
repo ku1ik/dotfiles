@@ -2,3 +2,6 @@
 --ignore-dir=coverage
 --ignore-dir=log
 --ignore-dir=vendor
+--type-add=ruby=.haml,.rake
+--type-add=html=.html.erb,.html.haml
+--type-add=css=.sass,.less
