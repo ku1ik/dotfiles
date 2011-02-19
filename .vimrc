@@ -217,7 +217,7 @@ function! Preserve(command)
   call cursor(l, c)
 endfunction
 
-function ToggleWrap()
+function! ToggleWrap()
   if &wrap
     set nowrap
   else
