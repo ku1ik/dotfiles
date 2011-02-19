@@ -441,4 +441,3 @@ Bundle 'bufkill.vim'
 Bundle 'JSON.vim'
 " Bundle 'https://github.com/wincent/Command-T.git'
 " Bundle 'easytags.vim'
-" git@github.com:sickill/snipmate-snippets.git
