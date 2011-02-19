@@ -137,9 +137,6 @@ else
   colors Sunburst
 endif
 
-" for modified flag
-" hi User1 gui=reverse
-
 " highlight characters in column >120
 highlight rightMargin guibg=#440000
 match rightMargin /.\%>120v/
@@ -212,30 +209,6 @@ function! Preserve(command)
   let @/=_s
   call cursor(l, c)
 endfunction
-
-" function! SuperCleverTab()
-"   let col = col('.') - 1
-"   if !col || getline('.')[col - 1] =~ '^\\s$'
-"     return "\\<Tab>"
-"   else
-"     return "\\<C-P>"
-"   endif
-" endfunction
-
-" function! CompleteTagOrInsertSlash()
-"   if &syntax != "eruby"
-"     return "\\/"
-"   endif
-"   let col = col('.') - 1
-"   if !col || getline('.')[col - 1] !~ '^<$'
-"     return "\\/"
-"   else
-"     return "\\/\\<C-P>" " need sth better than keyword compl here
-"   endif
-" endfunction
-
-" autoclose tags
-" imap <silent> / <C-R>=CompleteTagOrInsertSlash()<CR>
 
 function ToggleWrap()
   if &wrap
