@@ -7,10 +7,6 @@
 " Turn off compatibility with Vi
 set nocompatible
 
-" load all the bundles
-filetype off
-call pathogen#runtime_append_all_bundles()
-
 " Enable plugins
 filetype plugin indent on
 
@@ -362,24 +358,72 @@ nnoremap <silent> <CR> :noh<CR><CR>
 
 " delete current file
 nmap <leader>x :silent !rm %<cr>
-" shortcuts for rails.vim commands
-map <Leader>rm :Rmodel<Space>
-map <Leader>rc :Rcontroller<Space>
-map <Leader>rv :Rview<Space>
-map <Leader>rh :Rhelper<Space>
-map <Leader>ro :Robserver observers/
-map <Leader>rj :Rjavascript<Space>
-map <Leader>rs :Rstylesheet<Space>
-map <Leader>rr :Rroutes<CR>
-map <Leader>rg :Rgemfile<CR>
 
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
+nmap <F5> :call RefreshWithTags()<cr>
+nmap <S-F5> :call RefreshGemsTags()<cr>
+
+" shortcuts for rails.vim commands
+map <leader>rm :Rmodel<Space>
+map <leader>rc :Rcontroller<Space>
+map <leader>rv :Rview<Space>
+map <leader>rh :Rhelper<Space>
+map <leader>ro :Robserver observers/
+map <leader>rj :Rjavascript<Space>
+map <leader>rs :Rstylesheet<Space>
+map <leader>rr :Rroutes<CR>
+map <leader>rg :Rgemfile<CR>
+
+nmap <leader>a= :Tabularize /=<CR>
+vmap <leader>a= :Tabularize /=<CR>
+nmap <leader>a: :Tabularize /:\zs<CR>
+vmap <leader>a: :Tabularize /:\zs<CR>
 
 
 " Load local config
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
+set rtp+=~/.vim/vundle.git/
+call vundle#rc()
+
+Bundle 'https://github.com/mileszs/ack.vim.git'
+Bundle 'https://github.com/godlygeek/csapprox.git'
+Bundle 'https://github.com/tpope/vim-endwise.git'
+Bundle 'https://github.com/mattn/gist-vim.git'
+Bundle 'https://github.com/edsono/vim-matchit.git'
+Bundle 'https://github.com/tpope/vim-rails.git'
+Bundle 'https://github.com/tpope/vim-surround.git'
+Bundle 'https://github.com/tpope/vim-repeat.git'
+Bundle 'https://github.com/tpope/vim-markdown.git'
+Bundle 'https://github.com/tpope/vim-cucumber.git'
+Bundle 'https://github.com/tpope/vim-git.git'
+Bundle 'https://github.com/timcharper/textile.vim.git'
+Bundle 'https://github.com/pangloss/vim-javascript.git'
+Bundle 'https://github.com/vim-ruby/vim-ruby.git'
+Bundle 'https://github.com/duff/vim-scratch.git'
+Bundle 'https://github.com/rphillips/vim-zoomwin.git'
+Bundle 'https://github.com/rosstimson/scala-vim-support.git'
+Bundle 'https://github.com/michaeljsmith/vim-indent-object.git'
+Bundle 'https://github.com/sickill/nerdtree.git'
+Bundle 'https://github.com/nathanaelkane/vim-indent-guides.git'
+Bundle 'https://github.com/tpope/vim-fugitive.git'
+Bundle 'https://github.com/msanders/snipmate.vim.git'
+Bundle 'https://github.com/tpope/vim-haml.git'
+Bundle 'https://github.com/robgleeson/vim-markdown-preview.git'
+Bundle 'https://github.com/aklt/vim-substitute.git'
+Bundle 'https://github.com/godlygeek/tabular.git'
+Bundle 'https://github.com/ecomba/vim-ruby-refactoring.git'
+Bundle 'https://github.com/ddollar/nerdcommenter.git'
+Bundle 'https://github.com/tpope/vim-unimpaired.git'
+Bundle 'https://github.com/jgdavey/vim-blockle.git'
+Bundle 'https://github.com/Townk/vim-autoclose.git'
+Bundle 'Rename'
+Bundle 'file-line'
+Bundle 'BufOnly.vim'
+Bundle 'nginx.vim'
+Bundle 'bufkill.vim'
+Bundle 'JSON.vim'
+" Bundle 'https://github.com/wincent/Command-T.git'
+" Bundle 'easytags.vim'
+" git@github.com:sickill/snipmate-snippets.git
