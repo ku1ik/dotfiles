@@ -359,10 +359,7 @@ nnoremap <silent> <leader>sw :call Preserve("%s/\\s\\+$//e")<CR>
 nnoremap <silent> <leader>= :call Preserve("normal gg=G")<CR>
 
 " preview markdown
-nmap <leader>pm :!rdiscount % \|browser<CR>
-
-" run ruby script
-nmap <leader>rr :!ruby %<CR>
+autocmd FileType markdown nmap <leader>pm :!rdiscount % \|browser<CR>
 
 " Opens an (tab)edit command with the path of the currently edited file filled in
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
