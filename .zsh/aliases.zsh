@@ -37,7 +37,6 @@ alias rs='bundle exec rails s thin'
 alias rspec='bundle exec rspec'
 alias bi='bundle install'
 
-alias gvim=rungvim.rb
 alias man='man -P less'
 alias sv='sudo service'
 
@@ -63,3 +62,11 @@ alias ducks='du -cks * | sort -rn | head -11' # Lists the size of all the folder
 alias jsonpretty='ruby -rap -rjson -e "ap JSON.parse(STDIN.read)"'
 
 alias cls="echo -ne '\033c'"
+
+alias dl='cd ~/Downloads'
+
+alias -s -- jar='java -jar'
+
+alias v=vagrant
+
+alias unsvn='find . -name .svn -print0 | xargs -0 rm -rf'
