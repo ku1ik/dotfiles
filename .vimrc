@@ -269,6 +269,9 @@ vmap < <gv
 nnoremap j gj
 nnoremap k gk
 
+" open tag if only 1 match, show list when multiple matches
+noremap <C-]> g<C-]>
+
 " allow moving with h/j/k/l in insert mode
 inoremap <c-h> <Left>
 inoremap <c-j> <Down>
