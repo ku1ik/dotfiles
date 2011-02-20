@@ -217,14 +217,6 @@ function! Preserve(command)
   call cursor(l, c)
 endfunction
 
-function! ToggleWrap()
-  if &wrap
-    set nowrap
-  else
-    set wrap
-  endif
-endfunction
-
 function! RefreshNERDTree()
   if exists("t:NERDTreeBufName")
     let nr = bufwinnr(t:NERDTreeBufName)
@@ -319,7 +311,7 @@ vmap <silent> P p :call setreg('"', getreg('0')) <CR>
 cmap w!! w !sudo tee % >/dev/null
 
 " toggle wrapping
-noremap <silent> <leader>tw :call ToggleWrap()<CR>
+noremap <silent> <leader>tw :set invwrap<CR>
 
 " Quick write session with F2
 map <F2> :mksession! ~/vim_session <cr>
