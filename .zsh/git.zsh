@@ -77,7 +77,7 @@ prompt_git_info() {
 }
 
 preexec_update_git_vars() {
-  [[ $1 =~ ^(git|g|g[dcaslp]|gca|grm)(\\s|$) ]] && __EXECUTED_GIT_COMMAND=1
+  [[ $1 =~ ^(git|g|g[dcaslpo]|gca|grm)(\\s|$) ]] && __EXECUTED_GIT_COMMAND=1
 }
 
 precmd_update_git_vars() {
