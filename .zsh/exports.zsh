@@ -11,7 +11,7 @@ export VISUAL="$EDITOR"
 
 # export RUBYOPT=rubygems
 
-export BROWSER=firefox
+export BROWSER=google-chrome
 
 # export AWT_TOOLKIT=MToolkit
 export _JAVA_AWT_WM_NONREPARENTING=1
