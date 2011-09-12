@@ -102,6 +102,9 @@ au BufRead,BufNewFile *.{yml,yaml} setlocal autoindent
 " wrapping and spell-checking for markdown files
 au BufRead,BufNewFile *.{md,mkd,markdown} setlocal wrap wm=2 textwidth=79 spell
 
+" formatting XML files with autoindent (=)
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
 " jump to last position when opening a file,
 " don't do it when writing a commit log entry
 autocmd BufReadPost *
