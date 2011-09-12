@@ -255,6 +255,14 @@ inoremap <Down> <nop>
 inoremap <Left> <nop>
 inoremap <Right> <nop>
 
+"""""""""""""""""
+" Abbreviations "
+"""""""""""""""""
+
+ia mk/ http://ku1ik.com/
+ia gh/ https://github.com/
+ia ghs/ https://github.com/sickill/
+
 """""""""""
 " Plugins "
 """""""""""
