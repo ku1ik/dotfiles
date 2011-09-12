@@ -71,8 +71,6 @@ set splitbelow splitright            " more intuitive splitting
 
 set lazyredraw                       " don't redraw when running macros and commands that haven't been typed
 
-set tags+=gems-tags                  " use tags generated for bundled gems
-
 set pastetoggle=<leader>tp
 
 set laststatus=2                     " show the status line all the time
