@@ -226,6 +226,10 @@ nnoremap <silent> <leader>= mmgg=G`m
 " Inserts the path of the currently edited file into a command
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
+" Search prompt
+nnoremap <leader>s :%s//g<left><left>
+vnoremap <leader>s :s//g<left><left>
+
 " Hide search highlighting
 nnoremap <silent> <CR> :noh<CR><CR>
 
