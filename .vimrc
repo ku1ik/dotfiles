@@ -126,7 +126,7 @@ au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 " jump to last position when opening a file,
 " don't do it when writing a commit log entry
-autocmd BufReadPost *
+au BufReadPost *
     \ if &filetype !~ 'commit\c' |
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \ exe "normal g`\"" |
