@@ -74,7 +74,29 @@ set lazyredraw                       " don't redraw when running macros and comm
 set pastetoggle=<leader>tp
 
 set laststatus=2                     " show the status line all the time
-set statusline=%t%(\ [%M%R%H]%)%(\ [%Y]%)%=\ (D:%b\ H:0x%B)\ %-14.(%l,%c%V%)\ %p%%
+
+set statusline=%t                            " Filename
+set statusline+=%m                           " Modified flag.
+set statusline+=%r                           " Readonly flag.
+set statusline+=%w                           " Preview window flag.
+
+set statusline+=\                            " Space.
+
+set statusline+=%#warningmsg#                " Highlight the following as a warning.
+set statusline+=%{SyntasticStatuslineFlag()} " Syntastic errors.
+set statusline+=%*                           " Reset highlighting.
+
+set statusline+=%=                           " Right align.
+
+set statusline+=(
+set statusline+=%{&ff}                       " Format (unix/DOS).
+set statusline+=/
+set statusline+=%{strlen(&fenc)?&fenc:&enc}  " Encoding (utf-8).
+set statusline+=/
+set statusline+=%{&ft}                       " Type (python).
+set statusline+=)
+
+set statusline+=\ (line\ %l\/%L,\ col\ %03c) " Line and column position and counts.
 
 if &diff
   set nonumber " no line numbers
