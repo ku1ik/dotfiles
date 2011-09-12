@@ -240,7 +240,6 @@ nmap <leader>x :silent !rm %<cr>:bd<cr>
 nmap <leader>q <C-w>q
 
 nmap <F5> :call RefreshWithTags()<cr>
-nmap <S-F5> :call RefreshGemsTags()<cr>
 
 " don't need no stinkin' arrows
 nnoremap <Up> <nop>
