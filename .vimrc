@@ -111,7 +111,6 @@ au BufRead,BufNewFile Gemfile,Rakefile,Thorfile,config.ru,Rules,Vagrantfile,Guar
 au BufRead,BufNewFile *.json set ft=json
 au BufRead,BufNewFile nginx.conf,/etc/nginx/**/* set ft=nginx
 au BufRead,BufNewFile *.less set ft=less
-au BufRead,BufNewFile *_spec.rb set ft=rspec
 au BufNewFile,BufReadPost .tmux.conf*,tmux.conf* set ft=tmux
 au BufRead,BufNewFile *.{md,mkd,markdown} set ft=markdown
 au BufRead,BufNewFile *.mustache set ft=mustache
