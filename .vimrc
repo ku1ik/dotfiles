@@ -114,6 +114,10 @@ autocmd BufReadPost *
     \ endif |
     \ endif
 
+au CursorMoved,CursorMovedI * if &cul | set nocul | endif
+au CursorHold,CursorHoldI * set cursorline
+
+au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
 
 """"""""""""""""""
 " Misc functions "
