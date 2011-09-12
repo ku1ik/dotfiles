@@ -173,6 +173,10 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+" Easy tab navigation
+nnoremap <M-h> :tabprev<CR>
+nnoremap <M-l> :tabnext<CR>
+
 " Resizing split windows
 nmap <silent> <C-Up> <C-w>-
 nmap <silent> <C-Down> <C-w>+
