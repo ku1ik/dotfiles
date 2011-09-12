@@ -342,10 +342,9 @@ map <Leader>__swp <Plug>SaveWinPosn
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'jgdavey/vim-blockle'
 
-Bundle 'ddollar/nerdcommenter'
-let NERDCreateDefaultMappings = 0
-nmap <leader>c <plug>NERDCommenterToggle
-vmap <leader>c <plug>NERDCommenterToggle
+Bundle 'tpope/vim-commentary'
+nmap <leader>c \\\
+vmap <leader>c \\
 
 Bundle 'tpope/vim-unimpaired'
 " bubble current line
