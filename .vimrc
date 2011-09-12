@@ -337,6 +337,7 @@ let g:substitute_GlobalMap = "<leader>';"
 
 Bundle 'tsaleh/vim-align'
 let g:loaded_AlignMapsPlugin = "1"
+map <Leader>__swp <Plug>SaveWinPosn
 
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'jgdavey/vim-blockle'
