@@ -354,7 +354,7 @@ nmap <M-k> [e
 vmap <M-j> ]egv
 vmap <M-k> [egv
 
-Bundle 'Rename'
+Bundle 'Rename2'
 Bundle 'BufOnly.vim'
 Bundle 'nginx.vim'
 Bundle 'JSON.vim'
