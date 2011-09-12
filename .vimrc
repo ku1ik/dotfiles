@@ -24,6 +24,7 @@ set history=1000                     " remember more commands and search history
 set softtabstop=2                    " soft tab width
 set tabstop=2                        " global tab width
 set shiftwidth=2                     " number of spaces for (un)indenting
+set shiftround                       " round indent to multiple of 'shiftwidth'
 set expandtab                        " expand tab characters into spaces
 
 set nowrap                           " don't wrap long lines by default
