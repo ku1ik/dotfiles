@@ -1,17 +1,32 @@
-desc "Symlink configs and init git modules"
-task :symlink_and_init_modules do
-  entries = Dir["*"] + Dir[".*"] - [".", "..", ".git", "Rakefile", "README.md", ".config", ".gitignore", ".gitmodules"] + Dir[".config/*"]
-  entries.each do |e|
-    cmd = "ln -sfn #{File.expand_path(e)} ~/#{e}"
-    puts cmd
-    system cmd
-  end
-  system "git submodule update --init"
+def symlink_(src, dst=nil)
+  dst = src if dst.nil?
+  cmd = "ln -sfn #{File.expand_path(src)} ~/#{dst}"
+  puts cmd
+  system cmd
 end
 
-desc "Update vim plugins to latest rev"
-task :update_modules do
-  system "zsh -c 'cd .vim; for d (bundle/*) { [[ -d $d/.git ]] && (cd $d; git pull origin master) }'"
+desc "Symlink"
+task :symlink_dotfiles do
+  DONT_SYMLINK = %w(
+    .
+    ..
+    .git
+    .gitignore
+    .gitignore_global
+    .gitmodules
+    .config
+    .xmonad
+    .rvm
+    Rakefile
+    README.md
+    firefox
+  ) + Dir['.config/*']
+
+  entries = Dir['*'] + Dir['.*'] - DONT_SYMLINK
+  entries.each { |e| symlink_(e) }
+
+  symlink_('.xmonad/xmonad.hs')
+  symlink_('.gitignore_global', '.gitignore')
 end
 
-task :default => :symlink_and_init_modules
+task :default => :symlink_dotfiles
