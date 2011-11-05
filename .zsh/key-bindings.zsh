@@ -12,18 +12,8 @@ bindkey '^[[Z' reverse-menu-complete
 [[ -z "$terminfo[khome]" ]] || bindkey "$terminfo[khome]" beginning-of-line
 [[ -z "$terminfo[kend]" ]] || bindkey "$terminfo[kend]" end-of-line
 
-# bindkey -M vicmd "j" down-line-or-search
-# bindkey -M vicmd "k" up-line-or-search
-
-# bindkey -M vicmd '^[[A' up-line-or-search
-# bindkey -M vicmd '^[[B' down-line-or-search
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
-
-# bindkey -M vicmd "?" history-incremental-search-backward
-# bindkey -M vicmd "/" history-incremental-search-forward
-
-# general
 
 bindkey "^[[3;3~" delete-word # alt+del
 bindkey "^[[3;5~" delete-word # ctrl+del
