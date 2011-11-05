@@ -2,6 +2,8 @@ Xft.dpi: 96
 Xft.antialias: true
 Xft.rgba: rgb
 Xft.hinting: true
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintfull
 
 ! Xcursor*theme: Vanilla-DMZ-AA
@@ -43,11 +45,14 @@ URxvt.matcher.rend.0: Uline Bold fg8
 ! IRC*perl-ext-common: default,matcher
 
 urxvt*imLocale: pl_PL.UTF-8
+! urxvt*meta8: true
 URxvt.urgentOnBell: true
 URxvt*skipBuiltinGlyphs: true
 urxvt*cutchars: "()*,<>[]{}|''"
 urxvt*print-pipe: cat > $(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
 urxvt*mapAlert: true
+
+URxvt.selection-autotransform.0: s/^([^:[:space:]]+):(\\d+):?$/+$2 \\Q$1\\E/
 
 ! tabs
 URxvt.tabbed.tabbar-fg: 7
