@@ -20,11 +20,6 @@ function! Refresh()
   call RefreshCommandT()
 endfunction
 
-function! RefreshGemsTags()
-  let gems_path = system("echo '`bundle show rails`/../*'")
-  call system("ctags -f ./gems-tags -R --sort=yes --fields=+l " . gems_path)
-endfunction
-
 function! RefreshWithTags()
   call Refresh()
   call system(".git/hooks/ctags")
