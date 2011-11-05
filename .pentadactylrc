@@ -1,0 +1,41 @@
+set cpt=l
+" set noautocomplete
+
+set nextpattern=\\bnastępn,\\bdalej,\\bnext,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b
+set previouspattern=\\bpoprzedni,\\bwstecz,\\bprev|previous\\b,^<$,^(<<|«)$,^(<|«),(<|«)$
+
+noremap j 3j
+noremap k 3k
+
+noremap J gT
+noremap K gt
+
+" highlight Hint  opacity:0.70
+
+" Press 'C-c' to copy, 'C-v' or 'S-Insert' to paste, or 'C-x' to cut
+" noremap <C-c> <C-v><C-c>
+" noremap <C-v> <C-v><C-v>
+" noremap <C-x> <C-v><C-x>
+" cnoremap <C-c> <C-v><C-c>
+" cnoremap <C-v> <C-v><C-v>
+" cnoremap <S-Insert> <C-v><C-v>
+" cnoremap <C-x> <C-v><C-x>
+" inoremap <C-c> <C-v><C-c>
+" inoremap <C-v> <C-v><C-v>
+" inoremap <S-Insert> <C-v><C-v>
+" inoremap <C-x> <C-v><C-x>"
+
+" noremap <C-v> <C-v><C-v>
+" inoremap <C-v> <C-v><C-v>
+" cnoremap <C-v> <C-v><C-v>
+" 
+" noremap <C-c> <C-v><C-c>
+" inoremap <C-c> <C-v><C-c>
+" cnoremap <C-c> <C-v><C-c>
+" 
+" noremap <C-x> <C-v><C-x>
+" inoremap <C-x> <C-v><C-x>"
+" cnoremap <C-x> <C-v><C-x>
+
+inoremap <C-w> <esc>d
+" inoremap <C-t> <C-v><C-t>
