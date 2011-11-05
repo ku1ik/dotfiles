@@ -2,8 +2,10 @@
 --ignore-dir=coverage
 --ignore-dir=log
 --ignore-dir=vendor
+--ignore-dir=_site
 --type-add=ruby=.haml,.rake
 --type-add=html=.html.erb,.html.haml
 --type-add=css=.sass,.less
+--type-set=textile=.textile
 --nosql
 --noxml
