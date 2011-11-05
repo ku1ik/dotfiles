@@ -1,0 +1,92 @@
+[user]
+  name = Marcin Kulik
+  email = marcin.kulik@gmail.com
+
+[color]
+  ui = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[core]
+  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  excludesfile = ~/.gitignore
+  editor = vim.basic -c startinsert
+  ; autocrlf = true
+
+[alias]
+  a = add
+  aa= !git add -u && git add . && git status -sb
+  ag = "!sh -c 'git ls-files -m -o --exclude-standard | grep $1 | xargs -r git add && git status -sb' -" # 'add grep' stages all new+changed that match $1
+  agp = "!sh -c 'git ls-files -m -o --exclude-standard | grep $1 | xargs -r git add -p' -"
+  ; add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+  au = !add -u && git status -sb
+  b = branch
+  br = branch
+  c = commit -v
+  c- = commit -F-
+  ca = !git add -u && git add . && git commit -v
+  cu = !git add -u && git commit -v
+  cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
+  co = checkout
+  cog = "!sh -c 'git ls-files -m | grep $1 | xargs -r git checkout' -" # 'checkout grep' checkouts any files that match $1
+  ; cp = cherry-pick
+  ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
+  d = diff
+  dg = "!sh -c 'git ls-files -m | grep $1 | xargs -r git diff' -" # 'diff grep' diffs any files that match $1
+  done = !git fetch && git rebase origin/master && git checkout master && git merge @{-1} # && git push
+  conflicts = "!vim.basic `git ls-files --unmerged | cut -f2 | uniq`"
+  feature = checkout -b
+  fix = commit --amend -C HEAD
+  hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso
+  last = show -s --pretty='format:%h (%s)'
+  m = merge
+  next = !git add . && git rebase --continue
+  pp = !git pull && git push origin HEAD
+  prp = !git pull --rebase && git push origin HEAD
+  prune-all = !git remote | xargs -n 1 git remote prune
+  ; r = rebase
+  ra = rebase --abort
+  rc = rebase --continue
+  ri = rebase -i
+  rmb = !sh -c 'git branch -D $1 && git push origin :$1' -
+  rmg = "!sh -c 'git ls-files -d | grep $1 | xargs -r git rm' -"
+  rsg = "!sh -c 'git ls-files -c | grep $1 | xargs -r git reset' -"
+  s = status -sb
+  sm = submodule
+  staged = diff --cached
+  tags = tag -n1 -l
+  unstage = reset HEAD --
+  up = !git fetch origin && git rebase origin/master
+  w = whatchanged
+  ; hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+
+[push]
+  default = current
+
+[branch]
+  autosetupmerge = true
+
+[merge]
+  summary = true
+  stat = true
+
+[init]
+  templatedir = ~/.git_template
+
+[dude]
+  interval = 60
+  icon = ~/.git-dude/icon.png
