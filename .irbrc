@@ -27,9 +27,17 @@ end
 
 alias q exit
 
-if defined?(User) && User.respond_to?(:current=)
-  user = File.exist?(".current_user_id") ? User.get(File.read(".current_user_id").strip.to_i) : User.first
-  User.current = user
+if defined?(User)
+  if User.respond_to?(:current=)
+    user = File.exist?(".current_user_id") ? User.get(File.read(".current_user_id").strip.to_i) : User.first
+    User.current = user
+  end
+
+  User.class_eval do
+    def self.me
+      find_by_email("marcin.kulik@llp.pl") || find_by_email("marcin.kulik@gmail.com")
+    end
+  end
 end
 
 # http://ozmm.org/posts/time_in_irb.html
