@@ -46,7 +46,7 @@ set wildignore+=*.o,*.obj,*~,*.png,*.gif,*.jpg,*.jpeg,*.zip,*.jar
 set wildignore+=*.gem,coverage/**,log/**,.git,tags,*.rbc,*.ttf,*.eot
 set wildignore+=*/_site/**,tmp/**,vendor/**
 
-set completeopt=
+set complete=.,w,b,u
 
 set ignorecase
 set smartcase
