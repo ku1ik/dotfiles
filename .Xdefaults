@@ -1,101 +1,46 @@
-Xft.dpi: 96
 Xft.antialias: true
-Xft.rgba: rgb
-Xft.hinting: true
 Xft.autohint: 0
-Xft.lcdfilter: lcddefault
+Xft.dpi: 96
+Xft.hinting: true
 Xft.hintstyle: hintfull
-
-! Xcursor*theme: Vanilla-DMZ-AA
-! Xcursor.size:  22
-
-URxvt.geometry: 120x40
-URxvt.termName: rxvt
-
-URxvt.font: xft:Droid\ Sans\ Mono:size=9
-URxvt*xftAntialias: true
-
-URxvt*depth:24
-URxvt*transparent: true
-URxvt*shading: 15
-!urxvt*fading: 15
-! urxvt*inheritPixmap: True
-!URxvt*tintColor: black
-URxvt*foreground: #BABDB7
-URxvt*background: black
-!URxvt*background: rgba:0000/0000/0000/dddd
-! URxvt*buffered:false
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
 
 URxvt.cursorBlink: true
-
-URxvt.saveLines: 32767
-urxvt*scrollTtyKeypress: true
-urxvt*scrollTtyOutput: false
-urxvt*scrollWithBuffer: true
-URxvt.scrollstyle: plain
-URxvt.scrollBar_right: true
-Uxvt*jumpScroll: True
-!urxvt*scrollBar: False
-!urxvt.scrollColor: green
-
-URxvt*urlLauncher: chromium
-*matcher.button: 1
-URxvt*perl-ext-common: default,matcher,searchable-scrollback
+URxvt.cutchars: "()*,<>[]{}|''"
+URxvt.depth:24
+URxvt.fading: 15
+URxvt.font: xft:Droid\ Sans\ Mono:size=9
+URxvt.geometry: 120x40
+URxvt.jumpScroll: True
+URxvt.matcher.button: 1
 URxvt.matcher.rend.0: Uline Bold fg8
-! IRC*perl-ext-common: default,matcher
-
-urxvt*imLocale: pl_PL.UTF-8
-! urxvt*meta8: true
-URxvt.urgentOnBell: true
-URxvt*skipBuiltinGlyphs: true
-urxvt*cutchars: "()*,<>[]{}|''"
-urxvt*print-pipe: cat > $(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
-urxvt*mapAlert: true
-
+URxvt.perl-ext-common: default,matcher,searchable-scrollback
+URxvt.print-pipe: cat > $(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
+URxvt.saveLines: 32767
+URxvt.scrollBar_right: true
+URxvt.scrollTtyKeypress: true
+URxvt.scrollTtyOutput: false
+URxvt.scrollWithBuffer: true
+URxvt.scrollstyle: plain
 URxvt.selection-autotransform.0: s/^([^:[:space:]]+):(\\d+):?$/+$2 \\Q$1\\E/
-
+URxvt.shading: 10
+URxvt.skipBuiltinGlyphs: true
+URxvt.termName: rxvt
+URxvt.transparent: true
+URxvt.urgentOnBell: true
+URxvt.urlLauncher: chromium
+URxvt.xftAntialias: true
 ! tabs
 URxvt.tabbed.tabbar-fg: 7
 URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg:    7
 URxvt.tabbed.tab-bg:    4
 
-xpdf*enableFreetype: yes
 xpdf*antialias: yes
-xpdf*foreground: black
 xpdf*background: white
+xpdf*enableFreetype: yes
+xpdf*foreground: black
 xpdf*urlCommand: chromium %s
 
-! black
-*color0: #000000
-!*color0: #2E3436
-! red
-*color1: #CC0000
-! green
-*color2: #4E9A06
-! yellow
-*color3: #C4A000
-! blue
-*color4: #3465A4
-! purple
-*color5: #75507B
-! cyan
-*color6: #06989A
-! white
-*color7: #D3D7CF
-! bright-black
-*color8: #555753
-! bright-red
-*color9: #EF2929
-! bright-green
-*color10: #8AE234
-! bright-yellow
-*color11: #FCE94F
-! bright-blue
-*color12: #729FCF
-! bright-purple
-*color13: #AD7FA8
-! bright-cyan
-*color14: #34E2E2
-! bright-white
-*color15: #EEEEEC
+#include "/home/kill/.Xcolors/sickill"
