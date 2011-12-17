@@ -61,7 +61,7 @@ myKeys2 = [((mod4Mask .|. mask, key), f sc)
 myManageHook = composeAll . concat $
    [ [ isDialog --> doCenterFloat ]
    , [ isFullscreen --> doFullFloat ]
-   , [ className =? "Gvim" --> viewShift "3" ]
+   -- , [ className =? "Gvim" --> viewShift "3" ]
    , [ className =? "Empathy" --> viewShift "4" ]
    , [ className =? "Skype" --> viewShift "4" ]
    , [ className =? "Screenkey" --> doF W.focusDown ] {- doIgnore also -}
