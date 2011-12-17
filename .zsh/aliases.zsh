@@ -25,7 +25,7 @@ alias -s -- jar='java -jar'
 alias a='sudo apt-get'
 alias y='sudo yum'
 alias yl='yum -C list installed'
-alias ys='yum -C search'
+alias ys='sudo yum -C search'
 
 # git
 alias g='git'
@@ -63,7 +63,7 @@ alias rs='rails s'
 alias rg='rails g'
 alias rdbm='rake db:migrate'
 alias rdbmt='RAILS_ENV=test rdbm'
-alias devlog='tail -f -n 300 log/development.log'
+alias devlog='less +F -r log/development.log'
 gemcd() { cd "$(gem open -e echo $1)" }
 
 # vagrant
@@ -73,6 +73,7 @@ alias vu='vagrant up'
 # editing
 alias v=vim.basic
 alias e=gvim
+alias view='vim -R'
 
 # find stuff
 alias fd='find . -type d -iname $1'
@@ -88,7 +89,9 @@ alias man='man -P less'
 alias myip='curl http://whatismyip.org && echo'
 alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr" # useful command to find what you should be aliasing:
 alias rtorrent='tmux attach -t rtorrent || tmux new -s rtorrent rtorrent'
+alias weechat='tmux attach -t weechat || tmux new -s weechat weechat-curses'
 alias s='sudo'
+alias please='sudo !!'
 alias sv='sudo service'
 alias t='todo.sh'
 alias tf='tail -f -n200'
