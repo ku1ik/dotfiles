@@ -7,9 +7,6 @@ promptinit
 # Erase the right prompt after a line is accepted
 setopt transientrprompt
 
-# Print the exit value for commands with non-zero exit status
-setopt printexitvalue
-
 # Eval expressions (vars) in prompt string
 setopt prompt_subst
 
