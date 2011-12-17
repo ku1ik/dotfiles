@@ -5,7 +5,8 @@
 --ignore-dir=_site
 --type-add=ruby=.haml,.rake
 --type-add=html=.html.erb,.html.haml
---type-add=css=.sass,.less
+--type-add=css=.sass,.less,.scss
 --type-set=textile=.textile
+--type-set=javascript=.coffee
 --nosql
 --noxml
