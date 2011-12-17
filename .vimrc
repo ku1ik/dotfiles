@@ -48,8 +48,6 @@ set wildignore+=*/_site/**,tmp/**,vendor/**
 
 set complete=.,w,b,u
 
-set ignorecase
-set smartcase
 set incsearch                        " highlight matches as you type.
 set hlsearch                         " highlight matches.
 
