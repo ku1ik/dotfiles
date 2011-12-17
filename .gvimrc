@@ -24,10 +24,10 @@ set gtt=%F
 
 set vb t_vb=                         " no visual nor audio bell
 
+exe "colors " . colors_name
 " colors Sunburst
 " colors Twilight
 " colors Monokai
-colors solarized
 " colors jellybeans
 
 autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
