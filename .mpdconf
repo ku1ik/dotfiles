@@ -1,0 +1,22 @@
+music_directory    "~/Music"
+playlist_directory "~/.mpd/playlists"
+db_file            "~/.mpd/mpd.db"
+log_file           "~/.mpd/mpd.log"
+state_file         "~/.mpd/mpdstate"
+
+follow_outside_symlinks "yes"
+follow_inside_symlinks  "yes"
+
+audio_output {
+  type "pulse"
+  name "My Pulse Output"
+  # server "remote_server" # optional
+  # sink "remote_server_sink" # optional
+}
+
+audio_output {
+  type   "fifo"
+  name   "My FIFO"
+  path   "/tmp/mpd.fifo"
+  format "44100:16:1"
+}
