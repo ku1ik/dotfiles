@@ -1,16 +1,67 @@
-set cpt=l
-" set noautocomplete
+set mapleader=","
 
-set nextpattern=\\bnastępn,\\bdalej,\\bnext,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b
-set previouspattern=\\bpoprzedni,\\bwstecz,\\bprev|previous\\b,^<$,^(<<|«)$,^(<|«),(<|«)$
+" Scrolling up/down
+noremap j 5j
+noremap k 5k
 
-noremap j 3j
-noremap k 3k
-
+" Switching tabs
 noremap J gT
 noremap K gt
 
-" highlight Hint  opacity:0.70
+" Focus first input.. fast
+map i gi
+
+" Complete only URLs/bookmarks
+set cpt=l
+
+" Don't auto-complete
+set autocomplete=
+
+" Complete to longest common string
+" set wildmode=list:longest
+
+" Open help, prefs, addons, downloads in new tab
+set newtab=all
+
+" Pattern for next/prev links
+set nextpattern=\\bnastępn,\\bdalej,\\bnext,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b
+set previouspattern=\\bpoprzedni,\\bwstecz,\\bprev|previous\\b,^<$,^(<<|«)$,^(<|«),(<|«)$
+
+" Fix the common shortcuts
+noremap <c-c> <c-v><c-c>
+inoremap <c-c> <c-v><c-c>
+inoremap <c-v> <c-v><c-v>
+inoremap <c-x> <c-v><c-x>
+" noremap <c-a> <c-v><c-a>
+" inoremap <c-a> <c-v><c-a>
+
+" Pass through keys for few sites
+set passkeys+='mail\.google\.com':c/jkhnpouelxsfra#`[]z?\*nrtgidIU+-=<Tab><Return>
+set passkeys+='plus\.google\.com':jk
+set passkeys+='google\.com/reader':jkovA
+set passkeys+='twitter\.com':jkrn<CR>\.\?,gh,gr
+set passkeys+='www\.google\.com/calendar':xajkcnqetp?<Del>s12345<Return>
+
+" Only show the tab bar if there are more than 1 tabs
+set showtabline=multitab
+
+" View native size of image without clicking it
+nmap <leader>z :js window.content.document.toggleImageSize();<CR>
+
+" Use google search without 'instant'
+" bmark https://encrypted.google.com/search?sclient=psy&hl=en&complete=0&site=webhp&source=hp&q=%s -keyword ssl-google
+set defsearch=ssl-google
+
+" Tango green: #8ae234
+highlight HintActive background: rgba(138, 226, 52, 0.7) !important;
+" Tango butter: fce94f
+highlight HintElem background: rgba(252, 233, 79, 0.7) !important;
+
+" Various shortcuts
+map <leader>m :tabopen gmail.com<CR>
+map <leader>c :tabopen calendar.google.com<CR>
+map <leader>t :tabopen twitter.com<CR>
+
 
 " Press 'C-c' to copy, 'C-v' or 'S-Insert' to paste, or 'C-x' to cut
 " noremap <C-c> <C-v><C-c>
@@ -37,5 +88,21 @@ noremap K gt
 " inoremap <C-x> <C-v><C-x>"
 " cnoremap <C-x> <C-v><C-x>
 
-inoremap <C-w> <esc>d
+" map -m n,i,c,t <C-a> <Pass>
+" map -m n,i,c,t <C-c> <Pass>
+" map -m i,c,t <C-v> <Pass>
+" map -m i,c,t <C-x> <Pass>
+" map -m i,c,t <C-z> <Pass>
+
+" inoremap <C-w> <esc>d
 " inoremap <C-t> <C-v><C-t>
+
+" :map -m=n h -builtin <count>gT
+" :map -m=n l -builtin <count>gt
+
+" Nicer hints
+" highlight Hint  opacity:0.70
+
+" highlight Hint font-size: 14px; background: rgba(210,1,133,0.8) !important; border: 2px solid rgb(165,1,105); padding: 4px; border-radius: 3px; font-weight: bold; margin-left: -25px; color: white; font-family: Helvetica; line-height:1em;
+" highlight HintActive background: rgba(145,197,43,0.8) !important;
+" highlight HintElem background: rgba(255, 209, 20, 0.7) !important;
