@@ -16,6 +16,7 @@ task :symlink_dotfiles do
     .gitmodules
     .config
     .xmonad
+    .ncmpcpp
     .rvm
     Rakefile
     README.md
@@ -26,6 +27,9 @@ task :symlink_dotfiles do
   entries.each { |e| symlink_(e) }
 
   symlink_('.xmonad/xmonad.hs')
+  symlink_('.ncmpcpp/config')
+  symlink_('.config/autostart/edit-server.desktop')
+  symlink_('.config/autostart/mpd.desktop')
   symlink_('.gitignore_global', '.gitignore')
 end
 
