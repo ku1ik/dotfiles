@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Edit Server
+Exec=/home/kill/bin/edit-server
+Terminal=false
+Type=Application
+StartupNotify=false

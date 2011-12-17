@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=MPD Server
+Exec=mpd ~/.mpdconf
+Terminal=false
+Type=Application
+StartupNotify=false
