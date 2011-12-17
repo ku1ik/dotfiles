@@ -44,7 +44,7 @@ set wildmode=list:longest,list:full  " make cmdline tab completion similar to ba
 " stuff to ignore when tab completing
 set wildignore+=*.o,*.obj,*~,*.png,*.gif,*.jpg,*.jpeg,*.zip,*.jar
 set wildignore+=*.gem,coverage/**,log/**,.git,tags,*.rbc,*.ttf,*.eot
-set wildignore+=*/_site/**
+set wildignore+=*/_site/**,tmp/**,vendor/**
 
 set completeopt=
 
