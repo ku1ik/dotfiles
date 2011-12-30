@@ -17,7 +17,7 @@ ${SSH_TTY+"%n@%m:"}%3~
 export RPROMPT='$(prompt_git_info)$(ruby_prompt_info)'
 
 function ruby_prompt_info {
-  ver=$(rvm_ruby_ver)
+  ver=$(rvm_ruby_ver &>/dev/null)
 
   if [ -n "$ver" ]; then
     echo "  %{${fg_bold[red]}%}★%{$reset_color%} $ver"
