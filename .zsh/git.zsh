@@ -70,22 +70,22 @@ prompt_git_info() {
     esac
 
     if [ -n "$__CURRENT_GIT_BRANCH_HAS_STAGED" ]; then
-      s+="%{${fg_bold[yellow]}%}+%{$reset_color%}"
+      s+="%F{yellow}+%f"
     fi
 
     if [ -n "$__CURRENT_GIT_BRANCH_HAS_MODIFIED" ]; then
-      s+="%{${fg[green]}%}*%{$reset_color%}"
+      s+="%F{green}*%f"
     fi
 
     if [ -n "$__CURRENT_GIT_BRANCH_HAS_DELETED" ]; then
-      s+="%{${fg[red]}%}-%{$reset_color%}"
+      s+="%F{red}-%f"
     fi
 
     if [ -n "$__CURRENT_GIT_BRANCH_HAS_UNTRACKED" ]; then
-      s+="%{${fg[cyan]}%}?%{$reset_color%}"
+      s+="%F{cyan}?%f"
     fi
 
-    printf "  %s%s" "%{${fg_bold[green]}%}±%{$reset_color%} $s"
+    print "%F{yellow}($s%F{yellow})%f "
   fi
 }
 
