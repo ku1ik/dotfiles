@@ -11,7 +11,7 @@ setopt transientrprompt
 setopt prompt_subst
 
 PROMPT="\
-%F{cyan}${SSH_TTY+\"%n@%m:\"}%2~%f \
+%F{cyan}${SSH_TTY+%n@%m:}%2~%f \
 \$(ruby_prompt_info)\
 \$(prompt_git_info)\
 %(0?..%F{red})%%%(1j.%%.)%f "
