@@ -23,9 +23,13 @@
 
 [core]
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-  excludesfile = ~/.gitignore
+  excludesfile = ~/.git.ignore
+  attributesfile = ~/.git.attributes
   editor = vim.basic -c startinsert
   ; autocrlf = true
+
+[advice]
+  statusHints = false
 
 [alias]
   a = add
@@ -74,6 +78,7 @@
   untracked = "!sh -c 'git status -s --untracked-files | cut -f2 -d\" \" | grep \"$1\"' -"
   up = !git fetch origin && git rebase origin/master
   w = whatchanged
+  wd = diff --color-words
   ; hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 
 [push]
@@ -87,8 +92,11 @@
   stat = true
 
 [init]
-  templatedir = ~/.git_template
+  templatedir = ~/.git.template
 
 [dude]
   interval = 60
   icon = ~/.git-dude/icon.png
+
+[diff "exif"]
+  textconv = imgdiff
