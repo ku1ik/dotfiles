@@ -33,7 +33,7 @@ set nowrap                           " don't wrap long lines by default
 set backspace=indent,eol,start       " intuitive backspacing.
 set virtualedit=block                " allow virtual editing in Visual block mode
 
-set foldmethod=indent                " folding based on indent
+set foldmethod=syntax                " folding based on syntax
 set foldnestmax=3                    " deepest fold is 3 levels
 set foldlevel=3
 set nofoldenable                     " dont fold by default
@@ -43,16 +43,17 @@ set wildmode=list:longest,list:full  " make cmdline tab completion similar to ba
 
 " stuff to ignore when tab completing
 set wildignore+=*.o,*.obj,*~,*.png,*.gif,*.jpg,*.jpeg,*.zip,*.jar
-set wildignore+=*.gem,coverage/**,log/**,.git,tags,*.rbc,*.ttf,*.eot
-set wildignore+=*/_site/**,tmp/**,vendor/**
+set wildignore+=*.gem,*/coverage/*,*/log/*,tags,*.rbc,*.ttf,*.eot
+set wildignore+=*/_site/*,*/tmp/*,*/vendor/*,*/public/uploads/*,*/_src/*
+set wildignore+=*/.jhw-cache/*
+" set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
 set complete=.,w,b,u
 
-set incsearch                        " highlight matches as you type.
-set hlsearch                         " highlight matches.
+set hlsearch                         " highlight matches...
+set incsearch                        " ...as you type.
 
 set matchpairs+=<:>                  " add < and > to the chars that can be navigated with %
-set iskeyword+=?                     " in ruby ? can end keyword
 
 set number                           " show line numbering
 " set cursorline                       " highlight current line
@@ -75,37 +76,37 @@ set vb t_vb=                         " no visual nor audio bell
 
 set splitbelow splitright            " more intuitive splitting
 
-set pastetoggle=<leader>tp
+set pastetoggle=<F2>                 " easy toggling of paste mode
 
 set laststatus=2                     " show the status line all the time
 
-set statusline=%t                            " Filename
-set statusline+=%m                           " Modified flag.
-set statusline+=%r                           " Readonly flag.
-set statusline+=%w                           " Preview window flag.
+set stl=%t                           " Filename
+set stl+=%m                          " Modified flag.
+set stl+=%r                          " Readonly flag.
+set stl+=%w                          " Preview window flag.
 
-set statusline+=\                            " Space.
+set stl+=\                           " Space.
 
 if exists("SyntasticStatuslineFlag")
-  set statusline+=%#warningmsg#                " Highlight the following as a warning.
-  set statusline+=%{SyntasticStatuslineFlag()} " Syntastic errors.
-  set statusline+=%*                           " Reset highlighting.
+  set stl+=%#warningmsg#             " Highlight the following as a warning.
+  set stl+=%{SyntasticStatuslineFlag()}
+  set stl+=%*                        " Reset highlighting.
 endif
 
-set statusline+=%=                           " Right align.
+set stl+=%=                          " Right align.
 
-set statusline+=(
-set statusline+=%{&ff}                       " Format (unix/DOS).
-set statusline+=/
-set statusline+=%{strlen(&fenc)?&fenc:&enc}  " Encoding (utf-8).
-set statusline+=/
-set statusline+=%{&ft}                       " Type (python).
-set statusline+=)
+set stl+=(
+set stl+=%{&ff}                      " Format (unix/DOS).
+set stl+=/
+set stl+=%{strlen(&fenc)?&fenc:&enc} " Encoding (utf-8).
+set stl+=/
+set stl+=%{&ft}                      " Type (python).
+set stl+=)
 
-set statusline+=\ (line\ %l\/%L,\ col\ %03c) " Line and column position and counts.
+set stl+=\ (line\ %l\/%L,\ col\ %03c) " Line and column position and counts.
 
 if &diff
-  set nonumber " no line numbers
+  set nonumber                       " no line numbers in vimdiff
 endif
 
 """"""""""""""""
@@ -115,37 +116,38 @@ endif
 let mapleader = "," " change leader key
 
 " i'm lazy
-nnoremap ; :
+" noremap <space> :
+" nnoremap ; :
 " nnoremap : ;
 
-" make Y ehave like C,D
+" make Y behave like C, D
 noremap Y y$
 
-" 0 is faster than ^
-" noremap 0 ^
-" noremap ^ 0
+" learn to use _ instead of ^
+nmap ^ <NOP>
 
 " move up/down by screen lines, not file lines
 nnoremap j gj
 nnoremap k gk
+
+" easier way to get out of insert mode
+" inoremap jk <esc>
+" inoremap jj <esc>
+" inoremap <esc> <nop>
 
 " Preserve selection when indenting
 vmap > >gv
 vmap < <gv
 
 " Easy (de)indent
-" nnoremap <M-h> :tabprev<CR>
-" nnoremap <M-l> :tabnext<CR>
-nnoremap <M-h> <<
-nnoremap <M-l> >>
-vnoremap <M-h> <gv
-vnoremap <M-l> >gv
+" nnoremap <M-h> <<
+" nnoremap <M-l> >>
 
-" allow moving with h/j/k/l in insert mode
-inoremap <c-h> <Left>
-inoremap <c-j> <Down>
-inoremap <c-k> <Up>
-inoremap <c-l> <Right>
+" allow moving with Ctrl + h/j/k/l in insert mode
+" inoremap <c-h> <Left>
+" inoremap <c-j> <Down>
+" inoremap <c-k> <Up>
+" inoremap <c-l> <Right>
 
 " Easy window navigation
 map <C-h> <C-w>h
@@ -154,55 +156,32 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " Resizing split windows
-nmap <silent> <C-Up> <C-w>-
-nmap <silent> <C-Down> <C-w>+
-nmap <silent> <C-Left> 2<C-w><
-nmap <silent> <C-Right> 2<C-w>>
+nmap <silent> <S-Up> <C-w>-
+nmap <silent> <S-Down> <C-w>+
+nmap <silent> <S-Left> 3<C-w><
+nmap <silent> <S-Right> 3<C-w>>
 
-" easier start/end of line nav
-noremap H ^
-noremap L $
+" Buffer switching
+nmap <Left> :bp<CR>
+nmap <Right> :bn<CR>
 
-" open tag if only 1 match, show list when multiple matches
-" noremap <C-]> g<C-]>
+" Tab navigation
+noremap <silent> <Esc>h :tabprev<CR>
+noremap <silent> <Esc>l :tabnext<CR>
+noremap <silent> <Esc>t :tabnew<CR>
+noremap <silent> <Esc>c :tabclose<CR>
+
+" Toggle fold
+noremap <space> za
 
 " go to next tag match
 map <C-\> :tnext<CR>
 
 " Press Shift+P while in visual mode to replace the selection without
 " overwriting the default register
-vmap <silent> P p :call setreg('"', getreg('0')) <CR>
+" vmap <silent> P p :call setreg('"', getreg('0')) <CR>
 " vnoremap <silent> p "_xp"
 " vnoremap <silent> P "_xP"
-
-" copy to system clipboard with Ctrl+c
-vmap <C-c> "+y
-
-" select last pasted text
-" nnoremap <expr> <leader>v '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-" paste intelligently
-imap <Leader>v <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
-
-" paste + indent
-" fun! PasteAndIndent(command)
-"   set lz
-"   exe "normal! " . a:command
-"   normal! mm=`]`m
-"   set nolz
-" endfun
-
-" nnoremap <silent> P :call PasteAndIndent('P')<CR>
-" nnoremap <silent> p :call PasteAndIndent('p')<CR>
-" vnoremap <silent> P :call PasteAndIndent('P')<CR>
-" vnoremap <silent> p :call PasteAndIndent('p')<CR>
-
-" nnoremap <silent> p :set lz<CR>pmm=`]:set nolz<CR>`m
-" nnoremap <silent> P :set lz<CR>Pmm=`]:set nolz<CR>`m
-" nnoremap <silent> p mm:set lz<CR>pv`]=:set nolz<CR>`m
-" nnoremap <silent> P mm:set lz<CR>Pv`]=:set nolz<CR>`m
-" nnoremap <silent> p :set lz<CR>pv`]<ESC>mm=`]:set nolz<CR>`m
-" nnoremap <silent> P :set lz<CR>Pv`]<ESC>mm=`]:set nolz<CR>`m
 
 " toggle wrapping
 noremap <silent> <leader>w :set invwrap<Bar>set wrap?<CR>
@@ -216,302 +195,327 @@ nnoremap <silent> <leader><space> mm:%s/\s\+$//e<CR>`m
 " auto indent whole file
 nnoremap <silent> <leader>= mmgg=G`m
 
-" Opens an (tab)edit command with the path of the currently edited file filled in
-" map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-" map <leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+" Expand %% to buffer's path
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
 " Inserts the path of the currently edited file into a command
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+" cmap <C-P> %%
 
 " Search prompt
 nnoremap <leader>s :%s/\v/g<left><left>
 vnoremap <leader>s :s/\v/g<left><left>
+nnoremap <leader>; :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+" Search for prev/next conflict marker
+nnoremap <silent> [= ?\v^[<=>]{7}( .*\|$)<CR>
+nnoremap <silent> ]= /\v^[<=>]{7}( .*\|$)<CR>
 
 " Hide search highlighting
 nnoremap <silent> <CR> :noh<CR><CR>
 
-" delete and close current file
-nmap <leader>x :silent !rm %<cr>:bd<cr>
+" close and *delete* current file
+nmap <leader>x :Unlink<CR>
 
 " close current window
-" nmap Q <C-w>q
+" nmap <leader>q <C-w>q
+
+" kill (close) current window
+nnoremap K <C-w>q
+
+" Switch to prev buffer
+map <leader><leader> <C-^>
 
 " reflow paragraph with Q in normal and visual mode
 nnoremap Q gqip
 vnoremap Q gq
 
-map <F5> :call RefreshWithTags()<cr>
+map <F5> :call RefreshWithTags()<CR>
 map <F6> :make<CR>
 
-" don't need no stinkin' arrows
-nnoremap <Up> <nop>
-nnoremap <Down> <nop>
-nnoremap <Left> <nop>
-nnoremap <Right> <nop>
-vnoremap <Up> <nop>
-vnoremap <Down> <nop>
-vnoremap <Left> <nop>
-vnoremap <Right> <nop>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
-inoremap <Left> <nop>
-inoremap <Right> <nop>
+vmap gx "9y:w !xdg-open '<C-R>=@9<CR>'<CR>
+nmap gx viWgx
+
+" " Remap the tab key to do autocompletion or indentation depending on the
+" " context (from http://www.vim.org/tips/tip.php?tip_id=102)
+" function! InsertTabWrapper()
+"     let col = col('.') - 1
+"     if !col || getline('.')[col - 1] !~ '\k'
+"         return "\<tab>"
+"     else
+"         return "\<c-p>"
+"     endif
+" endfunction
+" inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+" inoremap <s-tab> <c-n>
+
+inoremap <Nul> <C-x><C-o>
+inoremap <C-Space> <C-x><C-o>
+
+" Bash like keys for the command line
+cnoremap <c-a> <Home>
+cnoremap <c-e> <End>
+cnoremap <c-p> <Up>
+cnoremap <c-n> <Down>
+cnoremap <c-b> <Left>
+cnoremap <c-f> <Right>
+cnoremap <c-d> <Del>
+cnoremap <c-k> <C-\>estrpart(getcmdline(), 0, getcmdpos()-1)<cr>
 
 """"""""""""""""
 " Autocommands "
 """"""""""""""""
 
-" commentstrings
-au FileType xdefaults set commentstring=!\ %s
-au FileType tmux set commentstring=#\ %s
+augroup misc
+  au!
 
-" filetype detection
-au BufRead,BufNewFile Gemfile,Rakefile,Thorfile,config.ru,Rules,Vagrantfile,Guardfile,Capfile set ft=ruby
-au BufRead,BufNewFile *.json set ft=json
-au BufRead,BufNewFile nginx.conf,/etc/nginx/**/* set ft=nginx
-au BufRead,BufNewFile *.less set ft=less
-au BufNewFile,BufReadPost .tmux.conf*,tmux.conf* set ft=tmux
-au BufRead,BufNewFile *.{md,mkd,markdown} set ft=markdown
-au BufRead,BufNewFile *.mustache set ft=mustache
+  " commentstrings
+  au FileType xdefaults set commentstring=!\ %s
+  au FileType tmux set commentstring=#\ %s
 
-" wrapping and spell-checking for markdown files
-au BufRead,BufNewFile *.{md,mkd,markdown} setlocal wrap wm=2 textwidth=79 spell
+  " filetype detection
+  au BufRead,BufNewFile Gemfile,Rakefile,Thorfile,config.ru,Rules,Vagrantfile,Guardfile,Capfile set ft=ruby
+  au BufRead,BufNewFile nginx.conf,/etc/nginx/**/* set ft=nginx
+  au BufRead,BufNewFile *.less set ft=less
+  au BufNewFile,BufReadPost .tmux.conf*,tmux.conf* set ft=tmux
+  au BufRead,BufNewFile *.mustache set ft=mustache
+  au BufRead,BufNewFile .pentadactylrc set ft=vim
 
-" autoindent for yaml files
-au BufRead,BufNewFile *.{yml,yaml} setlocal autoindent
+  " wrapping and spell-checking for markdown files
+  au FileType mkd setlocal wrap wm=2 textwidth=79 spell
 
-" formatting XML/JSON files with autoindent (=)
-au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
-au FileType json setlocal equalprg=python\ -m\ json.tool
+  " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
+  au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79 colorcolumn=80
 
-" jump to last position when opening a file,
-" don't do it when writing a commit log entry
-au BufReadPost *
-    \ if &filetype !~ 'commit\c' |
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \ exe "normal g`\"" |
-    \ endif |
-    \ endif
+  " autoindent for yaml files
+  au BufRead,BufNewFile *.{yml,yaml} setlocal autoindent
 
-au CursorMoved,CursorMovedI * if &cul | set nocul | endif
-au CursorHold,CursorHoldI * set cursorline
+  " formatting XML/JSON files with autoindent (=)
+  au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+  au FileType json setlocal equalprg=python\ -m\ json.tool
 
-" open help in vertical split
-au BufWinEnter *.txt,*.txt.gz if &ft == 'help' | wincmd L | endif
+  " jump to last position when opening a file,
+  " don't do it when writing a commit log entry
+  au BufReadPost *
+      \ if &filetype !~ 'commit\c' |
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \ exe "normal g`\"" |
+      \ endif |
+      \ endif
 
-" dash in CSS is a part of a keyword
-au Filetype css setlocal iskeyword+=-
+  au CursorMoved,CursorMovedI * if &cul | set nocursorline | endif
+  au CursorHold,CursorHoldI * set cursorline
 
-au Filetype qf setlocal colorcolumn=
+  " open help in vertical split
+  au BufWinEnter *.txt,*.txt.gz if &ft == 'help' | wincmd L | endif
 
-" makeprgs
-au FileType ruby setlocal makeprg=ruby\ \%
-au FileType sh setlocal makeprg=sh\ \%
+  " ? in ruby is a part of a method
+  au Filetype ruby setlocal iskeyword+=?
 
-" chmod +x scripts that include shebang!
-" au BufWritePost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod a+x <afile> | endif | endif
+  " dash in CSS is a part of a keyword
+  au Filetype css setlocal iskeyword+=-
 
-""""""""""""
-" Commands "
-""""""""""""
+  " no colorcolumn for quickfix
+  au Filetype qf setlocal colorcolumn=
 
-" write & delete buffer
-command! -bar -nargs=0 Wbd :w | bd
+  " makeprgs
+  au FileType ruby setlocal makeprg=ruby\ \%
+  " au BufRead,BufNewFile *_spec.rb setlocal makeprg=rspec\ \%
+  au FileType python setlocal makeprg=python\ \%
+  au FileType sh setlocal makeprg=sh\ \%
 
-" sudo write
-" cmap w!! w !sudo tee % >/dev/null
-command! -bar -nargs=0 SudoW :setl nomod | silent exe 'write !sudo tee % >/dev/null' | let &mod = v:shell_error
+  " custom foldmethod
+  au FileType python,coffee setlocal foldmethod=indent
+
+  " autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
+
+  " completion
+  au FileType css,scss call SuperTabSetDefaultCompletionType("<c-x><c-o>")
+
+  au Filetype *
+    \   if &omnifunc == "" |
+    \     setlocal omnifunc=syntaxcomplete#Complete |
+    \   endif
+
+augroup END
 
 """""""""""""""""
 " Abbreviations "
 """""""""""""""""
 
+augroup abbrevs
+  au!
+
+  " Ruby
+  au Filetype ruby ia log/ Rails.logger.debug
+  au Filetype ruby ia pry/ require 'pry'; binding.pry;
+  au Filetype ruby ia debug/ require 'ruby-debug'; debugger;
+  " au FileType ruby inorea <buffer> def def<CR>end<ESC>-A
+  " au FileType ruby inorea <buffer> class class<CR>end<ESC>-A
+  " au FileType ruby inorea <buffer> module module<CR>end<ESC>-A
+
+  " RSpec
+  au Filetype ruby ia desc/ describe "" do<CR><ESC>?""<ESC>a
+  au Filetype ruby ia cont/ context "" do<CR><ESC>?""<ESC>a
+  au Filetype ruby ia it/ it "" do<CR><ESC>?""<ESC>a
+  au Filetype ruby ia sub/ subject do<CR><BS><SPACE>
+  au Filetype ruby ia bef/ before do<CR><BS><SPACE>
+  au Filetype ruby ia let/ let(:) { }<ESC>F:a
+
+  " au Filetype ruby ia d/ do \|ppp\|<CR><ESC>?ppp<ESC>ciw
+
+  " Coffee
+  au Filetype coffee ia log/ console.log
+
+  " Javascript
+  au Filetype javascript ia log/ console.log()<left>
+  au Filetype javascript ia f/ function() {<CR><BS><SPACE><CR>}<ESC>?{<CR>j$a
+  au Filetype javascript ia f- function() { }<ESC>?{<ESC>a
+augroup END
+
 ia mk/ http://ku1ik.com/
 ia gh/ https://github.com/
 ia ghs/ https://github.com/sickill/
+
+cabbr Q q
 
 """""""""""
 " Plugins "
 """""""""""
 
-if $VIM_BASIC != "1"
-  runtime functions.vim
+runtime functions.vim
 
-  filetype off
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-  Bundle 'gmarik/vundle'
+Bundle 'gmarik/vundle'
+Bundle 'vim-ruby/vim-ruby'
 
-  Bundle 'vim-ruby/vim-ruby'
+Bundle 'mileszs/ack.vim'
+map <leader>a :Ack!<Space>
 
-  Bundle 'mileszs/ack.vim'
-  map <leader>a :Ack!<Space><cword>
+Bundle 'endwise.vim'
+Bundle 'edsono/vim-matchit'
+Bundle 'tpope/vim-rails'
+Bundle 'surround.vim'
+Bundle 'repeat.vim'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'timcharper/textile.vim'
+Bundle 'pangloss/vim-javascript'
 
-  Bundle 'endwise.vim'
+Bundle 'ZoomWin'
+map <leader>z :ZoomWin<CR>
 
-  Bundle 'mattn/gist-vim'
-  let g:gist_open_browser_after_post = 1
-  let g:gist_detect_filetype = 1
-  let g:gist_clip_command = 'xclip -selection clipboard'
+Bundle 'michaeljsmith/vim-indent-object'
 
-  Bundle 'edsono/vim-matchit'
+Bundle 'tpope/vim-fugitive'
+nmap <leader>gw :Gwrite<CR>
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gc :Gcommit -v<CR>
+nmap <leader>gd :Gdiff<CR>
+autocmd BufReadPost fugitive://* set bufhidden=delete
+autocmd User fugitive
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
+  \ endif
 
-  Bundle 'tpope/vim-rails'
-  map <leader>rm :Rmodel<Space>
-  map <leader>rc :Rcontroller<Space>
-  map <leader>rv :Rview<Space>
-  map <leader>rh :Rhelper<Space>
-  map <leader>ro :Robserver observers/
-  map <leader>rj :Rjavascript<Space>
-  map <leader>rs :Rstylesheet<Space>
-  map <leader>rr :e config/routes.rb<cr>
-  map <leader>rg :e Gemfile<cr>
-  command! Rschema :e db/schema.rb
+" Bundle 'msanders/snipmate.vim'
+" let g:snippets_dir = "~/.vim/snippets"
+" source ~/.vim/snippets/support_functions.vim
 
-  Bundle 'surround.vim'
-  Bundle 'repeat.vim'
-  Bundle 'tpope/vim-markdown'
-  Bundle 'tpope/vim-git'
-  Bundle 'timcharper/textile.vim'
-  Bundle 'pangloss/vim-javascript'
-  Bundle 'ruby.vim'
-  Bundle 'scratch.vim'
+Bundle 'jgdavey/vim-blockle'
+let g:blockle_mapping = '<leader>b'
 
-  Bundle 'ZoomWin'
-  map <leader><leader> :ZoomWin<CR>
+Bundle 'tpope/vim-commentary'
 
-  Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'tpope/vim-unimpaired'
+" bubble current line
+nmap <M-j> ]eV=
+nmap <M-k> [eV=
+" bubble visual selection lines
+vmap <M-j> ]egv=gv
+vmap <M-k> [egv=gv
 
-  Bundle 'kana/vim-textobj-user'
-  Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'BufOnly.vim'
+Bundle 'nginx.vim'
+Bundle 'vim-json-bundle'
+" Bundle 'greplace.vim'
 
-  Bundle 'scrooloose/nerdtree'
-  nmap <silent> <leader>n :NERDTreeToggle<CR>
-  nmap <silent> <leader>fn :NERDTreeFind<CR>
-  let NERDTreeMapOpenSplit = "s"
-  let NERDTreeMapOpenVSplit = "v"
-  let NERDTreeMinimalUI = 1
-  let NERDTreeDirArrows = 1
+" Bundle 'Syntastic'
+" let g:syntastic_enable_signs = 1
+" let g:syntastic_disabled_filetypes = ['eruby']
 
-  Bundle 'tpope/vim-fugitive'
-  autocmd BufReadPost fugitive://* set bufhidden=delete
-  autocmd User fugitive
-    \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-    \   nnoremap <buffer> .. :edit %:h<CR> |
-    \ endif
+Bundle 'bingaman/vim-sparkup'
 
-  Bundle 'msanders/snipmate.vim'
-  let g:snippets_dir = "~/.vim/snippets"
-  source ~/.vim/snippets/support_functions.vim
+" Bundle 'altercation/vim-colors-solarized'
+" let g:solarized_contrast = "high"
+" " let g:solarized_termcolors = 256
 
-  Bundle 'aklt/vim-substitute'
-  let g:substitute_PromptMap = "<leader>;'"
-  let g:substitute_NoPromptMap = '<leader>;;'
-  let g:substitute_GlobalMap = "<leader>';"
+Bundle 'tpope/vim-bundler'
 
-  Bundle 'tsaleh/vim-align'
-  let g:loaded_AlignMapsPlugin = "1"
-  map <Leader>__swp <Plug>SaveWinPosn
+Bundle 'vimwiki'
+nmap <silent><unique> <Leader>_ww <Plug>VimwikiIndex
+nmap <silent><unique> <Leader>_wt <Plug>VimwikiTabIndex
+nmap <silent><unique> <Leader>_ws <Plug>VimwikiUISelect
+nmap <silent><unique> <Leader>_wi <Plug>VimwikiDiaryIndex
+nmap <silent><unique> <Leader>_w<Leader>w <Plug>VimwikiMakeDiaryNote
+nmap <silent><unique> <Leader>_w<Leader>t <Plug>VimwikiTabMakeDiaryNote
 
-  Bundle 'ecomba/vim-ruby-refactoring'
-  Bundle 'jgdavey/vim-blockle'
+Bundle 'tpope/vim-abolish'
 
-  Bundle 'tpope/vim-commentary'
-  nmap <leader>c \\\
-  vmap <leader>c \\
+Bundle 'sickill/vim-pasta'
+" let g:pasta_enabled_filetypes = ['ruby']
+" let g:pasta_disabled_filetypes = ['python']
 
-  Bundle 'tpope/vim-unimpaired'
-  " bubble current line
-  nmap <M-j> ]e
-  nmap <M-k> [e
-  " bubble visual selection lines
-  vmap <M-j> ]egv
-  vmap <M-k> [egv
+Bundle 'vim-coffee-script'
+" Bundle 'briancollins/vim-jst'
+Bundle 'godlygeek/tabular'
 
-  Bundle 'Rename2'
-  Bundle 'BufOnly.vim'
-  Bundle 'nginx.vim'
-  Bundle 'JSON.vim'
-  Bundle 'searchfold.vim'
-  Bundle 'greplace.vim'
-  Bundle 'jQuery'
+Bundle 'ervandew/supertab'
+" let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 
-  Bundle 'Syntastic'
-  let g:syntastic_enable_signs = 1
-  let g:syntastic_disabled_filetypes = ['eruby']
+Bundle 'tpope/vim-eunuch'
+ca w!! SudoWrite
+nmap <leader>mv :Rename %%
 
-  Bundle 'bingaman/vim-sparkup'
-  Bundle 'textobj-user'
-  Bundle 'textobj-rubyblock'
+" Bundle 'Lokaltog/vim-powerline'
+" let g:Powerline_symbols = "unicode"
 
-  " Bundle 'git://git.wincent.com/command-t'
-  " let g:CommandTMaxHeight = 15
+Bundle 'kien/ctrlp.vim'
+let g:ctrlp_map = '<Leader>-'
+let g:ctrlp_lazy_update = 1
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_max_depth = 10
+let g:ctrlp_jump_to_buffer = 0
+nmap <leader>e :CtrlP %%<CR>
+nmap - :CtrlPBuffer<CR>
+" let g:ctrlp_by_filename = 1
+" let g:ctrlp_working_path_mode = 0
 
-  " nmap <C-t> :CommandT<CR>
-  " nmap <silent> <Leader>tb :CommandTBuffer<CR>
+Bundle 'mattn/gist-vim'
+let g:gist_clip_command = 'xclip -selection clipboard'
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
 
-  " terribly slows down ruby/rails file loading (and bundle-vim init)
-  " Bundle 'skammer/vim-css-color'
-  " let g:cssColorVimDoNotMessMyUpdatetime = 1
+" Bundle 'sickill/vim-git-inline-diff'
 
-  Bundle 'chrisbra/NrrwRgn'
+" Bundle 'Raimondi/delimitMate'
+" Bundle 'Townk/vim-autoclose'
+" Bundle 'nathanaelkane/vim-indent-guides'
+" Bundle 'wookiehangover/jshint.vim'
+" Bundle 'manalang/jshint.vim'
 
-  " Bundle 'tyru/open-browser.vim'
-  " nmap map-you-like <Plug>(openbrowser-smart-search)
-  " vmap map-you-like <Plug>(openbrowser-smart-search)
+Bundle 'nono/vim-handlebars'
 
-  Bundle 'altercation/vim-colors-solarized'
-  let g:solarized_contrast = "high"
-  " let g:solarized_termcolors = 256
+Bundle 'scrooloose/nerdtree'
+nmap <silent> <leader>n :NERDTreeToggle<CR>
+let NERDTreeMapOpenSplit = "s"
+let NERDTreeMapOpenVSplit = "v"
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
-  Bundle 'wookiehangover/jshint.vim'
-  Bundle 'tpope/vim-bundler'
-
-  Bundle 'vimwiki'
-  nmap <silent><unique> <Leader>_ww <Plug>VimwikiIndex
-  nmap <silent><unique> <Leader>_wt <Plug>VimwikiTabIndex
-  nmap <silent><unique> <Leader>_ws <Plug>VimwikiUISelect
-  nmap <silent><unique> <Leader>_wi <Plug>VimwikiDiaryIndex
-  nmap <silent><unique> <Leader>_w<Leader>w <Plug>VimwikiMakeDiaryNote
-  nmap <silent><unique> <Leader>_w<Leader>t <Plug>VimwikiTabMakeDiaryNote
-
-  Bundle 'tpope/vim-abolish'
-
-  Bundle 'kien/ctrlp.vim'
-  let g:ctrlp_working_path_mode = 0
-  let g:ctrlp_by_filename = 1
-  let g:ctrlp_match_window_reversed = 0
-  let g:ctrlp_persistent_input = 0
-
-  Bundle 'sjl/gundo.vim'
-  Bundle 'nanotech/jellybeans.vim'
-  Bundle 'Raimondi/delimitMate'
-
-  " Bundle 'majutsushi/tagbar'
-  " let g:tagbar_usearrows = 1
-
-  " Bundle 'sickill/vim-git-inline-diff'
-
-  " Bundle 'SuperTab-continued.'
-  " Bundle 'tpope/vim-cucumber'
-  " Bundle 'rosstimson/scala-vim-support'
-  " Bundle 'nathanaelkane/vim-indent-guides'
-  " Bundle 'tpope/vim-haml'
-  " Bundle 'file-line'
-  " Bundle 'bufkill.vim'
-  " Bundle 'delimitMate.vim'
-  " Bundle 'Townk/vim-autoclose'
-  " Bundle 'Lokaltog/vim-easymotion'
-  " Bundle 'QuickBuf'
-  " Bundle 'ZenCoding.vim'
-  " Bundle 'LustyJuggler'
-  " Bundle 'LustyExplorer'
-
-  " Bundle 'robgleeson/hammer.vim'
-  " let g:HammerQuiet = 1
-  " map <leader>p :Hammer<CR>
-endif
+" Bundle 'godlygeek/csapprox'
 
 filetype plugin indent on " enable indendation/internal plugins after Vundle
 
@@ -526,12 +530,20 @@ if (&term == "linux")
 else
   " Colors for console
   if !has("gui_running")
-    set t_Co=256
+    set t_Co=256 " Explicitly tell vim that the terminal has 256 colors
   endif
 
+  " set background=dark
+  " colors grb256
+  " if (g:colors_name == "grb256")
+  "   hi ColorColumn guibg=#111
+  " endif
   " colors Monokai
-  colors Sunburst
-
+  colors madeofcode
+  " colors giant-goldfish
+  " colors molokai
+  " colors Sunburst
+  " colors Twilight
   " set background=dark
   " colors solarized
 endif

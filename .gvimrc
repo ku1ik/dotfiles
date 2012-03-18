@@ -12,6 +12,7 @@ set guioptions+=c
 
 " Paste SELECTION with S-Insert
 inoremap <S-Insert> <MiddleMouse>
+cnoremap <S-Insert> <MiddleMouse>
 
 " font size
 command! -bar -nargs=0 Bigger  :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)+1','')
@@ -24,7 +25,7 @@ set gtt=%F
 
 set vb t_vb=                         " no visual nor audio bell
 
-exe "colors " . colors_name
+" exe "colors " . colors_name
 " colors Sunburst
 " colors Twilight
 " colors Monokai
