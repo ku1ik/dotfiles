@@ -83,7 +83,7 @@ myawesomemenu = {
    { "quit", awesome.quit },
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu },
                                     { "open terminal", terminal },
                                     { "suspend", "sudo pm-suspend" },
                                     { "logout", "gnome-session-quit --logout" },
