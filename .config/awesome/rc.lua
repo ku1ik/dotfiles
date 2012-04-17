@@ -90,9 +90,6 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu },
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
-                                     menu = mymainmenu })
-
 myspacer = widget({ type = "textbox" })
 myspacer.text = "   "
 
@@ -174,8 +171,6 @@ for s = 1, screen.count() do
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
-            mylauncher,
-            myspacer,
             mytaglist[s],
             myspacer,
             mypromptbox[s],
