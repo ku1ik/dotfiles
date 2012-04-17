@@ -7,6 +7,9 @@ require("beautiful")
 -- Notification library
 require("naughty")
 
+require("hostname")
+require("local/" .. hostname)
+
 -- {{{ Error handling
 -- Handle runtime errors after startup
 do
@@ -43,9 +46,6 @@ function exec(arg) awful.util.spawn(arg, false) end
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 
-require("hostname")
-require("local/" .. hostname)
-
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
@@ -66,11 +66,11 @@ layouts =
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags = { names = { "1:www", " 2:term", " 3:dev", " 4:im", " 5:media", " 6:misc" },
-         layout = { layouts[7], layouts[6], layouts[1], layouts[7], layouts[7] } }
+tags = { names = { "1:www", " 2:term", " 3:dev", " 4:im", " 5:media", " 6:misc", " 7:alfa", " 8:beta", " 9:gamma" },
+         layout = { layouts[6], layouts[1], layouts[1], layouts[5], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] } }
 
 for s = 1, screen.count() do
-    tags[s] = awful.tag(tags.names, s, layouts[1])
+    tags[s] = awful.tag(tags.names, s, tags.layout)
 end
 -- }}}
 
@@ -234,7 +234,7 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () exec(terminal) end),
+    awful.key({ modkey, "Shift"   }, "Return", function () exec(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
@@ -250,13 +250,14 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     awful.key({}, "#150", function () exec("sudo /usr/sbin/pm-suspend")   end),
+    awful.key({}, "#172", function () exec("mpc toggle")   end),
     awful.key({ modkey,           }, "o", awful.tag.history.restore),
     awful.key({ modkey }, "b", function ()
       mywibox[mouse.screen].visible = not mywibox[mouse.screen].visible
     end),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    -- awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
     awful.key({ modkey }, "x",
               function ()
@@ -272,7 +273,7 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
     awful.key({ modkey,           }, "q",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
+    awful.key({ modkey,           }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     -- awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
@@ -349,11 +350,16 @@ awful.rules.rules = {
                      maximized_vertical   = false,
                      maximized_horizontal = false,
                      buttons = clientbuttons } },
+      -- callback = awful.client.setslave },
     { rule = { class = "MPlayer" },
+      properties = { floating = true } },
+    { rule = { class = "Exe" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
+      properties = { floating = true } },
+    { rule = { instance = "asciiio" },
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
