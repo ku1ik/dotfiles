@@ -74,6 +74,7 @@ alias vu='vagrant up'
 alias v=vim.basic
 alias e=gvim
 alias view='vim -R'
+alias vime="vim -u ~/.vimencrypt -x"
 
 # find stuff
 alias fd='find . -type d -iname $1'
