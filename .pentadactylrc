@@ -1,8 +1,8 @@
 set mapleader=","
 
 " Scrolling up/down
-noremap j 5j
-noremap k 5k
+noremap j 3j
+noremap k 3k
 
 " Switching tabs
 noremap J gT
@@ -19,6 +19,12 @@ set autocomplete=
 
 " Complete to longest common string
 " set wildmode=list:longest
+
+" Keys used for hints
+set hintkeys=asdfghjkl
+
+" incremental search
+set incfind
 
 " Open help, prefs, addons, downloads in new tab
 set newtab=all
@@ -43,7 +49,7 @@ set passkeys+='twitter\.com':jkrn<CR>\.\?,gh,gr
 set passkeys+='www\.google\.com/calendar':xajkcnqetp?<Del>s12345<Return>
 
 " Only show the tab bar if there are more than 1 tabs
-set showtabline=multitab
+" set showtabline=multitab
 
 " View native size of image without clicking it
 nmap <leader>z :js window.content.document.toggleImageSize();<CR>
@@ -106,3 +112,5 @@ map <leader>t :tabopen twitter.com<CR>
 " highlight Hint font-size: 14px; background: rgba(210,1,133,0.8) !important; border: 2px solid rgb(165,1,105); padding: 4px; border-radius: 3px; font-weight: bold; margin-left: -25px; color: white; font-family: Helvetica; line-height:1em;
 " highlight HintActive background: rgba(145,197,43,0.8) !important;
 " highlight HintElem background: rgba(255, 209, 20, 0.7) !important;
+
+map <Leader>g ogimmebar<CR>
