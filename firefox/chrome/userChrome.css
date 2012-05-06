@@ -1,0 +1,9 @@
+/* Auto-hide bookmarks toolbar */
+/* #PersonalToolbar {visibility: collapse !important;}*/
+/* #navigator-toolbox:hover > #PersonalToolbar {visibility: visible !important;}*/
+
+/* Custom tab width */
+.tabbrowser-tab[fadein]:not([pinned]) {
+  min-width: 40px !important;
+  max-width: 450px !important;
+}
