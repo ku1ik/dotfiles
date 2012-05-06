@@ -13,3 +13,9 @@ export REPORTTIME=60
 
 # disable XON/XOFF flow control (^s/^q)
 stty -ixon
+
+autoload -U zmv
+
+ld-debug() {
+  LD_DEBUG=all "$@" 2>&1 | less
+}
