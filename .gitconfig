@@ -53,7 +53,6 @@
   d = diff
   dg = "!sh -c 'git ls-files -m | grep -i $1 | xargs -r git diff' -" # 'diff grep' diffs any files that match $1
   done = !git fetch && git rebase origin/master && git checkout master && git merge @{-1} # && git push
-  conflicts = "!vim.basic `git ls-files --unmerged | cut -f2 | uniq`"
   feature = checkout -b
   fix = commit --amend -C HEAD
   hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso
@@ -87,10 +86,6 @@
 [branch]
   autosetupmerge = true
 
-[merge]
-  summary = true
-  stat = true
-
 [init]
   templatedir = ~/.git.template
 
@@ -100,3 +95,15 @@
 
 [diff "exif"]
   textconv = imgdiff
+
+[merge]
+  summary = true
+  stat = true
+  tool = fugitive
+
+[mergetool]
+  prompt = false
+  keepBackup = false
+
+[mergetool "fugitive"]
+  cmd = vim -c \"Gdiff\" \"$MERGED\"
