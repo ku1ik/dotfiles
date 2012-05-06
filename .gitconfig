@@ -97,6 +97,9 @@
 [diff "exif"]
   textconv = imgdiff
 
+[include]
+  path = .gitconfig.local
+
 [merge]
   summary = true
   stat = true
