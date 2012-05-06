@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=MPD Server
-Exec=mpd ~/.mpdconf
+Exec=mpd
 Terminal=false
 Type=Application
 StartupNotify=false
