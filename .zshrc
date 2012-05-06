@@ -15,4 +15,6 @@ setopt autopushd
 . ~/.zsh/git.zsh
 . ~/.zsh/prompt.zsh
 . ~/.zsh/rvm.zsh
+. ~/.zsh/scratch.zsh
+
 [[ -f ~/.zshrc.local ]] && . ~/.zshrc.local
