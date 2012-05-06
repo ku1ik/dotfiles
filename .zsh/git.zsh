@@ -82,7 +82,7 @@ prompt_git_info() {
     fi
 
     if [ -n "$__CURRENT_GIT_BRANCH_HAS_UNTRACKED" ]; then
-      s+="%F{cyan}?%f"
+      s+="%F{blue}?%f"
     fi
 
     print "%F{yellow}($s%F{yellow})%f "
