@@ -1,50 +1,25 @@
----------------------------                                                          Fri Mar 30, 15:09
+---------------------------
 -- Default awesome theme --
 ---------------------------
 
 theme = {}
 
--- theme.font          = "Roboto Bold 9"
--- theme.font          = "Droid Sans Bold 9"
-theme.font          = "Droid Sans Bold 9"
+theme.font          = "Drois Sans 9"
 
--- theme.bg_normal     = "#222222"
--- theme.bg_focus      = "#535d6c"
--- theme.bg_urgent     = "#ff0000"
--- theme.bg_minimize   = "#444444"
+theme.bg_normal     = "#222222"
+theme.bg_focus      = "#2494E9"
+theme.bg_urgent     = "#ff0000"
+theme.bg_minimize   = "#444444"
 
--- theme.fg_normal     = "#aaaaaa"
--- theme.fg_focus      = "#ffffff"
--- theme.fg_urgent     = "#ffffff"
--- theme.fg_minimize   = "#ffffff"
-
--- theme.border_width  = "1"
--- theme.border_normal = "#333333"
--- theme.border_focus  = "#f07746"
--- theme.border_marked = "#91231c"
-
-theme.bg_normal     = "#000000"
-theme.bg_focus      = "#000000"
--- theme.bg_focus      = "#4c4c4c"
-theme.bg_urgent     = "#000000"
-theme.bg_minimize   = "#00ff00"
-
-theme.fg_normal     = "#dedede"
-theme.fg_focus      = "#bdef34"
-theme.fg_urgent     = "#ef3460"
+theme.fg_normal     = "#aaaaaa"
+theme.fg_focus      = "#ffffff"
+theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
 theme.border_width  = "1"
--- theme.border_normal = "#4c4c4c"
--- theme.border_focus  = "#3c6eb4"
-theme.border_normal = "#4c4c4c"
-theme.border_focus  = "#bdef34"
--- theme.border_focus  = "#4c4c4c"
+theme.border_normal = "#000000"
+theme.border_focus  = "#2494E9"
 theme.border_marked = "#91231c"
--- theme.border_normal = "#4c4c4c"
-
--- theme.taglist_fg_focus = "#000000"
--- theme.taglist_bg_focus = "#ffffff"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -99,7 +74,7 @@ theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/defau
 theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/maximized_focus_active.png"
 
 -- You can use your own command to set your wallpaper
-theme.wallpaper_cmd = { "false && awsetbg /usr/share/awesome/themes/default/background.png" }
+theme.wallpaper_cmd = { "awsetbg -u feh ~/Pictures/Arch_Linux_Wallpaper_by_james66.jpg" }
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"
@@ -115,7 +90,7 @@ theme.layout_tiletop = "/usr/share/awesome/themes/default/layouts/tiletopw.png"
 theme.layout_spiral  = "/usr/share/awesome/themes/default/layouts/spiralw.png"
 theme.layout_dwindle = "/usr/share/awesome/themes/default/layouts/dwindlew.png"
 
-theme.awesome_icon = "~/Pictures/awesome-icon.png"
+--theme.awesome_icon = "/home/hate/.config/awesome/icons/arch16.png"
 
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:encoding=utf-8:textwidth=80

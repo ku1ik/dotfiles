@@ -66,7 +66,7 @@ layouts =
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags = { names = { "1:www", " 2:term", " 3:dev", " 4:im", " 5:media", " 6:misc", " 7:alfa", " 8:beta", " 9:gamma" },
+tags = { names = { "1:www ", " 2:term ", " 3:dev ", " 4:im ", " 5:media ", " 6:misc ", " 7:alfa ", " 8:beta ", " 9:gamma" },
          layout = { layouts[6], layouts[1], layouts[1], layouts[5], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] } }
 
 for s = 1, screen.count() do
@@ -350,7 +350,7 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "Exe" },
       properties = { floating = true } },
-    { rule = { class = "pinentry" },
+    { rule = { instance = "plugin-container" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
@@ -394,9 +394,5 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 
 require("borders")
 require("titlebars")
-
--- os.execute("/usr/libexec/gnome-settings-daemon &")
--- os.execute("nm-applet &")
--- awesome.add_signal("exit", function() awful.util.spawn("pkill nm-applet") end)
 
 -- }}}

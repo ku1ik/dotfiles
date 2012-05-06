@@ -7,3 +7,6 @@
 
 -- beautiful.border_normal = "#333333"
 -- beautiful.border_focus  = "#00FF00"
+--
+
+-- beautiful.awesome_icon = "/usr/share/icons/hicolor/48x48/apps/fedora-logo-icon.png"
