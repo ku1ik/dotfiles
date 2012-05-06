@@ -55,6 +55,7 @@
   done = !git fetch && git rebase origin/master && git checkout master && git merge @{-1} # && git push
   feature = checkout -b
   fix = commit --amend -C HEAD
+  head = log -1
   hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso
   last = show -s --pretty='format:%h (%s)'
   m = merge
