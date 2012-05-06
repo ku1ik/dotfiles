@@ -13,8 +13,13 @@ alias md='mkdir -p'
 alias ducks='du -cks * | sort -rn | head -11' # Lists the size of all the folders and files
 
 # processes
-alias psg='ps ax | grep'
-alias psug='ps x | grep'
+alias psug='ps x | grep -i'
+alias psg='ps aux | grep -i'
+
+# TODO: split config by use cases rather than by zsh shell features
+function psk() {
+  ps aux | grep -i $1 | grep -v grep | awk '{ print $2 } ' | xargs kill
+}
 
 # opening files
 alias open='xdg-open'
@@ -51,27 +56,24 @@ alias gl='git pull'
 alias glr='git pull --rebase'
 alias gp='git push origin HEAD'
 
-# bundler
-alias b='bundle'
-alias be='bundle exec'
-alias bu='bundle update'
-
 # rails
-alias r='rails'
-alias rc='rails c'
-alias rs='rails s'
-alias rg='rails g'
+alias r='./script/rails'
+alias rc='./script/rails c'
+alias rs='./script/rails s'
+alias rg='./script/rails g'
 alias rdbm='rake db:migrate'
 alias rdbmt='RAILS_ENV=test rdbm'
-alias devlog='less +F -r log/development.log'
+alias devlog='tail -f -n300 log/development.log' #'less +F -r log/development.log'
 gemcd() { cd "$(gem open -e echo $1)" }
+alias bib='bundle install --binstubs'
+alias rake='noglob rake' # stop rake's params from being treated as ZSH patterns
 
 # vagrant
 alias vg='vagrant'
 alias vu='vagrant up'
 
 # editing
-alias v=vim.basic
+alias v=vim
 alias e=gvim
 alias view='vim -R'
 alias vime="vim -u ~/.vimencrypt -x"
@@ -80,6 +82,11 @@ alias vime="vim -u ~/.vimencrypt -x"
 alias fd='find . -type d -iname $1'
 alias ff='find . -type f -iname $1'
 alias unsvn='find . -name .svn -print0 | xargs -0 rm -rf'
+
+# tmux
+alias t=tmux
+alias tn='tmux new -s'
+alias ta='tmux attach -t'
 
 # other
 alias bc='bc -q'
@@ -98,6 +105,10 @@ alias t='todo.sh'
 alias tf='tail -f -n200'
 alias x='dtrx -v --one=here'
 alias rot13='tr a-zA-Z n-za-mN-ZA-M'
+alias mc='TERM=xterm mc'
+alias ssh='TERM=xterm ssh'
+alias smtpd='python -m smtpd -n -c DebuggingServer localhost:1025'
+alias beep='echo -n "\a"'
 
 # global aliases
 alias -g G='| grep'
@@ -105,3 +116,5 @@ alias -g L='| less'
 alias -g M='| more'
 alias -g T='| tail'
 alias -g TF='tail -n100 -f'
+
+alias lasciiio="ASCII_IO_API_URL=http://127.0.0.1:3000 asciiio"
