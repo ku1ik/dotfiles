@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=autocutsel
+Exec=autocutsel
+Terminal=false
+Type=Application
+StartupNotify=false
