@@ -76,3 +76,22 @@ if defined?(ActiveSupport::Notifications)
     puts " \e[1m#{color}#{name} (#{time})\e[0m #{sql}"
   end
 end
+
+def mix_colors(c1, c2)
+  c1.sub!('#')
+  c2.sub!('#')
+
+  r1 = c1[0..1].to_i(16)
+  g1 = c1[2..3].to_i(16)
+  b1 = c1[4..5].to_i(16)
+
+  r2 = c2[0..1].to_i(16)
+  g2 = c2[2..3].to_i(16)
+  b2 = c2[4..5].to_i(16)
+
+  r = (r1+r2) / 2
+  g = (g1+g2) / 2
+  b = (b1+b2) / 2
+
+  "#{r.to_s(16)}#{g.to_s(16)}#{b.to_s(16)}"
+end
