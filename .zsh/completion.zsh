@@ -24,13 +24,17 @@ zstyle ':completion:*:*:*:*:processes' menu yes select
 zstyle ':completion:*:*:*:*:processes' force-list always
 zstyle ':completion:*:*:*:*:processes' command 'ps -A -o pid,user,cmd'
 zstyle ':completion:*:*:*:*:processes' list-colors "=(#b) #([0-9]#)*=0=${color[green]}"
+zstyle ':completion:*:*:kill:*:processes' command 'ps --forest -e -o pid,user,tty,cmd'
 # zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 # List all processes for killall
 zstyle ':completion:*:processes-names' command "ps -eo cmd= | sed 's:\([^ ]*\).*:\1:;s:\(/[^ ]*/\)::;/^\[/d'"
 
-# No username completion
-zstyle ':completion:*' users off
+# SSH usernames
+if [[ -f ~/.ssh/config ]]; then
+  _accounts=(`egrep "^User" ~/.ssh/config | sed s/User\ // | egrep -v '^\*$'`)
+  zstyle ':completion:*:users' users $_accounts
+fi
 
 # Colors in completion
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
