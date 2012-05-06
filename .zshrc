@@ -18,3 +18,6 @@ setopt autopushd
 . ~/.zsh/scratch.zsh
 
 [[ -f ~/.zshrc.local ]] && . ~/.zshrc.local
+
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+[[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh
