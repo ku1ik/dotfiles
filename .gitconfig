@@ -34,8 +34,8 @@
 [alias]
   a = add
   aa= !git add -u && git add . && git status -sb
-  ag = "!sh -c 'git ls-files -m -o --exclude-standard | grep $1 | xargs -r git add && git status -sb' -" # 'add grep' stages all new+changed that match $1
-  agp = "!sh -c 'git ls-files -m -o --exclude-standard | grep $1 | xargs -r git add -p' -"
+  ag = "!sh -c 'git ls-files -m -o --exclude-standard | grep -i $1 | xargs -r git add && git status -sb' -" # 'add grep' stages all new+changed that match $1
+  agp = "!sh -c 'git ls-files -m -o --exclude-standard | grep -i $1 | xargs -r git add -p' -"
   ; add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
   au = !add -u && git status -sb
   b = branch
@@ -46,12 +46,12 @@
   cu = !git add -u && git commit -v
   cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
   co = checkout
-  cog = "!sh -c 'git ls-files -m | grep $1 | xargs -r git checkout' -" # 'checkout grep' checkouts any files that match $1
+  cog = "!sh -c 'git ls-files -m | grep -i $1 | xargs -r git checkout' -" # 'checkout grep' checkouts any files that match $1
   ; cp = cherry-pick
   cc = !git add . -p && git commit -v
   ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
   d = diff
-  dg = "!sh -c 'git ls-files -m | grep $1 | xargs -r git diff' -" # 'diff grep' diffs any files that match $1
+  dg = "!sh -c 'git ls-files -m | grep -i $1 | xargs -r git diff' -" # 'diff grep' diffs any files that match $1
   done = !git fetch && git rebase origin/master && git checkout master && git merge @{-1} # && git push
   conflicts = "!vim.basic `git ls-files --unmerged | cut -f2 | uniq`"
   feature = checkout -b
@@ -68,8 +68,8 @@
   rc = rebase --continue
   ri = rebase -i
   rmb = !sh -c 'git branch -D $1 && git push origin :$1' -
-  rmg = "!sh -c 'git ls-files -d | grep $1 | xargs -r git rm' -"
-  rsg = "!sh -c 'git ls-files -c | grep $1 | xargs -r git reset' -"
+  rmg = "!sh -c 'git ls-files -d | grep -i $1 | xargs -r git rm' -"
+  rsg = "!sh -c 'git ls-files -c | grep -i $1 | xargs -r git reset' -"
   s = status -sb
   sm = submodule
   staged = diff --cached
