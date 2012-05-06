@@ -10,8 +10,9 @@ URxvt.cursorBlink: true
 URxvt.cutchars: "()*,<>[]{}|''"
 URxvt.depth:24
 URxvt.fading: 15
-URxvt.font: xft:Droid\ Sans\ Mono:size=9
+URxvt.font: xft:Droid\ Sans\ Mono\ Slashed:size=9
 URxvt.geometry: 120x40
+URxvt.intensityStyles: true
 URxvt.jumpScroll: True
 URxvt.matcher.button: 1
 URxvt.matcher.rend.0: Uline Bold fg8
@@ -23,14 +24,15 @@ URxvt.scrollTtyKeypress: true
 URxvt.scrollTtyOutput: false
 URxvt.scrollWithBuffer: true
 URxvt.scrollstyle: plain
+URxvt.scrollColor: #bdef34
 URxvt.selection-autotransform.0: s/^([^:[:space:]]+):(\\d+):?$/+$2 \\Q$1\\E/
 URxvt.shading: 10
 URxvt.skipBuiltinGlyphs: true
-URxvt.termName: rxvt
 URxvt.transparent: true
 URxvt.urgentOnBell: true
-URxvt.urlLauncher: chromium
+URxvt.urlLauncher: xdg-open
 URxvt.xftAntialias: true
+
 ! tabs
 URxvt.tabbed.tabbar-fg: 7
 URxvt.tabbed.tabbar-bg: 0
@@ -43,4 +45,5 @@ xpdf*enableFreetype: yes
 xpdf*foreground: black
 xpdf*urlCommand: chromium %s
 
-#include "/home/kill/.Xcolors/sickill"
+#include "/home/kill/.Xcolors/sickill8"
+#include "/home/kill/.Xdefaults.local"
