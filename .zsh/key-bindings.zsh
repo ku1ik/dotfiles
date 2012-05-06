@@ -17,6 +17,7 @@ bindkey '^[[B' down-line-or-search
 
 bindkey "^[[3;3~" delete-word # alt+del
 bindkey "^[[3;5~" delete-word # ctrl+del
+bindkey "^[[3^" delete-word   # ctrl+del
 
 bindkey '\e[1;5D' backward-word # urxvt, konsole
 bindkey '^[OD' backward-word # tmux
