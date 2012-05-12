@@ -7,6 +7,7 @@ setopt autopushd
 
 . ~/.zsh/completion.zsh
 . ~/.zsh/key-bindings.zsh
+. ~/.zsh/rbenv.zsh
 . ~/.zsh/env.zsh
 . ~/.zsh/aliases.zsh
 . ~/.zsh/termsupport.zsh
