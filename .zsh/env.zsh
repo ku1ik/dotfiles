@@ -1,3 +1,6 @@
+export PATH=".git/safe/../../bin:$PATH"
+typeset -U path
+
 export EDITOR=/usr/bin/vim
 export VISUAL="$EDITOR"
 

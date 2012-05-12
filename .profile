@@ -1,5 +1,4 @@
 export PATH="$HOME/bin:$PATH"
-export PATH=".git/safe/../../bin:$PATH"
 
 export LC_TIME="en_GB.utf8"
 export BROWSER="google-chrome"
