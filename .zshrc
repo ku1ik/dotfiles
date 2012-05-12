@@ -16,6 +16,8 @@ setopt autopushd
 . ~/.zsh/prompt.zsh
 . ~/.zsh/rvm.zsh
 . ~/.zsh/scratch.zsh
+. ~/.zsh/rake.zsh
+. ~/.zsh/capistrano.zsh
 
 [[ -f ~/.zshrc.local ]] && . ~/.zshrc.local
 
