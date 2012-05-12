@@ -1,11 +1,9 @@
-" ===============================
+" vim:fdm=marker:fdl=0:foldenable
+
 " Marcin (sickill) Kulik's .vimrc
 " http://ku1ik.com/
-" ===============================
 
-"""""""""""
-" Options "
-"""""""""""
+" Options {{{
 
 set nocompatible                     " turn off compatibility with Vi
 
@@ -117,9 +115,9 @@ if &term =~ "xterm\\|rxvt"
   " autocmd VimLeave * silent !echo -ne "\033]112\007"
 endif
 
-""""""""""""""""
-" Key mappings "
-""""""""""""""""
+" }}}
+
+" Key mappings {{{
 
 let mapleader = "," " change leader key
 
@@ -282,9 +280,9 @@ endfunc
 
 noremap <leader>n :call ToggleNumbering()<cr>
 
-""""""""""""""""
-" Autocommands "
-""""""""""""""""
+" }}}
+
+" Autocommands {{{
 
 augroup misc
   au!
@@ -307,7 +305,7 @@ augroup misc
 
   " autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
 
-  au Filetype *
+  au FileType *
     \   if &omnifunc == "" |
     \     setlocal omnifunc=syntaxcomplete#Complete |
     \   endif
@@ -325,13 +323,25 @@ augroup misc
   au BufWritePost .vimrc source ~/.vimrc
 
   " noignorecase in insert mode only
-  autocmd InsertEnter * set noic
-  autocmd InsertLeave * set ic
+  au InsertEnter * set noic
+  au InsertLeave * set ic
+
+  " reset 'number' setting (mkd sets 'nonumber')
+  au FileType * setlocal number
+
+  " load template for new filetype (when buffer is empty)
+  " au FileType *
+  "   \ if line2byte(line('$') + 1) == -1 |
+  "   \   silent! exe "0r ~/.vim/templates/tpl." . &filetype |
+  "   \   normal! G |
+  "   \ endif
+  " au BufNewFile *.sh 0r ~/.vim/templates/tpl.sh | norm G
+
 augroup END
 
-"""""""""""""""""
-" Abbreviations "
-"""""""""""""""""
+" }}}
+
+" Abbreviations {{{
 
 ia mk/ http://ku1ik.com/
 ia gh/ https://github.com/
@@ -339,9 +349,9 @@ ia ghs/ https://github.com/sickill/
 
 cabbr Q q
 
-"""""""""""
-" Plugins "
-"""""""""""
+" }}}
+
+" Plugins {{{
 
 runtime functions.vim
 
@@ -490,9 +500,9 @@ Bundle 'kana/vim-smartinput'
 
 filetype plugin indent on " enable indendation/internal plugins after Vundle
 
-""""""""""""""""""""""""""""""""""""""
-" Syntax highlighting & color scheme "
-""""""""""""""""""""""""""""""""""""""
+" }}}
+
+" Syntax highlighting & color scheme {{{
 
 syntax enable " Turn on syntax highlighting
 
@@ -523,7 +533,12 @@ else
   " colors jellybeans
 endif
 
-" Finally load local config
+" }}}
+
+" Load local config {{{
+
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
+" }}}
