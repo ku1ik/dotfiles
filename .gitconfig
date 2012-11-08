@@ -106,3 +106,41 @@
 
 [mergetool "fugitive"]
   cmd = vim -c \"Gdiff\" \"$MERGED\"
+
+[url "git@heroku.com:"]
+  insteadOf = "heroku:"
+
+[url "git@github.com:"]
+  insteadOf = "gh:"
+  pushInsteadOf = "https://github.com/"
+  pushInsteadOf = "http://github.com/"
+  pushInsteadOf = "git://github.com/"
+  pushInsteadOf = "gh:"
+
+[url "git@github.com:sickill/"]
+  insteadOf = "ghs:"
+  pushInsteadOf = "https://github.com/sickill/"
+  pushInsteadOf = "http://github.com/sickill/"
+  pushInsteadOf = "git://github.com/sickill/"
+  pushInsteadOf = "ghs:"
+
+[url "git@gist.github.com:"]
+  pushInsteadOf = "gist:"
+  pushInsteadOf = "git://gist.github.com/"
+
+[url "git://gist.github.com/"]
+  insteadOf = "gist:"
+
+[url "git@bitbucket.org:"]
+  insteadOf = "bb:"
+  pushInsteadOf = "https://bitbucket.org/"
+  pushInsteadOf = "http://bitbucket.org/"
+  pushInsteadOf = "git://bitbucket.org/"
+  pushInsteadOf = "bb:"
+
+[url "git@bitbucket.org:sickill/"]
+  insteadOf = "bbs:"
+  pushInsteadOf = "https://bitbucket.org/sickill/"
+  pushInsteadOf = "http://bitbucket.org/sickill/"
+  pushInsteadOf = "git://bitbucket.org/sickill/"
+  pushInsteadOf = "bbs:"
