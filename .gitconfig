@@ -93,7 +93,7 @@
   textconv = imgdiff
 
 [include]
-  path = .gitconfig.local
+  path = ~/.gitconfig.local
 
 [merge]
   summary = true
