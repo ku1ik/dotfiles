@@ -22,7 +22,7 @@
   untracked = cyan
 
 [core]
-  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   excludesfile = ~/.git.ignore
   attributesfile = ~/.git.attributes
   editor = vim.basic -c startinsert
@@ -32,54 +32,49 @@
   statusHints = false
 
 [alias]
-  a = add
-  aa= !git add -u && git add . && git status -sb
-  ag = "!sh -c 'git ls-files -m -o --exclude-standard | grep -i $1 | xargs -r git add && git status -sb' -" # 'add grep' stages all new+changed that match $1
-  agp = "!sh -c 'git ls-files -m -o --exclude-standard | grep -i $1 | xargs -r git add -p' -"
-  ; add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
-  au = !add -u && git status -sb
-  b = branch
+  a = add -v
+  aa = add -A -v .
+  ap = add -p
+  au = add -u -v
+
   br = branch
+  done = !git fetch && git rebase origin/master && git checkout master && git merge @{-1} # && git push
+  feature = checkout -b
+
   c = commit -v
   c- = commit -F-
   ca = !git add -u && git add . && git commit -v
   cu = !git add -u && git commit -v
-  cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
-  co = checkout
-  cog = "!sh -c 'git ls-files -m | grep -i $1 | xargs -r git checkout' -" # 'checkout grep' checkouts any files that match $1
-  ; cp = cherry-pick
-  cc = !git add . -p && git commit -v
-  ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
-  d = diff
-  dg = "!sh -c 'git ls-files -m | grep -i $1 | xargs -r git diff' -" # 'diff grep' diffs any files that match $1
-  done = !git fetch && git rebase origin/master && git checkout master && git merge @{-1} # && git push
-  feature = checkout -b
   fix = commit --amend -C HEAD
-  head = log -1
-  hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso
-  last = show -s --pretty='format:%h (%s)'
-  m = merge
+
+  co = checkout
+
+  ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
+
+  d = diff
+  dw = diff --color-words
+
+  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso
+  head = !git l -1
+
   next = !git add . && git rebase --continue
-  pp = !git pull && git push origin HEAD
-  prp = !git pull --rebase && git push origin HEAD
-  prune-all = !git remote | xargs -n 1 git remote prune
-  ; r = rebase
-  ra = rebase --abort
-  rc = rebase --continue
-  ri = rebase -i
-  rmb = !sh -c 'git branch -D $1 && git push origin :$1' -
-  rmg = "!sh -c 'git ls-files -d | grep -i $1 | xargs -r git rm' -"
-  rsg = "!sh -c 'git ls-files -c | grep -i $1 | xargs -r git reset' -"
+  pp = !git pull --rebase && git push origin HEAD
+
+  rec = !sh -c '(git add -p -- $@ && git commit -v) || git reset' -
+
   s = status -sb
-  sm = submodule
+  x = "!sh -c 'git status --porcelain | sed \"s/^...\\(.*\\)/\\1/\" | grep -i $1 | cut -f3 -d\" \"' -"
+
   staged = diff --cached
-  tags = tag -n1 -l
   unstage = reset HEAD --
-  untracked = "!sh -c 'git status -s --untracked-files | cut -f2 -d\" \" | grep \"$1\"' -"
-  up = !git fetch origin && git rebase origin/master
-  w = whatchanged
-  wd = diff --color-words
+
+  tags = tag -n1 -l
+
+  ; rmb = !sh -c 'git branch -D $1 && git push origin :$1' -
+  ; pp = !git pull && git push origin HEAD
   ; hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  ; untracked = "!sh -c 'git status -s --untracked-files | cut -f3 -d\" \" | grep \"$1\"' -"
+  ; up = !git fetch origin && git rebase origin/master
 
 [push]
   default = upstream
