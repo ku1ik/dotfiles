@@ -1,4 +1,4 @@
-" vim:fdm=marker:fdl=0:foldenable
+" vim:fdm=marker:fdl=0:nofoldenable
 
 " Marcin (sickill) Kulik's .vimrc
 " http://ku1ik.com/
@@ -8,6 +8,21 @@
 set nocompatible                     " turn off compatibility with Vi
 
 set hidden                           " hide buffers when not displayed
+set nowrap                           " don't wrap long lines by default
+set showbreak=↪                      " better line wraps
+set autoindent                       " for filetypes that doesn't have indent rules
+set number                           " show line numbering
+
+set softtabstop=2                    " soft tab width
+set tabstop=2                        " global tab width
+set shiftwidth=2                     " number of spaces for (un)indenting
+set shiftround                       " round indent to multiple of 'shiftwidth'
+set expandtab                        " expand tab characters into spaces
+
+set hlsearch                         " highlight matches...
+set incsearch                        " ...as you type.
+set ignorecase                       " case insensitive search
+set smartcase                        " ...only when pattern is all lowercase
 
 set nobackup                         " don't make a backup before overwriting a file.
 set nowritebackup                    " ^^^
@@ -19,15 +34,6 @@ set autoread                         " automatically read changes from disk
 
 set showcmd                          " display incomplete commands.
 set history=1000                     " remember more commands and search history
-
-set softtabstop=2                    " soft tab width
-set tabstop=2                        " global tab width
-set shiftwidth=2                     " number of spaces for (un)indenting
-set shiftround                       " round indent to multiple of 'shiftwidth'
-set expandtab                        " expand tab characters into spaces
-set autoindent                       " for filetypes that doesn't have indent rules
-
-set nowrap                           " don't wrap long lines by default
 
 set backspace=indent,eol,start       " intuitive backspacing.
 set virtualedit=block                " allow virtual editing in Visual block mode
@@ -41,23 +47,15 @@ set wildmenu                         " enable ctrl-n and ctrl-p to scroll thru m
 set wildmode=list:longest,list:full  " make cmdline tab completion similar to bash
 
 " stuff to ignore when tab completing
-set wildignore+=*.o,*.obj,*~,*.png,*.gif,*.jpg,*.jpeg,*.zip,*.jar
+set wildignore+=*.o,*.obj,*~,*.png,*.gif,*.jpg,*.jpeg,*.zip,*.jar,*.pyc
 set wildignore+=*.gem,*/coverage/*,*/log/*,tags,*.rbc,*.ttf,*.eot
-set wildignore+=*/_site/*,*/tmp/*,*/vendor/*,*/public/uploads/*,*/_src/*
-set wildignore+=*/.jhw-cache/*
+set wildignore+=*/_site/*,*/tmp/*,vendor/*,*/public/uploads/*,*/_src/*
+set wildignore+=*/.jhw-cache/*,.vagrant,*/.stuff/*
 " set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
 set complete=.,w,b,u
 
-set hlsearch                         " highlight matches...
-set incsearch                        " ...as you type.
-set ignorecase                       " case insensitive search
-set smartcase                        " ...only when pattern is all lowercase
-
 set matchpairs+=<:>                  " add < and > to the chars that can be navigated with %
-
-set number                           " show line numbering
-" set cursorline                       " highlight current line
 
 set list                             " show trailing whitespace etc
 set listchars=tab:»\ ,trail:·,nbsp:·
@@ -92,6 +90,7 @@ if exists("SyntasticStatuslineFlag")
   set stl+=%*                        " Reset highlighting.
 endif
 set stl+=%=                          " Right align.
+" set stl+=%{SyntaxItem()}\ 
 set stl+=(
 set stl+=%{&ff}                      " Format (unix/DOS).
 set stl+=/
@@ -115,6 +114,10 @@ if &term =~ "xterm\\|rxvt"
   " autocmd VimLeave * silent !echo -ne "\033]112\007"
 endif
 
+" function! SyntaxItem()
+"   return synIDattr(synID(line("."),col("."),1),"name")
+" endfunction
+
 " }}}
 
 " Key mappings {{{
@@ -128,6 +131,10 @@ let mapleader = "," " change leader key
 
 " make Y behave like C, D
 noremap Y y$
+
+" copy and paste to system clipboard
+noremap <leader>y "+y
+noremap <leader>p "+p
 
 " learn to use _ instead of ^
 nmap ^ <NOP>
@@ -148,6 +155,13 @@ inoremap jj <esc>
 vmap > >gv
 vmap < <gv
 
+" Center search term
+" nnoremap N Nzz
+" nnoremap n nzz
+
+" Join lines with no spaces between
+nnoremap gJ Jdiw
+
 " allow moving with Ctrl + h/j/k/l in insert mode
 " inoremap <c-h> <Left>
 " inoremap <c-j> <Down>
@@ -156,6 +170,9 @@ vmap < <gv
 
 " hash rocket!
 imap <c-l> <space>=><space>
+
+" convert hash rocket to 1.9 hash syntax
+nmap <leader>hr mm:s/\v:(\w+) \=\>/\1:/g<CR>`m
 
 " Easy window navigation
 map <C-h> <C-w>h
@@ -189,11 +206,12 @@ map <C-\> :tnext<CR>
 " Press Shift+P while in visual mode to replace the selection without
 " overwriting the default register
 " vmap <silent> P p :call setreg('"', getreg('0')) <CR>
-" vnoremap <silent> p "_xp"
-" vnoremap <silent> P "_xP"
+vnoremap <silent> p "_dP
+vnoremap <silent> P "_dP
+" vnoremap <leader>p "_dP
 
 " toggle wrapping
-noremap <silent> <leader>w :set invwrap<Bar>set wrap?<CR>
+noremap <silent> <leader>w :setl invwrap<Bar>setl wrap?<CR>
 
 " Fast editing of the .vimrc
 nmap <silent> <leader>. :tabedit $MYVIMRC<CR>
@@ -216,8 +234,8 @@ vnoremap <leader>s :s/\v/g<left><left>
 nnoremap <leader>; :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " Search for prev/next conflict marker
-nnoremap <silent> [= ?\v^[<=>]{7}( .*\|$)<CR>
-nnoremap <silent> ]= /\v^[<=>]{7}( .*\|$)<CR>
+nnoremap <silent> [= :echo 'Use [n'<CR>
+nnoremap <silent> ]= :echo 'Use ]n'<CR>
 
 " Hide search highlighting
 nnoremap <silent> <CR> :noh<CR><CR>
@@ -282,65 +300,6 @@ noremap <leader>n :call ToggleNumbering()<cr>
 
 " }}}
 
-" Autocommands {{{
-
-augroup misc
-  au!
-
-  " jump to last position when opening a file,
-  " don't do it when writing a commit log entry
-  au BufReadPost *
-      \ if &filetype !~ 'commit\c' |
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \ exe "normal g`\"" |
-      \ endif |
-      \ endif
-
-  " cursorline auto show/hide
-  au CursorMoved,CursorMovedI * if &cul | set nocursorline | endif
-  au CursorHold,CursorHoldI * set cursorline
-
-  " open help in vertical split
-  au BufWinEnter *.txt,*.txt.gz if &ft == 'help' | wincmd L | endif
-
-  " autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
-
-  au FileType *
-    \   if &omnifunc == "" |
-    \     setlocal omnifunc=syntaxcomplete#Complete |
-    \   endif
-
-  " Save all buffers on FocusLost
-  au FocusLost * :silent! wall
-
-  " Disable paste mode when leaving Insert Mode
-  au InsertLeave * set nopaste
-
-  " Resize splits when the window is resized
-  au VimResized * exe "normal! \<c-w>="
-
-  " Load .vimrc after save
-  au BufWritePost .vimrc source ~/.vimrc
-
-  " noignorecase in insert mode only
-  au InsertEnter * set noic
-  au InsertLeave * set ic
-
-  " reset 'number' setting (mkd sets 'nonumber')
-  au FileType * setlocal number
-
-  " load template for new filetype (when buffer is empty)
-  " au FileType *
-  "   \ if line2byte(line('$') + 1) == -1 |
-  "   \   silent! exe "0r ~/.vim/templates/tpl." . &filetype |
-  "   \   normal! G |
-  "   \ endif
-  " au BufNewFile *.sh 0r ~/.vim/templates/tpl.sh | norm G
-
-augroup END
-
-" }}}
-
 " Abbreviations {{{
 
 ia mk/ http://ku1ik.com/
@@ -364,15 +323,17 @@ Bundle 'vim-ruby/vim-ruby'
 
 Bundle 'mileszs/ack.vim'
 map <leader>a :Ack!<Space>
+let g:ackprg = 'ag --nogroup --nocolor --column'
+" let g:ackprg = 'git grep -H --line-number --no-color --untracked'
 
 Bundle 'endwise.vim'
 Bundle 'edsono/vim-matchit'
 Bundle 'tpope/vim-rails'
-Bundle 'surround.vim'
-Bundle 'repeat.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'timcharper/textile.vim'
-Bundle 'pangloss/vim-javascript'
+" Bundle 'pangloss/vim-javascript' <- when enabling fix g:html_indent_tags issue
 
 Bundle 'ZoomWin'
 map <leader>z :ZoomWin<CR>
@@ -423,7 +384,7 @@ Bundle 'vim-json-bundle'
 " let g:syntastic_enable_signs = 1
 " let g:syntastic_disabled_filetypes = ['eruby']
 
-Bundle 'bingaman/vim-sparkup'
+" Bundle 'bingaman/vim-sparkup'
 
 Bundle 'altercation/vim-colors-solarized'
 let g:solarized_contrast = "high"
@@ -431,13 +392,14 @@ let g:solarized_contrast = "high"
 
 Bundle 'tpope/vim-bundler'
 
-Bundle 'vimwiki'
-nmap <silent> <Leader>_ww <Plug>VimwikiIndex
-nmap <silent> <Leader>_wt <Plug>VimwikiTabIndex
-nmap <silent> <Leader>_ws <Plug>VimwikiUISelect
-nmap <silent> <Leader>_wi <Plug>VimwikiDiaryIndex
-nmap <silent> <Leader>_w<Leader>w <Plug>VimwikiMakeDiaryNote
-nmap <silent> <Leader>_w<Leader>t <Plug>VimwikiTabMakeDiaryNote
+" Bundle 'vimwiki'
+" nmap <silent> <Leader>_ww <Plug>VimwikiIndex
+" nmap <silent> <Leader>_wt <Plug>VimwikiTabIndex
+" nmap <silent> <Leader>_ws <Plug>VimwikiUISelect
+" nmap <silent> <Leader>_wi <Plug>VimwikiDiaryIndex
+" nmap <silent> <Leader>_wI <Plug>VimwikiDiaryGenerateLinks
+" nmap <silent> <Leader>_w<Leader>w <Plug>VimwikiMakeDiaryNote
+" nmap <silent> <Leader>_w<Leader>t <Plug>VimwikiTabMakeDiaryNote
 
 Bundle 'tpope/vim-abolish'
 
@@ -457,19 +419,23 @@ Bundle 'tpope/vim-eunuch'
 ca w!! SudoWrite
 nmap <leader>mv :Rename %%
 
+Bundle 'henrik/rename.vim'
+nmap <leader>mv :Rename 
+
 " Bundle 'Lokaltog/vim-powerline'
 " let g:Powerline_symbols = "unicode"
 
 Bundle 'kien/ctrlp.vim'
 let g:ctrlp_map = '-'
-let g:ctrlp_lazy_update = 1
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+" let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_lazy_update = 150 " ms
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.bundle$'
 let g:ctrlp_max_depth = 10
-let g:ctrlp_jump_to_buffer = 0
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_mruf_relative = 1
+let g:ctrlp_working_path_mode = 0
 nmap <leader>e :CtrlP %%<CR>
-nmap <Leader>- :CtrlPBuffer<CR>
 " let g:ctrlp_by_filename = 1
-" let g:ctrlp_working_path_mode = 0
 
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
@@ -485,20 +451,90 @@ let g:gist_open_browser_after_post = 1
 
 Bundle 'nono/vim-handlebars'
 
-let g:netrw_liststyle = 3
-" Bundle 'scrooloose/nerdtree'
-" nmap <silent> <leader>n :NERDTreeToggle<CR>
-" let NERDTreeMapOpenSplit = "s"
-" let NERDTreeMapOpenVSplit = "v"
-" let NERDTreeMinimalUI = 1
+" let g:netrw_liststyle = 3
+Bundle 'scrooloose/nerdtree'
+nmap <silent> <leader>n :NERDTreeToggle<CR>
+let NERDTreeMapOpenSplit = "s"
+let NERDTreeMapOpenVSplit = "v"
+let NERDTreeMinimalUI = 1
+
+Bundle 'jpalardy/vim-slime'
+let g:slime_target = "tmux"
+
+" Bundle 'tpope/vim-haml'
+" Bundle 'cakebaker/scss-syntax.vim'
 
 " Bundle 'jgdavey/tslime.vim'
 " Bundle 'jgdavey/vim-turbux'
 
 " Bundle 'godlygeek/csapprox'
-Bundle 'kana/vim-smartinput'
+" Bundle 'kana/vim-smartinput'
+
+" Bundle 'myusuf3/numbers.vim'
 
 filetype plugin indent on " enable indendation/internal plugins after Vundle
+
+" }}}
+
+" Autocommands {{{
+
+augroup misc
+  au!
+
+  autocmd FileType gitcommit setlocal spell
+
+  " jump to last position when opening a file,
+  " don't do it when writing a commit log entry
+  au BufReadPost *
+      \ if &filetype !~ 'commit\c' |
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \ exe "normal g`\"" |
+      \ endif |
+      \ endif
+
+  " cursorline auto show/hide
+  " au CursorMoved,CursorMovedI * if &cul | set nocursorline | endif
+  " au CursorHold,CursorHoldI * set cursorline
+
+  " open help in vertical split
+  au BufWinEnter *.txt,*.txt.gz if &ft == 'help' | wincmd L | endif
+
+  " indent in <li>, <p> etc
+  " autocmd FileType html,eruby,handlebars if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
+
+  au FileType *
+    \   if &omnifunc == "" |
+    \     setlocal omnifunc=syntaxcomplete#Complete |
+    \   endif
+
+  " Save all buffers on FocusLost
+  " au FocusLost * :silent! wall
+
+  " Disable paste mode when leaving Insert Mode
+  " au InsertLeave * set nopaste
+
+  " Resize splits when the window is resized
+  au VimResized * exe "normal! \<c-w>="
+
+  " Load .vimrc after save
+  au BufWritePost .vimrc source ~/.vimrc
+
+  " noignorecase in insert mode only
+  au InsertEnter * set noic
+  au InsertLeave * set ic
+
+  " reset 'number' setting (mkd sets 'nonumber')
+  au FileType * setlocal number
+
+  " load template for new filetype (when buffer is empty)
+  " au FileType *
+  "   \ if line2byte(line('$') + 1) == -1 |
+  "   \   silent! exe "0r ~/.vim/templates/tpl." . &filetype |
+  "   \   normal! G |
+  "   \ endif
+  " au BufNewFile *.sh 0r ~/.vim/templates/tpl.sh | norm G
+
+augroup END
 
 " }}}
 
@@ -514,26 +550,31 @@ else
     set t_Co=256 " Explicitly tell vim that the terminal has 256 colors
   endif
 
-  " set background=dark
-  " colors grb256
-  " if (g:colors_name == "grb256")
-  "   hi ColorColumn guibg=#111
-  " endif
-  colors Monokai
-  " colo smyck
-  " colors madeofcode
-  " colors giant-goldfish
-  " colors molokai
-  " colors Sunburst
-  " colors Twilight
-  " set background=dark
-  " colors solarized
-  " colors mustang
-  " colors wombat256mod
-  " colors jellybeans
+  if !has("gui_running")
+    " set background=dark
+    " colors grb256
+    " if (g:colors_name == "grb256")
+    "   hi ColorColumn guibg=#111
+    " endif
+    colors Monokai
+    " colors GitHub
+    " colo smyck
+    " colors madeofcode
+    " colors giant-goldfish
+    " colors molokai
+    " colors Sunburst
+    " colors Twilight
+    " set background=light
+    " colors solarized
+    " colors mustang
+    " colors wombat256mod
+    " colors jellybeans
+  endif
 endif
 
 " }}}
+
+source ~/.vim/pasting.vim
 
 " Load local config {{{
 

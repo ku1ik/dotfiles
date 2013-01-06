@@ -1,6 +1,7 @@
 " Font for gui
-set guifont=Droid\ Sans\ Mono\ 9
-set linespace=1
+" set guifont=Inconsolata\ 11
+set guifont=DejaVu\ Sans\ Mono\ 9
+" set linespace=1
 
 set guioptions-=R
 set guioptions-=r
@@ -26,10 +27,12 @@ set gtt=%F
 set vb t_vb=                         " no visual nor audio bell
 
 " exe "colors " . colors_name
-" colors Sunburst
+colors Sunburst
 " colors Twilight
 " colors Monokai
 " colors jellybeans
+" set background=dark
+" colors solarized
 
 autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 
