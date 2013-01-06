@@ -63,20 +63,6 @@ def ls(obj=self)
   end
 end
 
-# Just for Rails3
-if defined?(ActiveSupport::Notifications)
-  $odd_or_even_queries = false
-  ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
-    $odd_or_even_queries = !$odd_or_even_queries
-    color = $odd_or_even_queries ? "\e[36m" : "\e[35m"
-    event = ActiveSupport::Notifications::Event.new(*args)
-    time = "%.1fms" % event.duration
-    name = event.payload[:name]
-    sql = event.payload[:sql].gsub("\n", " ").squeeze(" ")
-    puts " \e[1m#{color}#{name} (#{time})\e[0m #{sql}"
-  end
-end
-
 def mix_colors(c1, c2)
   c1.sub!('#')
   c2.sub!('#')
