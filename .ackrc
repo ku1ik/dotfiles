@@ -3,6 +3,7 @@
 --ignore-dir=log
 --ignore-dir=vendor
 --ignore-dir=_site
+--ignore-dir=.jhw-cache
 --type-add=ruby=.haml,.rake
 --type-add=html=.html.erb,.html.haml
 --type-add=css=.sass,.less,.scss
