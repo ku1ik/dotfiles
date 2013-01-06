@@ -7,7 +7,7 @@ export EMAIL="marcin.kulik@gmail.com"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export GDK_USE_XFT=1
 
-[ -f $HOME/.profile.local ] && . $HOME/.profile.local
+[ -s $HOME/.profile.local ] && . $HOME/.profile.local
 
 export LANGUAGE="en_US:en"
 export LC_MESSAGES="en_US.UTF-8"
