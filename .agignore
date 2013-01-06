@@ -1,0 +1,11 @@
+tmp
+coverage
+log
+*.log
+vendor
+_site
+.jhw-cache
+*.sql
+*.csv
+*.json
+*.prof
