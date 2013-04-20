@@ -32,11 +32,12 @@ task :symlink_dotfiles do
   entries.each { |e| symlink_(e) }
 
   symlink_('.xmonad/xmonad.hs')
-  symlink_('.config/autostart/edit-server.desktop')
-  symlink_('.config/autostart/autocutsel.desktop')
   symlink_('.config/fontconfig')
   symlink_('.ncmpcpp/config')
   symlink_('.config/autostart/mpd.desktop')
+  symlink_('.config/autostart/edit-server.desktop')
+  symlink_('.config/autostart/autocutsel.desktop')
+  symlink_('.config/autostart/xbindkeys.desktop')
   # symlink_('.rvm/gemsets/global.gems')
 end
 
