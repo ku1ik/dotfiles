@@ -5,82 +5,34 @@
 [color]
   ui = auto
 
-[color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
-
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
-
-[color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
+; [color "status"]
+;   added = yellow
+;   changed = green
+;   untracked = cyan
 
 [core]
-  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  ; whitespace = fix,cr-at-eol
   excludesfile = ~/.git.ignore
   attributesfile = ~/.git.attributes
-  editor = vim.basic -c startinsert
-  ; autocrlf = true
+  editor = vim -c startinsert
+  pager = less -F
+  ; autocrlf = input
 
-[advice]
-  statusHints = false
+[apply]
+  whitespace = nowarn
 
-[alias]
-  a = add -v
-  aa = add -A -v .
-  ap = add -p
-  au = add -u -v
-
-  br = branch
-  done = !git fetch && git rebase origin/master && git checkout master && git merge @{-1} # && git push
-  feature = checkout -b
-
-  c = commit -v
-  c- = commit -F-
-  ca = !git add -u && git add . && git commit -v
-  cu = !git add -u && git commit -v
-  fix = commit --amend -C HEAD
-
-  co = checkout
-
-  ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
-
-  d = diff
-  dw = diff --color-words
-
-  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso
-  head = !git l -1
-
-  next = !git add . && git rebase --continue
-  pp = !git pull --rebase && git push origin HEAD
-
-  rec = !sh -c '(git add -p -- $@ && git commit -v) || git reset' -
-
-  s = status -sb
-  x = "!sh -c 'git status --porcelain | sed \"s/^...\\(.*\\)/\\1/\" | grep -i $1 | cut -f3 -d\" \"' -"
-
-  staged = diff --cached
-  unstage = reset HEAD --
-
-  tags = tag -n1 -l
-
-  ; rmb = !sh -c 'git branch -D $1 && git push origin :$1' -
-  ; pp = !git pull && git push origin HEAD
-  ; hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-  ; untracked = "!sh -c 'git status -s --untracked-files | cut -f3 -d\" \" | grep \"$1\"' -"
-  ; up = !git fetch origin && git rebase origin/master
+[pull]
+  rebase = true
 
 [push]
   default = upstream
 
-[branch]
-  autosetupmerge = true
+; [branch]
+;   autosetuprebase = always ; for git < 1.7.9
+
+; [advice]
+;   pushNonFastForward = false
+;   statusHints = false
 
 [init]
   templatedir = ~/.git.template
@@ -89,15 +41,13 @@
   interval = 60
   icon = ~/.git-dude/icon.png
 
+[diff]
+  renames = copies
+
 [diff "exif"]
   textconv = imgdiff
 
-[include]
-  path = ~/.gitconfig.local
-
 [merge]
-  summary = true
-  stat = true
   tool = fugitive
 
 [mergetool]
@@ -144,3 +94,68 @@
   pushInsteadOf = "http://bitbucket.org/sickill/"
   pushInsteadOf = "git://bitbucket.org/sickill/"
   pushInsteadOf = "bbs:"
+
+[alias]
+  a = add -v
+  aa = add -A -v .
+  ag = !sh -c 'git add $(git status-grep $1) && git s' -
+  ; ap = add -p
+  au = add -u -v
+
+  br = branch
+  ; done = !git fetch && git rebase origin/master && git checkout master && git merge @{-1} # && git push
+  feature = checkout -b
+
+  c = commit -v
+  c- = commit -F-
+  ca = !git add -A && git commit -v
+  cu = !git add -u && git commit -v
+  fix = commit --amend -C HEAD
+
+  co = checkout
+  cog = !sh -c 'git checkout $(git status-grep $1) && git s' -
+
+  ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
+
+  d = diff
+  dc = diff --staged
+  dg = !sh -c 'git diff $(git status-grep $1)' -
+  dw = diff --color-words
+
+  find = !sh -c 'git ls-files $2 | grep -i $1' -
+  flog = log -u
+
+  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso
+  last = log --decorate --numstat -1
+
+  next = !git add . && git rebase --continue
+  pp = !git pull --rebase && git push origin HEAD
+
+  rec = !sh -c '(git add -p -- $@ && git commit -v) || git reset' -
+
+  r = reset
+  r1 = reset HEAD^
+  r2 = reset HEAD^^
+  rh = reset --hard
+  rh1 = reset HEAD^ --hard
+  rh2 = reset HEAD^^ --hard
+
+  rmg = !sh -c 'git rm $(git status-grep $1) && git s' -
+
+  sed = !sh -c 'git ls-files -z $2 | xargs -0 sed -i -e $1' -
+
+  s = status -sb
+  status-grep = !sh -c \"git status --porcelain | awk '{ print \\$2 }' | grep -i $1\" -
+
+  unstage = reset HEAD --
+
+  tags = tag -n1 -l
+
+  ; rmb = !sh -c 'git branch -D $1 && git push origin :$1' -
+  ; pp = !git pull && git push origin HEAD
+  ; hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  ; untracked = "!sh -c 'git status -s --untracked-files | cut -f3 -d\" \" | grep \"$1\"' -"
+  ; up = !git fetch origin && git rebase origin/master
+
+[include]
+  path = ~/.gitconfig.local

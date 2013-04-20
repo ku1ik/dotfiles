@@ -22,4 +22,11 @@ Thumbs.db
 
 /tags
 
+.vagrant
+
 .*~
+
+/.stuff
+/.bundle
+
+.env
