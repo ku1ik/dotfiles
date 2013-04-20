@@ -3,5 +3,4 @@
 # Grabs the latest standalone version of Chris Wanstrath's hub
 # and puts its in your HOME/bin.
 set -e
-curl http://defunkt.io/hub/standalone -sLo ~/bin/hub
-chmod 755 ~/bin/hub
+curl http://defunkt.io/hub/standalone -sLo ~/bin/hub && chmod 755 ~/bin/hub
