@@ -1,7 +1,7 @@
 --- 
 :verbose: true
 :bulk_threshold: 1000
-gem: --no-rdoc --no-ri
+gem: --no-rdoc
 :backtrace: false
 :sources: 
 - http://rubygems.org
