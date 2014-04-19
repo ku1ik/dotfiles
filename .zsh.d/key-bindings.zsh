@@ -1,4 +1,5 @@
 # typeset -g -A key
+bindkey -e
 
 bindkey "^[m" copy-prev-shell-word # file rename magick
 bindkey ' ' magic-space # also do history expansion on space
