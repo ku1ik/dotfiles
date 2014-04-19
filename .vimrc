@@ -327,6 +327,21 @@ Plugin 'altercation/vim-colors-solarized'
 let g:solarized_contrast = "high"
 let g:solarized_termcolors = 256
 
+" misc plugins
+
+Plugin 'tpope/vim-fugitive'
+nmap <leader>gw :Gwrite<CR>
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gc :Gcommit -v<CR>
+nmap <leader>gd :Gdiff<CR>
+autocmd BufReadPost fugitive://* set bufhidden=delete
+autocmd User fugitive
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
+  \ endif
+
+Plugin 'tpope/vim-commentary'
+
 " enable indentation/internal plugins after Vundle
 
 filetype plugin indent on
