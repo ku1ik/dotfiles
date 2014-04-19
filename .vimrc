@@ -12,17 +12,19 @@ set nowrap                           " don't wrap long lines by default
 set showbreak=↪                      " better line wraps
 set autoindent                       " for filetypes that doesn't have indent rules
 set number                           " show line numbering
+set relativenumber                   " ...but make it relative (except the current line)
 
-set softtabstop=2                    " soft tab width
-set tabstop=2                        " global tab width
-set shiftwidth=2                     " number of spaces for (un)indenting
+set softtabstop=4                    " soft tab width
+set tabstop=4                        " global tab width
+set shiftwidth=4                     " number of spaces for (un)indenting
 set shiftround                       " round indent to multiple of 'shiftwidth'
-set expandtab                        " expand tab characters into spaces
+set expandtab                        " don't expand tab characters into spaces
 
 set hlsearch                         " highlight matches...
 set incsearch                        " ...as you type.
-set ignorecase                       " case insensitive search
-set smartcase                        " ...only when pattern is all lowercase
+
+set lazyredraw                       " improve screen update speed
+set re=1                             " use older regexp engine to speed up ruby syntax
 
 set nobackup                         " don't make a backup before overwriting a file.
 set nowritebackup                    " ^^^
@@ -41,19 +43,19 @@ set virtualedit=block                " allow virtual editing in Visual block mod
 set foldmethod=syntax                " folding based on syntax
 set foldnestmax=3                    " deepest fold is 3 levels
 set foldlevel=3
-set nofoldenable                     " dont fold by default
+set nofoldenable                     " don't fold by default
 
 set wildmenu                         " enable ctrl-n and ctrl-p to scroll thru matches
 set wildmode=list:longest,list:full  " make cmdline tab completion similar to bash
+set wildignorecase                   " tab-complete file names regardless of case
 
 " stuff to ignore when tab completing
 set wildignore+=*.o,*.obj,*~,*.png,*.gif,*.jpg,*.jpeg,*.zip,*.jar,*.pyc
 set wildignore+=*.gem,*/coverage/*,*/log/*,tags,*.rbc,*.ttf,*.eot
-set wildignore+=*/_site/*,*/tmp/*,vendor/*,*/public/uploads/*,*/_src/*
-set wildignore+=*/.jhw-cache/*,.vagrant,*/.stuff/*
-" set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*/_site/*,*/tmp/*,*/vendor/*,*/public/uploads/*,*/_src/*
+set wildignore+=*/.jhw-cache/*,.vagrant,*/.stuff/*,*/test/reports/*,*/*.egg-info/*
 
-set complete=.,w,b,u
+set complete=.,w,b,u,t
 
 set matchpairs+=<:>                  " add < and > to the chars that can be navigated with %
 
@@ -65,8 +67,10 @@ set sidescrolloff=3                  " context in columns around the cursor
 set sidescroll=1                     " smooth scrolling by 1 column
 
 set mouse=a                          " enable mouse in GUI & terminal
+set ttymouse=xterm2                  " make sure mouse works under tmux
 
 set colorcolumn=80                   " show right margin
+set synmaxcol=512                    " max number of line chars to highlight
 
 set title                            " show nice title in xterm
 set gtl=%t                           " tab label format
@@ -90,7 +94,6 @@ if exists("SyntasticStatuslineFlag")
   set stl+=%*                        " Reset highlighting.
 endif
 set stl+=%=                          " Right align.
-" set stl+=%{SyntaxItem()}\ 
 set stl+=(
 set stl+=%{&ff}                      " Format (unix/DOS).
 set stl+=/
@@ -108,39 +111,18 @@ set modelines=3                      " check only first 3 lines for modeline
 
 set ttimeoutlen=100                  " time out for terminal key codes
 
-if &term =~ "xterm\\|rxvt"
-  let &t_SI = "\<Esc>]12;orange\x7"
-  let &t_EI = "\<Esc>]12;gray\x7"
-  " autocmd VimLeave * silent !echo -ne "\033]112\007"
-endif
-
-" function! SyntaxItem()
-"   return synIDattr(synID(line("."),col("."),1),"name")
-" endfunction
-
 " }}}
 
 " Key mappings {{{
 
 let mapleader = "," " change leader key
 
-" i'm lazy
-" noremap <space> :
-" nnoremap ; :
-" nnoremap : ;
-
-" make Y behave like C, D
+" make Y behave like C and D
 noremap Y y$
 
 " copy and paste to system clipboard
-noremap <leader>y "+y
+vnoremap <leader>y "+y
 noremap <leader>p "+p
-
-" learn to use _ instead of ^
-nmap ^ <NOP>
-
-" easier redo
-noremap U <C-r>
 
 " move up/down by screen lines, not file lines
 nnoremap j gj
@@ -149,27 +131,13 @@ nnoremap k gk
 " easier way to get out of insert mode
 inoremap jk <esc>
 inoremap jj <esc>
-" inoremap <esc> <nop>
 
 " Preserve selection when indenting
 vmap > >gv
 vmap < <gv
 
-" Center search term
-" nnoremap N Nzz
-" nnoremap n nzz
-
 " Join lines with no spaces between
 nnoremap gJ Jdiw
-
-" allow moving with Ctrl + h/j/k/l in insert mode
-" inoremap <c-h> <Left>
-" inoremap <c-j> <Down>
-" inoremap <c-k> <Up>
-" inoremap <c-l> <Right>
-
-" hash rocket!
-imap <c-l> <space>=><space>
 
 " convert hash rocket to 1.9 hash syntax
 nmap <leader>hr mm:s/\v:(\w+) \=\>/\1:/g<CR>`m
@@ -179,23 +147,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
-" Resizing split windows
-nmap <silent> <S-Up> <C-w>-
-nmap <silent> <S-Down> <C-w>+
-nmap <silent> <S-Left> 3<C-w><
-nmap <silent> <S-Right> 3<C-w>>
-
-" Buffer switching
-nmap <Left> :bp<CR>
-nmap <Right> :bn<CR>
-
-" Tab navigation
-" noremap <silent> <Esc>h :tabprev<CR>
-" noremap <silent> <Esc>l :tabnext<CR>
-" noremap <silent> <Esc>t :tabnew<CR>
-" noremap <silent> <Esc>c :tabclose<CR>
-" noremap <silent> <leader>t :tabnew<CR>
 
 " Toggle fold
 noremap <space> za
@@ -208,7 +159,6 @@ map <C-\> :tnext<CR>
 " vmap <silent> P p :call setreg('"', getreg('0')) <CR>
 vnoremap <silent> p "_dP
 vnoremap <silent> P "_dP
-" vnoremap <leader>p "_dP
 
 " toggle wrapping
 noremap <silent> <leader>w :setl invwrap<Bar>setl wrap?<CR>
@@ -238,42 +188,22 @@ nnoremap <silent> [= :echo 'Use [n'<CR>
 nnoremap <silent> ]= :echo 'Use ]n'<CR>
 
 " Hide search highlighting
-nnoremap <silent> <CR> :noh<CR><CR>
+nnoremap <silent> <C-c> :noh<CR>
 
 " close and *delete* current file
 nmap <leader>x :Unlink<CR>
 
-" close current window
-" nmap <leader>q <C-w>q
-
 " kill (close) current window
-nnoremap K <C-w>q
+nnoremap Q <C-w>q
+
+" change inside | | and / /
+nnoremap ci\| lF\|lct\|
+nnoremap ci/ lF/lct/
 
 " Switch to prev buffer
 map <leader><leader> <C-^>
 
-" reflow paragraph with Q in normal and visual mode
-nnoremap Q gqip
-vnoremap Q gq
-
-map <F5> :call RefreshWithTags()<CR>
 map <F6> :make<CR>
-
-vmap gx "9y:w !xdg-open '<C-R>=@9<CR>'<CR>
-nmap gx viWgx
-
-" " Remap the tab key to do autocompletion or indentation depending on the
-" " context (from http://www.vim.org/tips/tip.php?tip_id=102)
-" function! InsertTabWrapper()
-"     let col = col('.') - 1
-"     if !col || getline('.')[col - 1] !~ '\k'
-"         return "\<tab>"
-"     else
-"         return "\<c-p>"
-"     endif
-" endfunction
-" inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-" inoremap <s-tab> <c-n>
 
 inoremap <Nul> <C-x><C-o>
 inoremap <C-Space> <C-x><C-o>
@@ -288,15 +218,14 @@ cnoremap <c-f> <Right>
 cnoremap <c-d> <Del>
 cnoremap <c-k> <C-\>estrpart(getcmdline(), 0, getcmdpos()-1)<cr>
 
-function! ToggleNumbering()
-  if &relativenumber
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
+" Split with alternate file
+noremap <F3> <C-w>o:AV<CR>
 
-noremap <leader>n :call ToggleNumbering()<cr>
+" }}}
+
+" Commands {{{
+
+command! Wa wa
 
 " }}}
 
@@ -312,167 +241,95 @@ cabbr Q q
 
 " Plugins {{{
 
-runtime functions.vim
+runtime macros/matchit.vim
 
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
-Bundle 'vim-ruby/vim-ruby'
+Plugin 'gmarik/vundle'
 
-Bundle 'mileszs/ack.vim'
-map <leader>a :Ack!<Space>
-let g:ackprg = 'ag --nogroup --nocolor --column'
-" let g:ackprg = 'git grep -H --line-number --no-color --untracked'
+" language support plugins
 
-Bundle 'endwise.vim'
-Bundle 'edsono/vim-matchit'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'timcharper/textile.vim'
-" Bundle 'pangloss/vim-javascript' <- when enabling fix g:html_indent_tags issue
+Plugin 'vim-ruby/vim-ruby'
 
-Bundle 'ZoomWin'
-map <leader>z :ZoomWin<CR>
+Plugin 'leshill/vim-json'
+let g:vim_markdown_folding_disabled = 1
 
-Bundle 'michaeljsmith/vim-indent-object'
+Plugin 'plasticboy/vim-markdown'
 
-Bundle 'tpope/vim-fugitive'
-nmap <leader>gw :Gwrite<CR>
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gc :Gcommit -v<CR>
-nmap <leader>gd :Gdiff<CR>
-autocmd BufReadPost fugitive://* set bufhidden=delete
-autocmd User fugitive
-  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-  \   nnoremap <buffer> .. :edit %:h<CR> |
-  \ endif
+Plugin 'timcharper/textile.vim'
 
-" Bundle 'msanders/snipmate.vim'
-" let g:snippets_dir = "~/.vim/snippets"
-" source ~/.vim/snippets/support_functions.vim
+Plugin 'nginx.vim'
 
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/snipmate-snippets'
-let g:snips_trigger_key = '<C-e>'
-let g:snips_trigger_key_backwards = '<S-M-e>'
+Plugin 'vim-coffee-script'
 
-Bundle 'jgdavey/vim-blockle'
-let g:blockle_mapping = '<leader>b'
+Plugin 'tpope/vim-cucumber'
 
-Bundle 'tpope/vim-commentary'
+Plugin 'guns/vim-clojure-static'
 
-Bundle 'tpope/vim-unimpaired'
-" bubble current line
-nmap <M-j> ]eV=
-nmap <M-k> [eV=
-" bubble visual selection lines
-vmap <M-j> ]egv=gv
-vmap <M-k> [egv=gv
+Plugin 'othree/html5.vim'
 
-Bundle 'BufOnly.vim'
-Bundle 'nginx.vim'
-Bundle 'vim-json-bundle'
-" Bundle 'greplace.vim'
+Plugin 'puppetlabs/puppet-syntax-vim'
 
-" Bundle 'Syntastic'
-" let g:syntastic_enable_signs = 1
-" let g:syntastic_disabled_filetypes = ['eruby']
+Plugin 'jnwhiteh/vim-golang'
 
-" Bundle 'bingaman/vim-sparkup'
+Plugin 'ekalinin/Dockerfile.vim'
 
-Bundle 'altercation/vim-colors-solarized'
-let g:solarized_contrast = "high"
-" " let g:solarized_termcolors = 256
+Plugin 'Glench/Vim-Jinja2-Syntax'
 
-Bundle 'tpope/vim-bundler'
+Plugin 'slim-template/vim-slim'
 
-" Bundle 'vimwiki'
-" nmap <silent> <Leader>_ww <Plug>VimwikiIndex
-" nmap <silent> <Leader>_wt <Plug>VimwikiTabIndex
-" nmap <silent> <Leader>_ws <Plug>VimwikiUISelect
-" nmap <silent> <Leader>_wi <Plug>VimwikiDiaryIndex
-" nmap <silent> <Leader>_wI <Plug>VimwikiDiaryGenerateLinks
-" nmap <silent> <Leader>_w<Leader>w <Plug>VimwikiMakeDiaryNote
-" nmap <silent> <Leader>_w<Leader>t <Plug>VimwikiTabMakeDiaryNote
+" file navigation and search plugins
 
-Bundle 'tpope/vim-abolish'
-
-Bundle 'sickill/vim-pasta'
-" let g:pasta_enabled_filetypes = ['ruby']
-" let g:pasta_disabled_filetypes = ['python']
-
-Bundle 'vim-coffee-script'
-" Bundle 'briancollins/vim-jst'
-Bundle 'godlygeek/tabular'
-
-Bundle 'ervandew/supertab'
-" let g:SuperTabDefaultCompletionType = "context"
-" let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-
-Bundle 'tpope/vim-eunuch'
-ca w!! SudoWrite
-nmap <leader>mv :Rename %%
-
-Bundle 'henrik/rename.vim'
-nmap <leader>mv :Rename 
-
-" Bundle 'Lokaltog/vim-powerline'
-" let g:Powerline_symbols = "unicode"
-
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 let g:ctrlp_map = '-'
-" let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_lazy_update = 150 " ms
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.bundle$'
 let g:ctrlp_max_depth = 10
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_extensions = ['tag', 'buffertag', 'mixed']
+if executable("ag")
+  let g:ctrlp_user_command = 'ag %s -i -l --nocolor --hidden -g ""'
+endif
 nmap <leader>e :CtrlP %%<CR>
-" let g:ctrlp_by_filename = 1
 
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-let g:gist_clip_command = 'xclip -selection clipboard'
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
-
-" Bundle 'sickill/vim-git-inline-diff'
-
-" Bundle 'nathanaelkane/vim-indent-guides'
-" Bundle 'wookiehangover/jshint.vim'
-" Bundle 'manalang/jshint.vim'
-
-Bundle 'nono/vim-handlebars'
-
-" let g:netrw_liststyle = 3
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 nmap <silent> <leader>n :NERDTreeToggle<CR>
 let NERDTreeMapOpenSplit = "s"
 let NERDTreeMapOpenVSplit = "v"
 let NERDTreeMinimalUI = 1
+let NERDTreeShowHidden = 1
+let NERDTreeIgnore = ['\~$', '^\.git$', '^\.hg$', '^\.bundle$', '^\.jhw-cache$', '\.pyc$', '\.egg-info$', '__pycache__', '\.vagrant$']
 
-Bundle 'jpalardy/vim-slime'
-let g:slime_target = "tmux"
+Plugin 'jistr/vim-nerdtree-tabs'
+map <silent> <Leader>n <plug>NERDTreeTabsToggle<CR>
 
-" Bundle 'tpope/vim-haml'
-" Bundle 'cakebaker/scss-syntax.vim'
+Plugin 'mileszs/ack.vim'
+map <leader>a :Ack!<Space>
+if executable("ag")
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+else
+  let g:ackprg = 'git grep -H --line-number --no-color --untracked'
+endif
 
-" Bundle 'jgdavey/tslime.vim'
-" Bundle 'jgdavey/vim-turbux'
+" color scheme plugins
 
-" Bundle 'godlygeek/csapprox'
-" Bundle 'kana/vim-smartinput'
+Plugin 'nanotech/jellybeans.vim'
 
-" Bundle 'myusuf3/numbers.vim'
+Plugin 'noahfrederick/vim-hemisu'
 
-filetype plugin indent on " enable indendation/internal plugins after Vundle
+Plugin 'altercation/vim-colors-solarized'
+let g:solarized_contrast = "high"
+let g:solarized_termcolors = 256
+
+" enable indentation/internal plugins after Vundle
+
+filetype plugin indent on
 
 " }}}
 
@@ -486,32 +343,23 @@ augroup misc
   " jump to last position when opening a file,
   " don't do it when writing a commit log entry
   au BufReadPost *
-      \ if &filetype !~ 'commit\c' |
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \ exe "normal g`\"" |
-      \ endif |
-      \ endif
+    \ if &filetype !~ 'commit\c' |
+    \   if line("'\"") > 0 && line("'\"") <= line("$") |
+    \     exe "normal g`\"" |
+    \   endif |
+    \ endif
 
   " cursorline auto show/hide
-  " au CursorMoved,CursorMovedI * if &cul | set nocursorline | endif
-  " au CursorHold,CursorHoldI * set cursorline
-
-  " open help in vertical split
-  au BufWinEnter *.txt,*.txt.gz if &ft == 'help' | wincmd L | endif
-
-  " indent in <li>, <p> etc
-  " autocmd FileType html,eruby,handlebars if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
+  au CursorMoved,CursorMovedI * if &cul | set nocursorline | endif
+  au CursorHold,CursorHoldI * set cursorline
 
   au FileType *
-    \   if &omnifunc == "" |
-    \     setlocal omnifunc=syntaxcomplete#Complete |
-    \   endif
-
-  " Save all buffers on FocusLost
-  " au FocusLost * :silent! wall
+    \ if &omnifunc == "" |
+    \   setlocal omnifunc=syntaxcomplete#Complete |
+    \ endif
 
   " Disable paste mode when leaving Insert Mode
-  " au InsertLeave * set nopaste
+  au InsertLeave * set nopaste
 
   " Resize splits when the window is resized
   au VimResized * exe "normal! \<c-w>="
@@ -519,20 +367,16 @@ augroup misc
   " Load .vimrc after save
   au BufWritePost .vimrc source ~/.vimrc
 
-  " noignorecase in insert mode only
-  au InsertEnter * set noic
-  au InsertLeave * set ic
-
   " reset 'number' setting (mkd sets 'nonumber')
   au FileType * setlocal number
 
-  " load template for new filetype (when buffer is empty)
-  " au FileType *
-  "   \ if line2byte(line('$') + 1) == -1 |
-  "   \   silent! exe "0r ~/.vim/templates/tpl." . &filetype |
-  "   \   normal! G |
-  "   \ endif
-  " au BufNewFile *.sh 0r ~/.vim/templates/tpl.sh | norm G
+  " load available skeleton for new file
+  au BufNewFile *.* silent! execute '0r ~/.vim/templates/skeleton.'.expand("<afile>:e") | normal! G
+
+  " tell autoread to reload changed files in terminal vim
+  if !has("gui_running")
+    au BufEnter,BufWinEnter,CursorHold * silent! checktime
+  endif
 
 augroup END
 
@@ -550,26 +394,9 @@ else
     set t_Co=256 " Explicitly tell vim that the terminal has 256 colors
   endif
 
-  if !has("gui_running")
-    " set background=dark
-    " colors grb256
-    " if (g:colors_name == "grb256")
-    "   hi ColorColumn guibg=#111
-    " endif
-    colors Monokai
-    " colors GitHub
-    " colo smyck
-    " colors madeofcode
-    " colors giant-goldfish
-    " colors molokai
-    " colors Sunburst
-    " colors Twilight
-    " set background=light
-    " colors solarized
-    " colors mustang
-    " colors wombat256mod
-    " colors jellybeans
-  endif
+  set background=dark
+  colors hemisu
+  highlight ColorColumn ctermbg=52
 endif
 
 " }}}

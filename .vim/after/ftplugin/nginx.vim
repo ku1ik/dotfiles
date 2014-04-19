@@ -1,1 +1,2 @@
-setl commentstring=#\ %s
+setlocal commentstring=#\ %s
+setlocal noexpandtab
