@@ -18,4 +18,3 @@ _rake() {
 }
 
 compdef _rake rake
-# compctl -K _rake rake

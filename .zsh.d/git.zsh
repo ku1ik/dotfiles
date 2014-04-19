@@ -1,5 +1,3 @@
-# function git() { hub "$@" }
-
 typeset -ga preexec_functions
 typeset -ga precmd_functions
 typeset -ga chpwd_functions
@@ -26,10 +24,10 @@ update_current_git_vars() {
     if [[ $arr[2] =~ 'Your branch is' ]]; then
       if [[ $arr[2] =~ 'ahead' ]]; then
         __CURRENT_GIT_BRANCH_STATUS='ahead'
+      elif [[ $arr[2] =~ 'behind' ]]; then
+        __CURRENT_GIT_BRANCH_STATUS='behind'
       elif [[ $arr[2] =~ 'diverged' ]]; then
         __CURRENT_GIT_BRANCH_STATUS='diverged'
-      else
-        __CURRENT_GIT_BRANCH_STATUS='behind'
       fi
     fi
 
@@ -109,3 +107,6 @@ precmd_functions+='precmd_update_git_vars'
 chpwd_functions+='chpwd_update_git_vars'
 
 update_current_git_vars
+
+alias g='git'
+alias gcd='cd "`git rev-parse --show-toplevel`"' # Go to the root of a Git repo

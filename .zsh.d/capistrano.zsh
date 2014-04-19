@@ -19,4 +19,3 @@ function _cap () {
 }
 
 compdef _cap cap
-# compctl -K _cap cap

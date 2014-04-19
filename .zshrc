@@ -1,26 +1,38 @@
+# make $PATH a set
+typeset -U path
+export PATH="$HOME/.local/bin:$PATH"
+
+autoload colors zsh/terminfo
+colors
+
 setopt nohup
 setopt nobeep
 setopt extendedglob
-setopt NOBGNICE
+unsetopt nomatch # pass the bad match onto the command
+setopt nobgnice
 setopt autocd
 setopt autopushd
 
-. ~/.zsh/completion.zsh
-. ~/.zsh/key-bindings.zsh
-. ~/.zsh/rbenv.zsh
-. ~/.zsh/env.zsh
-. ~/.zsh/aliases.zsh
-. ~/.zsh/termsupport.zsh
-. ~/.zsh/misc.zsh
-. ~/.zsh/history.zsh
-. ~/.zsh/git.zsh
-. ~/.zsh/prompt.zsh
-. ~/.zsh/rvm.zsh
-. ~/.zsh/scratch.zsh
-. ~/.zsh/rake.zsh
-. ~/.zsh/capistrano.zsh
+# auto-quote entered URLs
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
+
+# edit command line in $EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey "\ee" edit-command-line  # <Esc-e>
+
+# display time for longer commands
+export REPORTTIME=60
+
+# disable XON/XOFF flow control (^s/^q)
+stty -ixon
+
+# enable zmv (mv on steroids)
+autoload -U zmv
+
+for file in ~/.zsh.d/*.zsh; do
+  . $file
+done
 
 [[ -f ~/.zshrc.local ]] && . ~/.zshrc.local
-
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
-[[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh
