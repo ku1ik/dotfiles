@@ -1,3 +1,0 @@
-#!/bin/sh -e
-curl -s http://betterthangrep.com/ack-standalone > ~/bin/ack
-chmod +x ~/bin/ack
