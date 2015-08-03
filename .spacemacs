@@ -20,16 +20,20 @@
      ;; auto-completion
      ;; better-defaults
      emacs-lisp
-     (git :variables
-          git-gutter-use-fringe t)
+     git
+     ;; (git :variables
+     ;;      git-gutter-use-fringe t)
      markdown
      ;; org
      shell
-     ;; syntax-checking
+     syntax-checking
      go
      clojure
+     html
+     javascript
      yaml
      ruby
+     restclient
      )
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
@@ -37,7 +41,7 @@
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(slim-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(smartparens evil-search-highlight-persist)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
@@ -147,8 +151,12 @@ before layers configuration."
    ;; specified with an installed package.
    ;; Not used for now.
    dotspacemacs-default-package-repository nil
+
+   ;; my own
+   ruby-enable-ruby-on-rails-support t
    )
   ;; User initialization goes here
+  ;; (setq git-gutter:added-sign "^")
   )
 
 (defun dotspacemacs/config ()
@@ -161,7 +169,44 @@ layers configuration."
 
   (setq linum-format "%3d ")
   ;; (setq relative-linum-format-string "%3d ")
+
+  (add-hook 'markdown-mode-hook 'turn-on-auto-fill)
+  (add-hook 'markdown-mode-hook 'flyspell-mode)
+
+  ;; (setq mac-option-key-is-meta t)
+  ;; (setq mac-right-option-modifier nil)
+  ;; (setq mac-option-modifier 'none)
+  ;; (setq mac-command-modifier 'meta)
+
+  ;; why is this not working?
+  (setq git-gutter:added-sign "$")
+
+  (define-key evil-normal-state-map "-" 'helm-projectile)
+  (define-key evil-motion-state-map "-" 'helm-projectile)
+
+  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+
+  (setq vc-follow-symlinks t)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ahs-case-fold-search nil)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
+ '(ahs-idle-interval 0.25)
+ '(ahs-idle-timer 0 t)
+ '(ahs-inhibit-face-list nil)
+ '(paradox-github-token t)
+ '(ring-bell-function (quote ignore) t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
