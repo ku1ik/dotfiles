@@ -1,3 +1,0 @@
-[submodule ".vim/snippets"]
-  path = .vim/snippets
-  url = git@github.com:sickill/snipmate-snippets.git
